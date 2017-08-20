@@ -1,0 +1,317 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+In this module, we will explore a set of helper functions in order to:
+
+- extract unique rows 
+- rename columns
+- sample data
+- extract columns
+- slice rows
+- arrange rows
+- compare tables
+- extract/mutate data using predicate functions
+- count observations for different levels of a variable
+
+## Case Study
+
+### Introduction
+
+<hr>
+
+Let us look at a case study (e-commerce data) and see how we can use dplyr helper functions to answer questions we have about and to modify/transform the underlying data set. You can download the data from [here](https://github.com/rsquaredacademy/datasets/blob/master/web.csv) or import it directly using `read_csv()` from the [readr](readr.tidyverse.org) package.
+
+### Data
+
+<hr>
+
+```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+## Data Sanitization
+
+### Introduction
+
+<hr>
+
+### Traffic Sources
+
+<hr>
+
+```{r dplyr2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Traffic Sources'}
+ecom %>%
+  distinct(referrer)
+```
+
+### Device Types
+
+<hr>
+
+```{r dplyr30, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Device Types'}
+ecom %>%
+  distinct(device)
+```
+
+### Rename Columns
+
+<hr>
+
+```{r dplyr3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rename Columns'}
+ecom %>%
+  rename(time_on_site = duration)
+```
+
+## Sampling Data
+
+### Introduction
+
+<hr>
+
+```{r dplyr4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Sampling - Part 1'}
+ecom %>%
+  sample_n(700)
+```
+
+### Sampling Data
+
+<hr>
+
+```{r dplyr5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Sampling - Part 2'}
+ecom %>%
+  group_by(referrer) %>%
+  sample_n(100)
+```
+
+### Sampling Data
+
+<hr>
+
+```{r dplyr6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Sampling - Part 3'}
+ecom %>%
+  sample_frac(size = 0.7)
+```
+
+### Sampling Data
+
+<hr>
+
+```{r dplyr7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Sampling - Part 4'}
+ecom %>%
+  group_by(referrer) %>%
+  sample_frac(0.3)
+```
+
+
+## Extract Columns
+
+### Introduction
+
+<hr>
+
+### Extract Device Column
+
+<hr>
+
+```{r dplyr8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column - Part 1'}
+ecom %>%
+  pull(device)
+```
+
+### Extract First Column
+
+<hr>
+
+```{r dplyr9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column - Part 2'}
+ecom %>%
+  pull(1)
+```
+
+### Extract Last Column
+
+<hr>
+
+```{r dplyr10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column - Part 3'}
+ecom %>%
+  pull(-1)
+```
+
+### Extract First 20 Rows
+
+<hr>
+
+```{r dplyr11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column - Part 4'}
+ecom %>%
+  slice(1:20)
+```
+
+### Extract Last Row
+
+<hr>
+
+```{r dplyr12, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column - Part 5'}
+ecom %>%
+  slice(n())
+```
+
+## Total Observations in Data
+
+<hr>
+
+```{r dplyr13, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 1'}
+ecom %>%
+  tally()
+```
+
+### Tabulate Referrers
+
+<hr>
+
+```{r dplyr14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 2'}
+ecom %>%
+  group_by(referrer) %>%
+  tally()
+```
+
+### Tabulate referrers and bouncers
+
+<hr>
+
+```{r dplyr15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 3'}
+ecom %>%
+  group_by(referrer, bouncers) %>%
+  tally()
+```
+
+### Tabulate referrers and purchasers
+
+<hr>
+
+```{r dplyr16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 4'}
+ecom %>%
+  group_by(referrer, purchase) %>%
+  tally()
+```
+
+### Tabulate Referrers & Converts
+
+<hr>
+
+```{r dplyr25, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 5'}
+ecom %>%
+  group_by(referrer, purchase) %>%
+  tally() %>%
+  filter(purchase == 'true')
+```
+
+### Count
+
+<hr>
+
+```{r dplyr17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 6'}
+ecom %>%
+  count(referrer, purchase)
+```
+
+### Top 2 referrers by orders
+
+<hr>
+
+```{r dplyr18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate - Part 7'}
+ecom %>%
+  count(referrer, purchase) %>%
+  filter(purchase == 'true') %>%
+  arrange(desc(n)) %>%
+  top_n(n = 2)
+```
+
+## Others
+
+### Between
+
+<hr>
+
+```{r dplyr19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Between'}
+ecom %>%
+  pull(n_pages) %>%
+  between(5, 15) 
+```
+
+### Case When
+
+<hr>
+
+```{r dplyr20}
+mtcars %>%
+  select(mpg, disp, cyl, gear, carb) %>%
+  mutate(
+    type = case_when(
+      disp > 200 ~ 'High',
+      cyl == 8 ~ 'Eight',
+      TRUE ~ 'True'
+    )
+  )
+```
+
+### Select First Observation
+
+<hr>
+
+```{r dplyr21, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 1'}
+ecom %>%
+  pull(referrer) %>%
+  nth(1)
+
+ecom %>%
+  pull(referrer) %>%
+  first()
+```
+
+### Select 1000th Observation
+
+<hr>
+
+```{r dplyr22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 2'}
+ecom %>%
+  pull(referrer) %>%
+  nth(1000)
+```
+
+### Select Last Observation
+
+<hr>
+
+```{r dplyr23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 3'}
+ecom %>%
+  pull(referrer) %>%
+  last()
+```
