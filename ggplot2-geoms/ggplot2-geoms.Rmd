@@ -1,0 +1,341 @@
+---
+title: "ggplot2: Geoms"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Create some of the most routinely used plots to explore data using the `geom_*` functions:
+
+- Scatter Plot
+- Bar Plot
+- Box Plot
+- Histogram
+- Line Chart
+- Regression Line
+
+### Data
+
+<hr>
+
+```{r use, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+## Scatter Plot
+
+### Introduction
+
+<hr>
+
+A scatter plot displays the relationship between two continuous variables. In ggplot2, we can build a scatter plot using `geom_point()`. Scatterplots can show you visually 
+
+- the strength of the relationship between the variables 
+- the direction of the relationship between the variables 
+- and whether outliers exist
+
+### Point
+
+<hr>
+
+```{r geoms2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point'}
+ggplot(ecom, aes(x = n_pages, y = duration)) + 
+  geom_point()
+```
+
+### Regression Line
+
+<hr>
+
+Fit a regression line or using 
+
+- `geom_abline()`
+- `geom_smooth()`
+
+### Intercept & Slope
+
+<hr>
+
+```{r geoms5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Intercept & Slope'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() + 
+  geom_abline(intercept = 37.285, slope = -5.344)
+```
+
+### Linear Regression
+
+<hr>
+
+```{r geoms6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Linear Regression'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = 'lm', se = TRUE)
+```
+
+### Loess Regression
+
+<hr>
+
+```{r geoms7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Loess Regression'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = 'loess', se = FALSE)
+```
+
+### Horizontal/Vertical Lines
+
+<hr>
+
+Add horizontal or vertical lines using
+
+- `geom_hline()`
+- `geom_vline()`
+
+
+### Horizontal Line
+
+<hr>
+
+```{r geoms4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Line'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_hline(yintercept = 30) 
+```
+
+### Vertical Line
+
+<hr>
+
+```{r geoms3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Vertical Line'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_vline(xintercept = 5) 
+```
+
+## Bar Plot
+
+### Introduction
+
+<hr>
+
+Bar plots present grouped data with rectangular bars. The bars may represent the frequency of the groups or values. Bar plots can be: 
+
+- horizontal 
+- vertical
+- grouped
+- stacked 
+- proportional
+
+
+### Frequency
+
+<hr>
+
+```{r geoms8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Frequency'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar()
+```
+
+### Weight
+
+<hr>
+
+```{r geoms9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Weight'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(weight = order_value))
+```
+
+### Stacked Bar Plot
+
+<hr>
+
+```{r geoms10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Stacked Bar Plot'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(fill = purchase))
+```
+
+### Horizontal Bar Plot
+
+<hr>
+
+```{r geoms11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Bar Plot'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(fill = purchase)) +
+  coord_flip()
+```
+
+### Columns
+
+<hr>
+
+```{r geoms12, fig.align='center', fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Columns'}
+device <- c('laptop', 'mobile', 'tablet')
+visits <- c(30000, 12000, 5000)
+traffic <- tibble::tibble(device, visits)
+ggplot(traffic, aes(x = device, y = visits)) +
+  geom_col(fill = 'blue') 
+```
+
+## Boxplot
+
+### Introduction
+
+<hr>
+
+- examine the distribution of a variable  
+- detect outliers, boxplots are very handy
+
+```{r geoms13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+ggplot(ecom, aes(x = factor(device), y = n_pages)) +
+  geom_boxplot()
+```
+
+### Add Jitter
+
+<hr>
+
+```{r geoms14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Jitter'}
+ggplot(ecom, aes(x = factor(device), y = n_pages)) +
+  geom_boxplot() +
+  geom_jitter()
+```
+
+## Histogram
+
+### Introduction
+
+<hr>
+
+Histograms are used to examine:
+
+- distribution of a continuous variable
+- skewness and kurtosis
+
+```{r geoms15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+ggplot(ecom, aes(x = duration)) +
+  geom_histogram()
+```
+
+### Bins
+
+<hr>
+
+```{r geoms16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram Bins'}
+ggplot(ecom, aes(x = duration)) +
+  geom_histogram(bins = 5)
+```
+
+## Line
+
+### Introduction
+
+<hr>
+
+Line charts are used to examine trends over time.
+
+
+### Data
+
+<hr>
+
+```{r import2, , exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+gdp
+```
+
+### Line Chart
+
+<hr>
+
+```{r geomline1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+ggplot(gdp, aes(year, india)) +
+  geom_line()
+```
+
+### Line Color & Type 
+
+<hr>
+
+```{r geomline2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color & type'}
+ggplot(gdp, aes(year, india)) +
+  geom_line(color = 'blue', linetype = 'dashed')
+```
+
+## Jitter
+
+### Introduction
+
+<hr>
+
+```{r geoms17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Jitter'}
+ggplot(ecom, aes(x = factor(device), y = duration)) +
+  geom_jitter()
+```
+
+### Jitter Width & Height
+
+<hr>
+
+```{r geoms18, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Jitter Width & Height'}
+ggplot(ecom, aes(x = factor(device), y = duration)) +
+  geom_jitter(width = 0.25, height = 0.5)
+```
+
+## Label
+
+<hr>
+
+```{r geoms20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label'}
+ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_label()
+```
+
+## Text
+
+### Introduction
+
+<hr>
+
+```{r geoms19, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text'}
+ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_text(check_overlap = TRUE, size = 2)
+```
+
+### Text
+
+<hr>
+
+```{r geoms21, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text'}
+ggplot(mtcars, aes(x = disp, y = mpg, label = rownames(mtcars))) +
+  geom_point() + 
+  geom_text(aes(color = cyl), hjust = 0, nudge_x = 0.05, 
+            size = 2, angle = 45)
+```
