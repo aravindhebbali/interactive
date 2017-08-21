@@ -1,0 +1,160 @@
+---
+title: "ggplot2: Bar Chart"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- build 
+    - simple bar plot
+    - stacked bar plot
+    - grouped bar plot
+    - proportional bar plot
+- map aesthetics to variables
+- specify values for 
+    - bar color
+    - bar line color
+    - bar line type
+    - bar line size
+
+
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+## Aesthetics
+
+### Introduction
+
+<hr>
+
+- `fill`
+- `color`
+- `linetype`
+- `size`
+- `position`
+
+### Simple Bar Plot
+
+<hr>
+
+```{r bar2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)))
+```
+
+### Bar Color
+
+<hr>
+
+```{r bar3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Color'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)),
+           fill = c('red', 'blue', 'green'))
+```
+
+### Bar Line Color
+
+<hr>
+
+```{r bar4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Color'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white',
+           color = c('red', 'blue', 'green'))
+```
+
+### Bar Line Type
+
+<hr>
+
+```{r bar5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Type'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white', 
+          color = 'black', linetype = 2)
+```
+
+### Bar Line Size
+
+<hr>
+
+```{r bar6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Size'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white', 
+           color = 'black', size = 2)
+```
+
+### Stacked Bar Plot
+
+<hr>
+
+```{r bar7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Stacked Bar Plot'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)))
+```
+
+### Grouped Bar Plot
+
+<hr>
+
+```{r bar8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Grouped Bar Plot'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'dodge')
+```
+
+### Proportional Bar Plot
+
+<hr>
+
+```{r bar10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Proportional Bar Plot'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'fill')
+```
+
+
+### Horizontal Bar Plot
+
+<hr>
+
+```{r bar9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Bar Plot'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device), fill = factor(referrer))) +
+  coord_flip()
+```
+
