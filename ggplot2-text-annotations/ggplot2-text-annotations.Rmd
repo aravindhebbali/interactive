@@ -1,0 +1,113 @@
+---
+title: "ggplot2: Text Annotations"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- add custom text 
+- modify color
+- modify size
+- modify fontface
+- modify angle
+
+## Annotate
+
+### Introduction
+
+<hr>
+
+Use `annotate()` to add custom text to a plot. It takes the following arguments:
+
+- `geom`     : specify text
+- `x`        : x axis location
+- `y`        : y axis location
+- `label`    : custom text 
+- `color`    : color of text
+- `size`     : size of text
+- `fontface` : fontface of text
+- `angle`    : angle of text
+
+## Add Text
+
+### Introduction
+
+<hr>
+
+```{r ann2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Text'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text')
+```
+
+## Color
+
+### Introduction
+
+<hr>
+
+```{r ann4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', color = 'red')
+```
+
+## Size
+
+### Introduction
+
+<hr>
+
+```{r ann5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', size = 6)
+```
+
+## Font
+
+### Introduction
+
+<hr>
+
+```{r ann6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Font'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', fontface = 'bold')
+```
+
+## Angle
+
+### Introduction
+
+<hr>
+
+```{r ann7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Angle'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', angle = 25)
+```
+
+## Annotate
+
+### Introduction
+
+<hr>
+
+```{r ann3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Annotate'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text',
+           color = 'red', size = 6, fontface = 'bold', angle = 25)
+```
