@@ -1,0 +1,244 @@
+---
+title: "forcats: Working with Categorical Data"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(forcats)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+traffic <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web_traffic.csv')
+```
+
+## Introduction
+
+<hr>
+
+In this module, we will learn to work with categorical/qualitative data in R using [forcats](http://forcats.tidyverse.org). Let us begin by installing and loading forcats and a set of other pacakges we will be using.
+
+## Case Study
+
+### Introduction
+
+<hr>
+
+We will use a case study to explore the various features of the forcats package. You can download the data for the case study from [here](https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv) or directly import the data using the readr package. We will do the following in this case study:
+
+- compute the frequency of different referrers
+- plot average number of pages browsed for different referrers
+- collapse referrers with low sample size into a single group
+- club traffic from social media websites into a new category
+- group referrers with traffic below a threshold into a single category
+
+
+### Data
+
+<hr>
+
+```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+## Case Study - Part 1
+ 
+### Tabulate Referrers
+
+<hr>
+
+```{r cat2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate Referrers'}
+ecom %>%
+  count(referrer)
+```
+
+### Avg. page visits by referrer type
+
+<hr>
+
+```{r cat3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Avg. Page Visits by Referrer Type'}
+refer_summary <- ecom %>%
+  group_by(referrer) %>%
+  summarise(
+    page = mean(n_pages),
+    tos = mean(duration),
+    n = n()
+  )
+
+refer_summary
+```
+
+### Avg. page visits by referrer type
+
+<hr>
+
+```{r cat10, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Avg. Page Visits by Referrer Type'}
+ggplot(refer_summary, aes(page, referrer)) + geom_point()
+```
+
+### Reorder Referrers
+
+<hr>
+
+```{r cat11, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Reorder Referrers'}
+ggplot(refer_summary, aes(page, fct_reorder(referrer, page))) + geom_point()
+```
+
+### Plot Referrer Frequency (Descending Order)
+
+<hr>
+
+```{r cat4, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Frequency'}
+ecom %>%
+  mutate(ref = referrer %>% fct_infreq()) %>%
+  ggplot(aes(ref)) +
+  geom_bar()
+```
+
+### Plot Referrer Frequency (Ascending Order)
+
+<hr>
+
+```{r cat5, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Frequency'}
+ecom %>%
+  mutate(ref = referrer %>% fct_infreq() %>% fct_rev()) %>%
+  ggplot(aes(ref)) +
+  geom_bar()
+```
+
+## Case Study 2
+
+<hr>
+
+### Data 
+
+<hr>
+
+```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+traffic
+```
+
+### Tabulate Referrer
+
+<hr>
+
+```{r cat6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate Referrer'}
+traffic$traffics %>% fct_count()
+```
+
+### Collapse Referrer Categories
+
+<hr>
+
+```{r cat7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Collapse Referrer Categories'}
+traffic2 <- fct_collapse(traffic$traffics,
+  social = c("facebook", "twitter", "instagram"),
+  search = c("google", "bing", "yahoo")
+)
+
+traffic2 %>% fct_count() 
+```
+
+### Lump Infrequent Referrer Types
+
+<hr>
+
+```{r cat8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lump Infrequent Referrer Types'}
+traffic$traffics %>% fct_count()
+
+traffic$traffics %>% fct_lump() %>% table()
+```
+
+### Retain top 3 referrers
+
+<hr>
+
+```{r cat9, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrers'}
+traffic$traffics %>% fct_count() %>% arrange(desc(n))
+```
+
+```{r cat17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Retain Top 3 Referrers'}
+traffic$traffics %>% fct_lump(n = 3) %>% table()
+```
+
+### Lump Referrer Types with less than 10% traffic
+
+<hr>
+
+```{r cat12, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Percentages'}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+```{r cat16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lump Referrer Types'}
+traffic$traffics %>% fct_lump(prop = 0.1) %>% table()
+```
+
+### Lump Referrer Types with less than 15% traffic
+
+<hr>
+
+```{r cat13, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Percentage'}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+```{r cat18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lump Referrer Types'}
+traffic$traffics %>% fct_lump(prop = 0.15) %>% table()
+```
+
+### Retain 3 Referrer Types with lowest traffic
+
+<hr>
+
+```{r cat14, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Traffic Sources'}
+traffic$traffics %>% fct_count() %>% arrange(n)
+```
+
+```{r cat19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Retain Top 3 Referrers'}
+traffic$traffics %>% fct_lump(n = -3) %>% table()
+```
+
+### Retain 3 Referrer Types with less than 10% traffic
+
+<hr>
+
+```{r cat15, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Percentage'}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+```{r cat20, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Retain Top 3 Referrers'}
+traffic$traffics %>% fct_lump(prop = -0.1) %>% table()
+```
+
