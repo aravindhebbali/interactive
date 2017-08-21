@@ -1,0 +1,151 @@
+---
+title: "ggplot2: Quick Tour"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Agenda
+
+<hr>
+
+Learn to quickly build a set of plots that are routinely used to explore data:
+
+- Scatter Plot
+- Bar Plot
+- Box Plot
+- Line Chart
+- Histogram
+
+## qplot
+
+<hr>
+
+Shortcut designed for those familiar with base plots. You can quickly produce a number of different
+types of plots. Below are the key arguments:
+
+- `x`    : data for X axis
+- `y`    : data for Y axis
+- `geom` : symbols to represent data
+- `data` : a data frame or a tibble
+
+## Scatter Plot
+
+### Introduction
+
+<hr>
+
+```{r gg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+qplot(disp, mpg, data = mtcars)
+```
+
+### Point & Line
+
+<hr>
+
+```{r gg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point & Line'}
+qplot(disp, mpg, data = mtcars, geom = c('point', 'line'))
+```
+
+### Color
+
+<hr>
+
+```{r gg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point Color'}
+qplot(disp, mpg, data = mtcars, color = factor(cyl))
+```
+
+### Shape
+
+<hr>
+
+```{r gg5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point Shape'}
+qplot(disp, mpg, data = mtcars, shape = factor(cyl))
+```
+
+### Size
+
+<hr>
+
+```{r gg6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point Size'}
+qplot(disp, mpg, data = mtcars, size = qsec)
+```
+
+## Bar Plot
+
+### Introduction
+
+<hr>
+
+```{r gg7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+qplot(factor(cyl), data = mtcars, geom = c('bar'))
+```
+
+### Color
+
+<hr>
+
+```{r gg8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+qplot(factor(cyl), data = mtcars, geom = c('bar'), fill = factor(am))
+```
+
+## Box Plot
+
+### Introduction
+
+<hr>
+
+```{r gg9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+qplot(factor(cyl), mpg, data = mtcars, geom = c('boxplot'))
+```
+
+### Univariate Box Plot
+
+<hr>
+
+```{r gg10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Univariate Box Plot'}
+qplot(factor(1), mpg, data = mtcars, geom = c('boxplot'))
+```
+
+### Jitter
+
+<hr>
+
+```{r gg11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Jitter'}
+qplot(factor(cyl), mpg, data = mtcars, geom = c('boxplot', 'jitter'))
+```
+
+## Line Chart
+
+### Introduction
+
+<hr>
+
+```{r gg12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+qplot(x = date, y = unemploy, data = economics, geom = c('line'))
+```
+
+### Color
+
+<hr>
+
+```{r gg13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+qplot(x = date, y = unemploy, data = economics, geom = c('line'),
+      color = 'red')
+```
+
+## Histogram
+
+### Introduction
+
+<hr>
+
+```{r gg14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+qplot(mpg, data = mtcars, bins = 5)
+```
+
