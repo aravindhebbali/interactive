@@ -1,0 +1,71 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, mtcars)
+mtcars <- tbl(con, "mtcars")
+```
+
+## Query Data
+
+### Select Data
+
+<hr>
+
+```{r dbply4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select'}
+mtcars %>%
+  select(mpg, cyl, drat)
+```
+
+### Filter Data
+
+<hr>
+
+```{r dbply5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter'}
+mtcars %>%
+  filter(mpg > 25)
+```
+
+### Summarize Data
+
+<hr>
+
+```{r dbply6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summarize'}
+mtcars %>%
+  group_by(cyl) %>%
+  summarise(mileage = mean(mpg))
+```
+
+### Show Query
+
+<hr>
+
+```{r dbply7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Show Query'}
+mileages <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(mileage = mean(mpg))
+
+mileages %>% show_query()
+```
+
+### Collect Data
+
+<hr>
+
+```{r dbply9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Collect Data'}
+mileages <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(mileage = mean(mpg))
+
+mileages %>% collect()
+```
