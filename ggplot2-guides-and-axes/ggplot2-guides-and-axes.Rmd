@@ -1,0 +1,197 @@
+---
+title: "ggplot2: Guides and Axes"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Modify X and Y axis
+
+- title
+- labels
+- limits
+- breaks
+- position
+
+In this module, we will learn how to modify the X and Y axis using the following functions:
+
+- Continuous Axis
+    - `scale_x_continuous()`
+    - `scale_y_continuous()`
+
+- Discrete Axis
+    - `scale_x_discrete()`
+    - `scale_y_discrete()`
+
+
+## Continuous 
+
+### X Axis
+
+<hr>
+
+`scale_x_continuous()` and `scale_y_continuous()` take the following arguments:
+
+- name
+- limits
+- breaks
+- labels
+- position
+
+### Scatter Plot
+
+<hr>
+
+```{r guide2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+```
+
+### Axis Label
+
+<hr>
+
+```{r guide3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Label'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  scale_x_continuous(name = "Displacement")
+```
+
+### Axis Limits
+
+<hr>
+
+```{r guide4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  scale_x_continuous(limits = c(0, 600))
+```
+
+### Axis Breaks
+
+<hr>
+
+```{r guide5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  scale_x_continuous(breaks = c(0, 150, 300, 450, 600))
+```
+
+### Axis Tick Labels
+
+<hr>
+
+```{r guide6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Tick Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  scale_x_continuous(breaks = c(0, 150, 300, 450, 600),
+    labels = c('0', '150', '300', '450', '600'))
+```
+
+### Axis Position
+
+<hr>
+
+```{r guide7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Position'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  scale_x_continuous(position = 'top')
+```
+
+### X Axis 
+
+<hr>
+
+```{r guide8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'X Axis'}
+ggplot(mtcars) + geom_point(aes(disp, mpg)) +
+  scale_x_continuous(name = "Displacement", limits = c(0, 600),
+                     breaks = c(0, 150, 300, 450, 600), position = 'top',
+                     labels = c('0', '150', '300', '450', '600'))
+```
+
+
+### Y Axis 
+
+<hr>
+
+```{r guide9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Y Axis - Continuous'}
+ggplot(mtcars) + geom_point(aes(disp, mpg)) +
+  scale_y_continuous(name = "Miles Per Gallon", limits = c(0, 45),
+                     breaks = c(0, 15, 30, 45), position = 'right',
+                     labels = c('0', '15', '30', '45'))
+```
+
+## Discrete 
+
+### Introduction
+
+<hr>
+
+`scale_x_discrete()` and `scale_y_discrete()` take the following arguments:
+
+- name
+- labels
+- breaks
+- position
+
+### Axis Label
+
+<hr>
+
+```{r guide11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Label'}
+ggplot(mtcars) +
+  geom_bar(aes(factor(cyl))) +
+  scale_x_discrete(name = "Number of Cylinders")
+```
+
+### Axis Tick Labels
+
+<hr>
+
+```{r guide12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Tick Labels'}
+ggplot(mtcars) +
+  geom_bar(aes(factor(cyl))) +
+  scale_x_discrete(labels = c("4" = "Four", "6" = "Six", "8" = "Eight"))
+```
+
+### Axis Breaks
+
+<hr>
+
+```{r guide13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Breaks'}
+ggplot(mtcars) +
+  geom_bar(aes(factor(cyl))) +
+  scale_x_discrete(breaks = c("4", "6", "8"))
+```
+
+### Axis Position
+
+<hr>
+
+```{r guide14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Position'}
+ggplot(mtcars) +
+  geom_bar(aes(factor(cyl))) +
+  scale_x_discrete(position = 'bottom')
+```
+
+### X Axis - Discrete 
+
+```{r guide15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'X Axis - Discrete'}
+ggplot(mtcars) + geom_bar(aes(factor(cyl))) +
+  scale_x_discrete(name = "Number of Cylinders",
+    labels = c("4" = "Four", "6" = "Six", "8" = "Eight"),
+    breaks = c("4", "6", "8"), position = "bottom")
+```
