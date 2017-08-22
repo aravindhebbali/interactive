@@ -1,0 +1,101 @@
+---
+title: "Title & Axis Labels"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- Learn to add
+    - title
+    - subtitle
+    - axis Labels
+
+- learn to modify
+    - axis range
+
+## Syntax
+
+<hr>
+
+|Feature|Argument|Value|Example|
+|:-------|:--------|:-----|:-------|
+|Title  |main    |string|"Scatter Plot"|
+|Subtitle  |sub    |string|"Displacement vs Miles Per Gallon"|
+|X Axis Label  |xlab    |string|"Displacement"|
+|Y Axis Label  |ylab    |string|"Miles Per Gallon"|
+
+
+## Title
+
+<hr>
+
+```{r title, fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title'}
+plot(mtcars$disp, mtcars$mpg, 
+     main = 'Displacement vs Miles Per Gallon')
+```
+
+## Subtitle
+
+<hr>
+
+```{r subtitle, fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Subtitle'}
+plot(mtcars$disp, mtcars$mpg, 
+     main = 'Displacement vs Miles Per Gallon',
+     sub = 'Mileage is inversely related to Displacement')
+```
+
+## Axis Labels
+
+<hr>
+
+```{r axis, fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Labels'}
+plot(mtcars$disp, mtcars$mpg, 
+     main = 'Displacement vs Miles Per Gallon',
+     sub = 'Mileage is inversely related to Displacement',
+     xlab = 'Displacement', ylab = 'Miles Per Gallon')
+```
+
+## title()
+
+### Introduction
+
+<hr>
+
+```{r title1, fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title, Axis & Labels'}
+plot(mtcars$disp, mtcars$mpg) 
+
+title(main = 'Displacement vs Miles Per Gallon',
+      sub = 'Mileage is inversely related to Displacement',
+      xlab = 'Displacement', ylab = 'Miles Per Gallon')
+```
+
+### Annotate
+
+<hr>
+
+```{r title2, fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Annotate'}
+plot(mtcars$disp, mtcars$mpg, ann = FALSE) 
+
+title(main = 'Displacement vs Miles Per Gallon',
+      sub = 'Mileage is inversely related to Displacement',
+      xlab = 'Displacement', ylab = 'Miles Per Gallon')
+```
+
+## Axis Range
+
+<hr>
+
+```{r axisrange, fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Range'}
+plot(mtcars$disp, mtcars$mpg, 
+     xlim = c(0, 600), ylim = c(0, 50))
+```
