@@ -1,0 +1,167 @@
+---
+title: "ggplot2: Facets"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+### Data
+
+<hr>
+
+```{r import, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+## Grid
+
+### Introduction
+
+<hr>
+
+Generate subplots that each display one subset of the data using
+
+- `facet_grid()`
+- `facet_wrap()`
+
+### Columns
+
+<hr>
+
+```{r facet1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Columns'}
+ggplot(ecom, aes(n_pages, duration)) + 
+  geom_point() +
+  facet_grid(. ~ device)
+```
+
+### Rows
+
+<hr>
+
+```{r facet2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows'}
+ggplot(ecom, aes(n_pages, duration)) + 
+  geom_point() +
+  facet_grid(device ~ .)
+```
+
+### Rows & Columns
+
+<hr>
+
+```{r facet3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows & Columns'}
+ggplot(ecom, aes(n_pages, duration)) + 
+  geom_point() +
+  facet_grid(purchase ~ device)
+```
+
+### Rows & Columns
+
+```{r facet4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows & Columns'}
+ggplot(ecom, aes(n_pages, duration)) + 
+  geom_point() +
+  facet_grid(device ~ purchase)
+```
+
+### Scales
+
+<hr>
+
+Different range instead of fixed range.
+
+```{r facet5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scales'}
+ggplot(ecom, aes(n_pages, duration, color = factor(device))) +
+  geom_point() + 
+  facet_grid(. ~ device, scales = "free")
+```
+
+### Switch Axis
+
+<hr>
+
+```{r facet6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Switch Axis'}
+ggplot(ecom, aes(n_pages, duration)) + 
+  geom_point() + 
+  facet_grid(device ~ purchase, switch = "both") 
+```
+
+## Wrap
+
+### Introduction
+
+<hr>
+
+```{r facet7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Wrap'}
+ggplot(ecom, aes(n_pages, duration)) +
+  geom_point() +
+  facet_wrap(~device)
+```
+
+### Specify Rows
+
+<hr>
+
+```{r facet8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Rows'}
+ggplot(ecom, aes(n_pages, duration)) +
+  geom_point() +
+  facet_wrap(~device, nrow = 2)
+```
+
+
+```{r facet9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Rows'}
+ggplot(ecom, aes(n_pages, duration)) +
+  geom_point() +
+  facet_wrap(~device, nrow = 3)
+```
+
+### Rows & Columns
+
+<hr>
+
+```{r facet10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows & Columns'}
+ggplot(ecom, aes(n_pages, duration)) +
+  geom_point() +
+  facet_wrap(~device + purchase)
+```
+
+```{r facet11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows & Columns'}
+ggplot(ecom, aes(n_pages, duration)) +
+  geom_point() +
+  facet_wrap(c("device", "purchase"))
+```
+
+### Scales
+
+<hr>
+
+```{r facet12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scales'}
+ggplot(ecom, aes(n_pages, duration)) +
+  geom_point() +
+  facet_wrap(~device, scales = "free")
+```
+
