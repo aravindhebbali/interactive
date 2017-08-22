@@ -1,0 +1,112 @@
+---
+title: "ggplot2: Statistical Plots"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+So far we have used `geom_*()` functions to build plots. Now we will use a new set of functions `stat_*()`: 
+
+- `stat_count()`
+- `stat_boxplot()`
+- `stat_identity()`
+- `stat_bin()`
+- `stat_unique()`
+
+### Agenda
+
+<hr>
+
+Explore the following functions to build plots based on statistical transformation:
+
+- `stat_count()`
+- `stat_boxplot()`
+- `stat_identity()`
+- `stat_bin()`
+- `stat_unique()`
+
+
+## Data 
+
+### Introduction
+
+<hr>
+
+```{r import, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+## Bar Plots
+
+<hr>
+
+```{r stat2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(ecom) +
+  stat_count(aes(device))
+```
+
+## Box Plots
+
+<hr>
+
+```{r stat3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+ggplot(ecom) +
+  stat_boxplot(aes(factor(1), n_visit))
+```
+
+## Scatter Plots
+
+<hr>
+
+```{r stat4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+ggplot(ecom) +
+  stat_identity(aes(n_pages, duration), position = 'jitter')
+```
+
+## Histogram
+
+<hr>
+
+```{r stat5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+ggplot(ecom) +
+  stat_bin(aes(n_visit), bins = 7, fill = 'blue', alpha = 0.3,
+           color = 'black')
+```
+
+## Unique Values
+
+<hr>
+
+```{r stat6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Unique Values'}
+ggplot(ecom) +
+  stat_unique(aes(n_pages, duration), 
+              position = 'jitter')
+```
+
