@@ -1,0 +1,599 @@
+---
+title: "ggplot2: Legends - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+Quite often the aesthetics are mapped to variables ggplot2 automatically creates legends wherever applicable. 
+You may want to modify the appearance of legends. In this module, we will learn to modify the legends when
+the following aesthetics are mapped to categorical/continuous variables
+
+- continuous variables
+    - alpha
+    - size
+
+- discrete variables
+    - alpha
+    - color
+    - fill
+    - shape
+    - size
+
+
+### Agenda
+
+<hr>
+
+Modify legend when the aesthetics are mapped to variables. Specifically
+
+- title
+- breaks
+- limits
+- range
+- labels
+- values
+- symbol type
+
+
+## Continuous Variables
+
+### Introduction
+
+<hr>
+
+If you have mapped aesthetics to a continuous variable, you can modify the legend
+
+- title
+- breaks
+- limits 
+- range
+- and labels
+
+
+### Map Size to Continuous Variable
+
+<hr>
+
+```{r leg36, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp))
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg37, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower")
+```
+
+### Legend Range
+
+<hr>
+
+```{r leg38, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Range'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(range = c(3, 6))
+```
+
+### Legend Limits
+
+<hr>
+
+```{r leg39, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(limits = c(0, 400))
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg40, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400))
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg41, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400),
+    labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
+```
+
+### Size - Continuous
+
+<hr>
+
+```{r leg42, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size Continuous'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower", range = c(3, 6), 
+    limits = c(0, 400), breaks = c(100, 200, 300, 400),
+    labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
+```
+
+
+## Map Alpha to Continuous Variable
+
+### Introduction
+
+<hr>
+
+```{r leg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Color'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue')
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous("Horsepower")
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400))
+```
+
+### Legend Limits
+
+<hr>
+
+```{r leg5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(limits = c(0, 400))
+```
+
+### Legend Range
+
+<hr>
+
+```{r leg6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Range'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(range = c(0.4, 0.8))
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400),
+    labels = c("Zero", "Hundred", "2 Hundred", 
+      "3 Hundred", "4 Hundred"))
+```
+
+## Alpha - Continuous
+
+### Introduction
+
+<hr>
+
+```{r leg8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha Continuous'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous("Horsepower", breaks = c(0, 100, 200, 300, 400),
+    limits = c(0, 400), range = c(0.4, 0.8),
+    labels = c("Zero", "Hundred", "2 Hundred", 
+      "3 Hundred", "4 Hundred"))
+```
+
+## Discrete
+
+### Introduction
+
+<hr>
+
+If you have mapped aesthetics to a discrete variable, you can to modify legend:
+
+- title
+- breaks
+- range
+- limits
+- labels
+- and values
+
+## Map Color to Discrete Variable
+
+### Introduction
+
+<hr>
+
+```{r leg15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl)))
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
+```
+
+### Legend Values
+
+<hr>
+
+```{r leg17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"))
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg18, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    limits = c(4, 6, 8))
+```
+
+### Legend Limits
+
+<hr>
+
+```{r leg19, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 6, 8))
+```
+
+### Color - Discrete Variable
+
+<hr>
+
+```{r leg21, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color - Discrete Variable'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = "Cylinders", values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))
+```
+
+## Map Fill to Discrete Variable
+
+### Introduction
+
+<hr>
+
+```{r leg22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22)
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg23, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
+```
+
+### Legend Values
+
+<hr>
+
+```{r leg24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"))
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg25, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
+### Legend Limits
+
+<hr>
+
+```{r leg26, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    limits = c(4, 6, 8))
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg27, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 6, 8))
+```
+
+### Legend Fill
+
+<hr>
+
+```{r leg28, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Fill'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(name = "Cylinders", values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))
+```
+
+## Map Shape to Discrete Variable
+
+### Introduction
+
+<hr>
+
+```{r leg29, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl)))
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg30, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(name = "Cylinders",values = c(4, 12, 24))
+```
+
+### Legend Values
+
+<hr>
+
+```{r leg31, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24))
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg32, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), labels = c('Four', 'Six', 'Eight'))
+```
+
+### Legend Limits
+
+<hr>
+
+```{r leg33, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), limits = c(4, 6, 8))
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg34, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), breaks = c(4, 6, 8))
+```
+
+### Shape - Discrete Variable
+
+<hr>
+
+```{r leg35, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape Discrete'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(name = "Cylinders", labels = c('Four', 'Six', 'Eight'),  
+     values = c(4, 12, 24), limits = c(4, 6, 8), breaks = c(4, 6, 8))
+```
+
+## Map Alpha to Discrete Variable
+
+### Introduction
+
+<hr>
+
+```{r leg9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha Discrete'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue')
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(name = "Cylinders")
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(breaks = c("4", "6", "8"))
+```
+
+### Legend Range
+
+<hr>
+
+```{r leg12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Range'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(range = c(0.4, 0.8))
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(labels = c("Four", "Six", "Eight"))
+```
+
+## Alpha - Discrete Variable
+
+### Introduction
+
+<hr>
+
+```{r leg14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(name = "Cylinders", range = c(0.4, 0.8),
+    breaks = c("4", "6", "8"), labels = c("Four", "Six", "Eight"))
+```
+
+## Shape & Size
+
+### Introduction
+
+<hr>
+
+If you have mapped shape/size to a discrete variable which has less than six categories, you can use the following functions:
+
+- `scale_shape()`
+- `scale_size()`
+
+## Map Shape to Discrete Variable
+
+### Introduction
+
+<hr>
+
+```{r leg50, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape()
+```
+
+### Legend Title
+
+<hr>
+
+```{r leg51, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(name = 'Cylinders')
+```
+
+### Legend Labels
+
+<hr>
+
+```{r leg52, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(labels = c('Four', 'Six', 'Eight'))
+```
+
+### Legend Limits
+
+<hr>
+
+```{r leg53, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(limits = c(4, 6, 8))
+```
+
+### Legend Breaks
+
+<hr>
+
+```{r leg54, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(breaks = c(4, 6, 8))
+```
+
+### Legend Types
+
+<hr>
+
+```{r leg55, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Types'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(solid = FALSE)
+```
+
+### Shape - Discrete Variable
+
+<hr>
+
+```{r leg56, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(solid = FALSE, name = 'Cylinders', limits = c(4, 6, 8),
+    labels = c('Four', 'Six', 'Eight'), breaks = c(4, 6, 8))
+```
