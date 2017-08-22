@@ -1,0 +1,133 @@
+---
+title: "Scatter Plot"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- create scatter plot
+- modify symbol
+    - color
+    - shape 
+    - and shape
+
+
+## Scatter Plot
+
+### Introduction
+
+<hr>
+
+```{r scatter1, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+plot(mtcars$disp, mtcars$mpg)
+```
+
+## Title & Axis Labels
+
+<hr>
+
+```{r scatter2, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title & Axis Labels'}
+plot(mtcars$disp, mtcars$mpg,
+     main = 'Displacement vs Miles Per Gallon',
+     xlab = 'Displacement', ylab = 'Miles Per Gallon')
+```
+
+## Shape
+
+### Introduction
+
+<hr>
+
+```{r scatter-shape, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+plot(mtcars$disp, mtcars$mpg, pch = 6)
+```
+
+### Shape 
+
+<hr>
+
+```{r scatter-pch, echo=FALSE, fig.align='center', fig.width=10, fig.height=7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(4, 10, 16, 22)
+for (i in values) {
+    plot(mtcars$disp, mtcars$mpg, pch = i, cex = 1.5)
+    mtext(paste("pch = ", i), side = 3, col = "blue")
+}
+```
+
+### Shape
+
+<hr>
+
+```{r scatter-pch2, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+plot(mtcars$disp, mtcars$mpg, pch = nlevels(factor(mtcars$cyl)))
+```
+
+### Shape
+
+<hr>
+
+```{r scatter-pch3, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+plot(mtcars$disp, mtcars$mpg, pch = unclass(mtcars$cyl))
+```
+
+## Size
+
+### Introduction
+
+<hr>
+
+```{r scatter-size, fig.align='center', fig.width=5, fig.height= 5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+plot(mtcars$disp, mtcars$mpg, cex = 1.5)
+```
+
+### Size
+
+<hr>
+
+```{r scatter-cex, echo=FALSE, fig.align='center', fig.width=10, fig.height=7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(0.5, 1, 1.5, 2)
+for (i in values) {
+    plot(mtcars$disp, mtcars$mpg, pch = 6, cex = i)
+    mtext(paste("cex = ", i), side = 3, col = "blue")
+}
+```
+
+## Color
+
+### Introduction
+
+<hr>
+
+```{r col1, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+plot(mtcars$disp, mtcars$mpg, pch = 5, col = 'blue', bg = 'red')
+```
+
+### Color
+
+<hr>
+
+```{r col2, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+plot(mtcars$disp, mtcars$mpg, pch = 24, col = 'red', bg = 'blue')
+```
+
+### Color
+
+<hr>
+
+```{r col3, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+plot(mtcars$disp, mtcars$mpg, pch = 5, col = factor(mtcars$cyl))
+```
