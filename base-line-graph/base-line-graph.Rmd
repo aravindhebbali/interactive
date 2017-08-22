@@ -1,0 +1,216 @@
+---
+title: "Line Chart"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+data <- head(AirPassengers)
+data1 <- c(7.2, 7.6, 6.8, 6.5, 7)
+data2 <- c(6.8, 7.2, 7.8, 7, 6.2)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- create line plots
+- add color to lines
+- modify line type/style
+- modify line width
+- add points to the lines
+- modify axis range
+- add additional lines to the plot
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r airpas, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+head(AirPassengers)
+```
+
+## Line Chart
+
+### Introduction
+
+<hr>
+
+```{r line1, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+data <- head(AirPassengers)
+plot(data, type = 'l')
+```
+
+### Lines & Points
+
+<hr>
+
+```{r line2, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lines & Points'}
+plot(data, type = 'b')
+```
+
+### Overplotted
+
+<hr>
+
+```{r line3, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Overplotted'}
+plot(data, type = 'o')
+```
+
+### Lines with Breaks
+
+<hr>
+
+```{r line4, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lines With Breaks'}
+plot(data, type = 'c')
+```
+
+## Line Color
+
+### Introduction
+
+<hr>
+
+```{r line5, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color'}
+plot(data, type = 'l', col = 'blue')
+```
+
+### Color
+
+<hr>
+
+```{r line6, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color'}
+plot(data, type = 'b', col = 'blue')
+```
+
+## Line Types
+
+### Introduction
+
+<hr>
+
+- 1: solid
+- 2: dashed
+- 3: dotted
+- 4: dotdash
+- 5: longdash
+- 6: twodash
+
+
+### Line Types
+
+<hr>
+
+```{r line9, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Types'}
+plot(data, type = 'l', lty = 3)
+```
+
+### Line Types
+
+<hr>
+
+```{r lin7, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Types'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(3, 2))
+values <- 1:6
+for (i in values) {
+    plot(data, type = "l", lty = i, col ="red")
+    mtext(paste("lty = ", i), side = 3, col = "blue", line = 1)
+}
+```
+
+### Line Types
+
+<hr>
+
+```{r lin8, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Types'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(3, 2))
+values <- c("solid", "dashed", "dotted", "dotdash", "longdash", "twodash")
+for (i in values) {
+    plot(data, type = "l", lty = i, col ="red")
+    mtext(paste("lty = ", i), side = 3, col = "blue", line = 1)
+}
+```
+
+## Line Width
+
+### Introduction
+
+<hr>
+
+```{r line10, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Width'}
+plot(data, type = 'l', lwd = 2.5)
+```
+
+### Line Width
+
+<hr>
+
+```{r lin11, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Width'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(0.5, 1, 1.5, 2)
+for (i in values) {
+    plot(data, type = "l", lwd = i, col ="red")
+    mtext(paste("lwd = ", i), side = 3, col = "blue", line = 1)
+}
+```
+
+## Points
+
+### Enhance Points
+
+<hr>
+
+```{r line12, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Points'}
+plot(data, type = 'b', pch = 23, col = 'red', cex = 1.5)
+```
+
+### Add Points
+
+<hr>
+
+```{r line13, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Points'}
+plot(data, type = 'l', col = 'red')
+points(data, pch = 23, col = 'blue', bg = 'green', cex = 1.5)
+```
+
+## Additional Lines
+
+### Introduction
+
+<hr>
+
+```{r line14, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Additional Lines'}
+data1 <- c(7.2, 7.6, 6.8, 6.5, 7)
+data2 <- c(6.8, 7.2, 7.8, 7, 6.2)
+plot(data1, type = "b", col = "blue")
+lines(data2, type = "b", col = "red")
+```
+
+### Modify Axis Range
+
+<hr>
+
+```{r line15, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Modify Axis Ranges'}
+plot(data1, type = "b", col = "blue", ylim = c(5, 9))
+lines(data2, type = "b", col = "red")
+```
+
+### Line Plot
+
+<hr>
+
+```{r line16, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+plot(data1, type = "b", col = "blue", 
+     ylim = c(5, 9), main = 'Line Graph',
+     xlab = 'Index', ylab = 'Data')
+lines(data2, type = "b", col = "red")
+```
