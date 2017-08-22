@@ -1,0 +1,278 @@
+---
+title: "Text Annotations"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+There are occassions when you want to display additional information in a plot. This is usually achieved by adding text either inside the plot or on the margins. For example, you might want to label a line/bar or add formulas to better communicate what is shown in the plot. The idea is to use the available space within/outside the plot to provide additional information that can be useful to the end users. 
+
+
+### Agenda
+
+<hr>
+
+We will learn to add text inside as well as on the margins of the plot. This is accomplished using the following two functions:
+
+- `text()` : add text inside the plot
+- `mtext()` : add text on the margins of the plot
+
+
+## Syntax
+
+<hr>
+
+Let us take a quick look at the syntax of both the functions:
+
+```{r text-syntax, eval=FALSE}
+text(x, y = NULL, labels = seq_along(x$x), adj = NULL,
+     pos = NULL, offset = 0.5, vfont = NULL,
+     cex = 1, col = NULL, font = NULL, ...)
+```
+
+```{r mtext-syntax, eval=FALSE}
+mtext(text, side = 3, line = 0, outer = FALSE, at = NA,
+      adj = NA, padj = NA, cex = NA, col = NA, font = NA, ...)
+```
+
+
+## Text Inside the Plot
+
+<hr>
+
+To add text inside a plot, the following arguments must be supplied to the `text()` function:
+
+- `labels` : the text to be displayed
+- `x` : x axis coordinate
+- `y` : y axis coordinate
+
+
+### Introduction
+
+<hr>
+
+```{r text1, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Annotations'}
+plot(mtcars$disp, mtcars$mpg)
+text(x = 340, y = 30, labels = 'Sample Text')
+```
+
+## Text Color
+
+### Introduction
+
+<hr>
+
+```{r text2, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Color'}
+plot(mtcars$disp, mtcars$mpg)
+text(x = 340, y = 30, labels = 'Sample Text', col = 'red')
+```
+
+### Text Color
+
+<hr>
+
+```{r text3, fig.align='center', fig.width=7, fig.height=7, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Color'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 3))
+values <- c('red', 'blue', 'green')
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  text(x = 340, y = 30, labels = 'Sample Text', col = i)
+  mtext(paste("col = ", i), side = 3, col = "blue")
+}
+```
+
+## Font
+
+### Introduction
+
+<hr>
+
+```{r text4, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Font'}
+plot(mtcars$disp, mtcars$mpg)
+text(x = 340, y = 30, labels = 'Sample Text', col = 'red', font = 2)
+```
+
+### Font
+
+<hr>
+
+```{r text5, fig.align='center', fig.width=7, fig.height=7, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Font'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(1, 2, 3, 4)
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  text(x = 340, y = 30, labels = 'Sample Text', col = 'red', font = i)
+  mtext(paste("font = ", i), side = 3, col = "blue")
+}
+```
+
+## Font Family
+
+### Introduction
+
+<hr>
+
+```{r text6, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Font Family'}
+plot(mtcars$disp, mtcars$mpg)
+text(x = 340, y = 30, labels = 'Sample Text', col = 'red', family = 'mono')
+```
+
+### Font Family
+
+<hr>
+
+```{r text7, fig.align='center', fig.width=7, fig.height=7, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Font Family'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 3))
+values <- c('mono', 'serif', 'sans-serif')
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  text(x = 340, y = 30, labels = 'Sample Text', col = 'red', cex = 1.5, family = i)
+  mtext(paste("family = ", i), side = 3, col = "blue")
+}
+```
+
+## Font Size
+
+### Introduction
+
+<hr>
+
+```{r text8, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Font Size'}
+plot(mtcars$disp, mtcars$mpg)
+text(x = 340, y = 30, labels = 'Sample Text', col = 'red', cex = 2)
+```
+
+### Font Size
+
+<hr>
+
+```{r text9, fig.align='center', fig.width=7, fig.height=7, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Font Size'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 3))
+values <- c(0.5, 1, 1.5)
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  text(x = 340, y = 30, labels = 'Sample Text', col = 'red', cex = i)
+  mtext(paste("cex = ", i), side = 3, col = "blue")
+}
+```
+
+## Text on the Margins
+
+### Introduction
+
+<hr>
+
+The `mtext()` function allows the user to place the text on the margins of the plot. It allows the user to modify the location of the text in multiple ways and we will explore them one by one. To beign with, let us add text to the plot using the `mtext()` function. The minimum input you need to provide is the text itself. Below is a simple example:
+
+### Text on the Margins
+
+<hr>
+
+```{r mtext1, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text on the Margins'}
+plot(mtcars$disp, mtcars$mpg)
+mtext('Sample Text')
+```
+
+### Specify Margin
+
+<hr>
+
+```{r mtext2, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Margin'}
+plot(mtcars$disp, mtcars$mpg)
+mtext('Sample Text', side = 1)
+```
+
+### Specify Margin
+
+<hr>
+
+```{r mtext3, fig.align='center', fig.width=10, fig.height=10, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Margin'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(1, 2, 3, 4)
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  mtext('Sample Text', side = i)
+  mtext(paste("side = ", i), side = 3, col = "blue", adj = 1)
+}
+```
+
+## Vertical Alignment
+
+### Introduction
+
+<hr>
+
+```{r mtext4, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Vertical Alignment'}
+plot(mtcars$disp, mtcars$mpg)
+mtext('Sample Text', line = 1)
+```
+
+### Line
+
+<hr>
+
+```{r mtext5, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Below Line'}
+plot(mtcars$disp, mtcars$mpg)
+mtext('Sample Text', line = -1)
+```
+
+### Line
+
+<hr>
+
+```{r mtext6, fig.align='center', fig.width=15, fig.height=10, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Vertical Alignment'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 3))
+values <- c(-0.5, -1, -1.5, 0.5, 1, 1.5)
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  mtext('Sample Text', line = i)
+  mtext(paste("line = ", i), side = 3, col = "blue", adj = 1)
+}
+```
+
+## Horizontal Alignment
+
+### Introduction
+
+<hr>
+
+```{r mtext7, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Alignment'}
+plot(mtcars$disp, mtcars$mpg)
+mtext('Sample Text', adj = 0)
+```
+
+### Alignment
+
+<hr>
+
+```{r mtext8, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Alignment'}
+plot(mtcars$disp, mtcars$mpg)
+mtext('Sample Text', adj = 1)
+```
+
+### Alignment
+
+<hr>
+
+```{r mtext9, fig.align='center', fig.width=15, fig.height=10, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Alignment'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 3))
+values <- c(0, 0.2, 0.4, 0.6, 0.8, 1)
+for (i in values) {
+  plot(mtcars$disp, mtcars$mpg)
+  mtext('Sample Text', adj = i)
+  mtext(paste("adj = ", i), side = 3, col = "blue", line = -2)
+}
+```
