@@ -1,0 +1,211 @@
+---
+title: "Manipulate tibbles"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tibble)
+library(dplyr)
+tutorial_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+Now that we have learnt to create tibbles, let us go ahead and learn how to manipulate them. In this section, we will learn to:
+
+- add rows 
+- add columns
+- check if a tibble has rownames
+- remove rownames
+- convert rownames to column
+- convert column to rownames
+
+## Add Rows - Part 1
+
+<hr>
+
+If you have used data frames, you will know `rbind()`. In case of tibbles, we can use `add_row()` to add a new row of data. We have created data related to traffic from different browsers. The first column is the browser name and the second column is the percentage of overall traffic from that browser. We have data from 3 browsers and want to add a fourth one. Let us add data related to **Safari** browser to the web traffic data using `add_row()`.
+
+- use `add_row()`
+- the first argument must be the name of the tibble to which we are adding the new row
+- the subsequent arguments must be the name of the column and the associated value
+- data must be supplied for all the columns in the tibble
+
+#### Syntax
+
+`add_row(tibble_name, column_name = value, column_name = value, ...)`
+
+#### Instructions
+
+- we have provided partial code
+- the first argument must be `browsers`
+- the second argument must be the first column from `browsers`; assign it the value `'safari'`
+- the third argument must be the second column from `browsers`; assign it the value `10`
+
+```{r tibbles21, exercise = TRUE, exercise.eval = TRUE, exercise.cap = 'Add Rows'}
+browsers <- enframe(c(chrome = 40, firefox = 20, edge = 30))
+browsers
+```
+
+```{r tibbles22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Rows'}
+# website traffic from different browsers
+browsers <- enframe(c(chrome = 40, firefox = 20, edge = 30))
+
+# add data for safari 
+add_row()
+```
+
+```{r tibbles22-solution}
+add_row(browsers, name = 'safari', value = 10)
+```
+
+
+## Add Rows - Part 2
+
+<hr>
+
+If we want to add the data at a particular row, we can specify the row number using the `.before` argument.
+
+### Instructions
+
+- add data related to **Safari** in the second row instead of the last row.
+
+```{r tibbles23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Rows'}
+# website traffic from different browsers
+browsers <- enframe(c(chrome = 40, firefox = 20, edge = 30))
+
+# add data for safari browser in second row
+add_row(browsers, name = 'safari', value = 10, .before = )
+```
+
+```{r tibbles23-solution}
+add_row(browsers, name = 'safari', value = 10, .before = 2)
+```
+
+
+## Add Column
+
+<hr>
+
+So far we have focused on adding a new row of data to a tibble. Now let us look at adding a new column using `add_col()`. If we were dealing with a  data frame, we would have used `cbind()`. `add_col()` is similar to `add_row()`: 
+
+- first we specify the name of the tibble to which we are adding a new column
+- followed by the column name and values associated with it
+
+### Instructions
+
+- we have created a tibble with data related to browsers
+- it has one colum with the name of the browsers
+- add a second column using `add_col()`
+- the column name must be `visits`
+- assign it the following vector: `c(4000, 2000, 3000, 1000)`
+
+```{r tibbles24, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Column'}
+# browser names
+browsers <- enframe(c(chrome = 40, firefox = 20, edge = 30, safari = 10))
+
+# add visits from browsers
+add_column(browsers, )
+```
+
+```{r tibbles24-solution}
+add_column(browsers, visits = c(4000, 2000, 3000, 1000))
+```
+
+## Rownames
+
+<hr>
+
+The [tibble](tibble.tidyverse.org) package provides a set of functions to deal with rownames. Remember, `tibble` does
+not have `rownames` unlike `data.frame`. To check whether a data set has rownames, use `has_rownames()`. Suppose you want 
+to check if `mtcars` data has rownames. One way to do this is:
+
+`has_rownames(mtcars)`
+
+### Instructions
+
+- use `has_rownames()` to check if `mtcars` and `iris` data sets have rownames.
+
+```{r tibbles25, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rownames'}
+# check if iris data has rownames
+
+
+# check if mtcars data has rownames
+
+```
+
+```{r tibbles25-solution}
+has_rownames(iris)
+has_rownames(mtcars)
+```
+
+## Remove Rownames
+
+If your data is tidy, it will not have rownames. But quite often, you will find that the data has rownames. This happens 
+because data comes in various formats and from different sources and in the absence of any standardised data storage protocols.
+So if you find yourself dealing with rownames, use `remove_rownames()` to get rid of them. The syntax would be like this:
+
+`remove_rownames(tibble_name)`
+
+### Instructions
+
+- use `remove_rownames()` to get rid of the rownames in `mtcars`
+
+```{r tibbles26, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Remove Rownames'}
+# remove rownames from mtcars
+remove_rownames()
+```
+
+```{r tibbles26-solution}
+remove_rownames(mtcars)
+```
+
+## Rownames to Column
+
+Sometimes when you import data into R, it might happen that the first column of the data has been converted to rowname.
+In such cases, you may not want to remove the rowname but convert it into a column. `rownames_to_column()` comes to your 
+rescue in such situations. As the function name suggests, it converts the rowname into the first column of the data set.
+It takes only one argument, the name of the tibble. The syntax is as follows:
+
+`rownames_to_column(data.frame)`
+
+### Instructions
+
+- convert the rownames in `mtcars` to column using `rownames_to_column()`
+
+```{r tibbles27, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rownames to Column'}
+# convert mtcars rownames to column
+
+```
+
+```{r tibbles27-solution}
+rownames_to_column(mtcars)
+```
+
+## Column to Rownames
+
+Hmmm! We just learnt how to convert rownames to column. What if while importing data into R, the rowname is treated
+as a column. In such cases, the first column in the data can be converted to rowname using `column_to_rownames()`.
+It takes only one argument, the name of the tibble. The syntax is as follows:
+
+`column_to_rownames(data)`
+
+#### Instructions
+
+- we have converted the rownames in `mtcars` to column
+- use `column_to_rownames()` to conver the first column to rowname
+
+```{r tibbles28, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column to Rownames'}
+# convert rowname to column
+mtcars_tbl <- rownames_to_column(mtcars)
+
+# convert first column in mtcars_tbl to rowname
+
+```
+
+```{r tibbles28-solution}
+column_to_rownames(mtcars_tbl)
+```
