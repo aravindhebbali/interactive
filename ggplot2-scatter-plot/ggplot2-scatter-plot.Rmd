@@ -1,5 +1,5 @@
 ---
-title: "Tutorial"
+title: "Scatter Plot"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -32,28 +32,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <hr>
 
+### Instruction
+
+- map `x` to `disp`
+- map `y` to `mpg`
+
 ```{r scat2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+# scatter plot of disp and mpg
+```
+
+```{r scat2-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg))
 ```
 
-### Add Jitter
-
-<hr>
-
-```{r scat22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Jitter'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg), position = 'jitter')
-```
-
-```{r scat3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Jitter'}
-ggplot(mtcars) +
-  geom_jitter(aes(disp, mpg))
-```
-
 ## Aesthetics
-
-### Introduction
 
 <hr>
 
@@ -64,130 +57,139 @@ Now let us modify the aesthetics of the points. There are two ways:
 
 ## Color
 
-### Map Color to Variable (Categorical)
-
 <hr>
+
+### Instructions
+
+- map `color` to `cyl`
+- map `color` to `hp`
+- set `color` to `'blue'`
+- set `color` to `'blue'` and `alpha` to `0.4`
 
 ```{r scat4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# map color to cyl
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl)), 
-             position = 'jitter')
+  geom_point(aes(disp, mpg, _____)
+
+# map color to hp
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, _____))
+
+# set color to 'blue'
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), _____)
+
+# set color to 'blue' and alpha to 0.4
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), _____, _____)
 ```
 
-### Map Color to Variable (Continuous)
-
-<hr>
-
-```{r scat5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+```{r scat4-solution}
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = hp), 
-             position = 'jitter')
+  geom_point(aes(disp, mpg, color = factor(cyl)))
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp))
+
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue')
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue', alpha = 0.4)
 ```
 
-### Specify Value for Color
-
-<hr>
-
-```{r scat6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg), color = 'blue', 
-             position = 'jitter')
-```
-
-### Specify Value for Alpha
-
-<hr>
-
-```{r scat7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg), color = 'blue', alpha = 0.4, 
-             position = 'jitter')
-```
 
 ## Shape
 
-### Map Shape to Variable
-
 <hr>
+
+### Instructions
+
+- map `shape` to `cyl`
+- set `shape` to `3`
 
 ```{r scat8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+# map shape to cyl
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg, shape = factor(cyl)),
-             position = 'jitter')
+  geom_point(aes(disp, mpg, _____))
+
+# set shape to 3
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), ____)
 ```
 
-### Specify Value for Shape
-
-<hr>
-
-```{r scat9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+```{r scat8-solution}
+# map shape to cyl
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg), shape = 3,
-             position = 'jitter')
+  geom_point(aes(disp, mpg, shape = cyl))
+
+# set shape to 3
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), shape = 3)
 ```
+
 
 ## Size
 
-### Map Size to Variable
-
 <hr>
+
+### Instructions
+
+- map `size` to `hp`
+- set `size` to `3`
 
 ```{r scat10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg, size = hp), color = 'blue',
-             position = 'jitter')
-```
+  geom_point(aes(disp, mpg, ____))
 
-### Specify Value for Size
-
-<hr>
-
-```{r scat11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg), size = 3,
-             position = 'jitter')
+  geom_point(aes(disp, mpg), ____)
 ```
 
-## Regression Line
+```{r scat10-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp))
 
-### Introduction
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), size = 3)
+```
+
+## Fit Line
+
+## Fit Line - Practice
 
 <hr>
+
+### Instructions
 
 ### Linear Regression
 
 ```{r aes12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression Line'}
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = 'jitter') +
+  geom_smooth(_____, _____)
+
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(_____, _____)
+
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(_____, _____)
+  
+
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_abline(_____, _____)
+```
+
+```{r aes12-solution}
+ggplot(mtcars, aes(disp, mpg)) +
   geom_smooth(method = 'lm', se = FALSE)
-```
 
-### Regression Line - Conf. Interval
-
-<hr>
-
-```{r aes13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Conf. Interval'}
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = 'jitter') +
   geom_smooth(method = 'lm', se = TRUE)
-```
 
-### Regression Line - Loess Method
-
-<hr>
-
-```{r aes14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Loess Method'}
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = 'jitter') +
   geom_smooth(method = 'loess', se = FALSE)
-```
 
-### Fit Line - Intercept & Slope
-
-<hr>
-
-```{r aes17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Intercept & Slope'}
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = 'jitter') +
   geom_abline(slope = 29.59985, intercept = -0.04122)
 ```
