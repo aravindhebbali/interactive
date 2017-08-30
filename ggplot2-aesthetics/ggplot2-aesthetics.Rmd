@@ -10,16 +10,14 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
-gdp2 <- gdp %>% 
-  select(year, growth, india, china) %>% 
-  gather(key = country, value = gdp, -year)
+# gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# gdp2 <- gdp %>% 
+#  select(year, growth, india, china) %>% 
+#  gather(key = country, value = gdp, -year)
 ```
 
-## Introduction
-
-### Agenda
+## Agenda
 
 <hr>
 
@@ -32,258 +30,14 @@ Explore aesthetics such as
 - alpha
 - width
 
+
+## Introduction
+
 In this module, we will focus on the aesthetics i.e. color, shape, size, alpha, line type, line width etc. We can map these to variables or specify values for them. If we want to map the above to variables, we have to specify them within the `aes()` function. We will look at both methods.
 
-## Color
-
-### Map Color to Variable
-
-<hr>
-
-```{r aes2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
-ggplot(mtcars, aes(x = disp, y = mpg, color = factor(cyl))) +
-  geom_point()
-```
-
-### Map Color to Variable
-
-<hr>
-
-```{r aes3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(aes(color = factor(cyl)))
-```
-
-### Color: Specify Value
-
-<hr>
-
-```{r aes4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(color = 'blue')
-```
-
-## Shape
-
-### Map Shape to Variable
-
-<hr>
-
-```{r aes5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
-ggplot(mtcars, aes(x = disp, y = mpg, shape = factor(cyl))) +
-  geom_point()
-```
-
-### Map Shape to Variable
-
-<hr>
-
-```{r aes6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(aes(shape = factor(cyl)))
-```
-
-### Shape: Specify Value
-
-<hr>
-
-```{r aes7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(shape = 5)
-```
-
-### Shape & Color
-
-<hr>
-
-```{r aes8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape & Color'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(shape = 5, color = 'blue')
-```
-
-## Fill
-
-<hr>
-
-```{r aes9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(shape = 5, fill = 'blue')
-```
-
-### Fill: Specify Value
-
-<hr>
-
-```{r aes10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(shape = 22, fill = 'blue')
-```
-
-### Geom Border Color
-
-<hr>
-
-```{r aes11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Border Color'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(shape = 22, color = 'blue')
-```
-
-## Size
-
-### Map Size to Variable (Continuous)
-
-<hr>
-
-```{r aes12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
-ggplot(mtcars, aes(x = disp, y = mpg, size = disp)) +
-  geom_point()
-```
-
-### Specify Size Value
-
-<hr>
-
-```{r aes13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(size = 4)
-```
-
-## Alpha
-
-### Map Alpha to Variable
-
-<hr>
-
-```{r aes14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point(aes(alpha = factor(cyl)), color = 'blue')
-```
-
-## Line Color, Type & Width
+## Data
 
 ### Introduction
-
-<hr>
-
-So far we have focussed on `geom_point()` to learn how to map aesthetics to variables. To explore line type and line width, we will use `geom_line()`. In the previous post, we used `geom_line()` to build line charts. Now we will modify the appearance of the line. In the section below, we will specify values for 
-
-- line color
-- line type 
-- and line width
-
-### Data
-
-<hr>
-
-```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
-gdp
-```
-
-### Data Dictionary
-
-<hr>
-
-It contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, Russia, India, China, South Africa) for the years 2000 to 2005.
-
-
-### Line Color
-
-<hr>
-
-```{r aes15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color'}
-ggplot(gdp, aes(year, india)) +
-  geom_line(color = 'blue')
-```
-
-### Line Type
-
-<hr>
-
-```{r aes16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Type'}
-ggplot(gdp, aes(year, india)) +
-  geom_line(linetype = 2)
-```
-
-### Line Type
-
-<hr>
-
-```{r aes17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Type'}
-ggplot(gdp, aes(year, india)) +
-  geom_line(linetype = 'dashed')
-```
-
-### Line Width
-
-<hr>
-
-```{r aes18, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Width'}
-ggplot(gdp, aes(year, india)) +
-  geom_line(size = 2)
-```
-
-### Map Line Aesthetics to Variable
-
-<hr>
-
-Now let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use `gather()` function from the `tidyr` package to reshape the data.
-
-### Data
-
-<hr>
-
-```{r aes19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
-gdp2
-```
-
-### Grouped Line Chart
-
-<hr>
-
-```{r aes20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Grouped Line Chart'}
-ggplot(gdp2, aes(year, gdp, group = country)) +
-  geom_line()
-```
-
-### Map Line Color to Country
-
-<hr>
-
-```{r aes21, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color'}
-ggplot(gdp2, aes(year, gdp, group = country)) +
-  geom_line(aes(color = country))
-```
-
-### Map Line Type to Country
-
-<hr>
-
-```{r aes22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Type'}
-ggplot(gdp2, aes(year, gdp, group = country)) +
-  geom_line(aes(linetype = country))
-```
-
-### Map Line Width to Country
-
-<hr>
-
-```{r aes23, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Width'}
-ggplot(gdp2, aes(year, gdp, group = country)) +
-  geom_line(aes(size = country))
-```
-
-## Other Plots
-
-<hr>
-
-Before we wrap up, let us quickly see how we can map aesthetics to variables for 
-
-- bar plots
-- histograms
-- box plots
-
-
-### Data
 
 <hr>
 
@@ -307,29 +61,155 @@ ecom
 - purchase: whether visitor purchased
 - order_value: order value of visitor (in dollars)
 
-### Map Bar Color to Purchase
+
+## Color
+
+
+#### Instructions
 
 <hr>
 
-```{r aes24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Color'}
+- map `color` to `cyl`
+- set `color` to `'blue'`
+
+```{r aes2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# map color to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+```
+
+```{r aes2-solution}
+# map color to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(color = cyl))
+
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(color = 'blue')
+```
+
+
+## Shape
+
+<hr>
+
+### Instructions
+
+- map `shape` to `cyl`
+- set `shape` to `5`
+
+```{r aes5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+# map shape to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+
+# set shape to 5
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+```
+
+```{r aes5-solution}
+# map shape to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(shape = cyl))
+
+# set shape to 5
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 5)
+```
+
+
+## Fill
+
+<hr>
+
+### Instructions
+
+- set `fill` to `'blue'`
+- map `fill` to `purchase`
+- set `color` to `blue`
+
+```{r aes9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+# set fill to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 5, fill = ____)
+
+# set fill to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, fill = ____)
+
+# map fill to purchase
+ggplot(ecom) +
+  geom_bar(aes(device, fill = ____))
+
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, color = ____)
+```
+
+```{r aes9-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 5, fill = 'blue')
+
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, fill = 'blue')
+
 ggplot(ecom, aes(device, fill = purchase)) +
   geom_bar()
+
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, color = 'blue')
 ```
 
-### Map Histogram Color to Purchase
+
+## Size
 
 <hr>
 
-```{r aes25, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram Color'}
-ggplot(ecom) +
-  geom_histogram(aes(duration, fill = purchase), bins = 10)
+### Instructions
+
+- map `size` to `hp`
+- set `size` to `4`
+
+```{r aes12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg, ____))
+
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
 ```
 
-### Map Box Plot Color to Purchase
+```{r aes12-solution}
+ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg, size = hp))
+
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(size = 4)
+```
+
+## Alpha
 
 <hr>
 
-```{r aes26, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot Color'}
-ggplot(ecom) +
-  geom_boxplot(aes(device, duration, fill = purchase))
+### Instructions
+
+- map `alpha` to `cyl`
+- set `alpha` to `0.3`
+
+```{r aes14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(______), color = 'blue')
 ```
+
+```{r aes14-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(alpha = factor(cyl)), color = 'blue')
+```
+
+
+
+
