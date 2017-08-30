@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Bar Chart"
+title: "Bar Chart"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -10,7 +10,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 ```
 
 ## Introduction
@@ -80,7 +80,7 @@ ggplot(ecom) +
   geom_bar(aes(factor(device)))
 ```
 
-### Bar Color
+## Bar Color
 
 <hr>
 
@@ -90,37 +90,8 @@ ggplot(ecom) +
            fill = c('red', 'blue', 'green'))
 ```
 
-### Bar Line Color
 
-<hr>
-
-```{r bar4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Color'}
-ggplot(ecom) +
-  geom_bar(aes(factor(device)), fill = 'white',
-           color = c('red', 'blue', 'green'))
-```
-
-### Bar Line Type
-
-<hr>
-
-```{r bar5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Type'}
-ggplot(ecom) +
-  geom_bar(aes(factor(device)), fill = 'white', 
-          color = 'black', linetype = 2)
-```
-
-### Bar Line Size
-
-<hr>
-
-```{r bar6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Size'}
-ggplot(ecom) +
-  geom_bar(aes(factor(device)), fill = 'white', 
-           color = 'black', size = 2)
-```
-
-### Stacked Bar Plot
+## Stacked Bar Plot
 
 <hr>
 
@@ -129,7 +100,7 @@ ggplot(ecom) +
   geom_bar(aes(device, fill = factor(referrer)))
 ```
 
-### Grouped Bar Plot
+## Grouped Bar Plot
 
 <hr>
 
@@ -138,7 +109,7 @@ ggplot(ecom) +
   geom_bar(aes(device, fill = factor(referrer)), position = 'dodge')
 ```
 
-### Proportional Bar Plot
+## Proportional Bar Plot
 
 <hr>
 
@@ -148,7 +119,7 @@ ggplot(ecom) +
 ```
 
 
-### Horizontal Bar Plot
+## Horizontal Bar Plot
 
 <hr>
 
@@ -157,4 +128,39 @@ ggplot(ecom) +
   geom_bar(aes(factor(device), fill = factor(referrer))) +
   coord_flip()
 ```
+
+## Weight
+
+<hr>
+
+```{r geoms9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Weight'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(weight = order_value))
+```
+
+## Columns
+
+<hr>
+
+```{r geoms12, fig.align='center', fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Columns'}
+device <- c('laptop', 'mobile', 'tablet')
+visits <- c(30000, 12000, 5000)
+traffic <- tibble::tibble(device, visits)
+ggplot(traffic, aes(x = device, y = visits)) +
+  geom_col(fill = 'blue') 
+```
+
+## Bar Line
+
+<hr>
+
+### Instructions
+
+```{r bar4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Color'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white',
+          color = 'black', linetype = 2, size = 2)
+```
+
+## Practice
 
