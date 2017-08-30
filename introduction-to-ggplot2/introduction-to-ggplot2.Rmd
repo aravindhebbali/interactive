@@ -10,7 +10,6 @@ library(ggplot2)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
 ## Agenda
 
 <hr>
@@ -22,9 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Introduction
 
-<hr>
-
-[ggplot2](http://ggplot2.tidyverse.org/index.html) is an alternative (and awesome) to base R for data visualization. It is based on 
+[ggplot2](http://ggplot2.tidyverse.org/index.html) is an **awesome** alternative to base R for data visualization. It is based on 
 [The Grammar of Graphics](http://www.springer.com/in/book/9780387245447). In this post, we will understand the philosophy behind **ggplot2** and learn to build some of the most frequently used plots for visualizing data. 
 
 
@@ -43,35 +40,105 @@ Grammar of Graphics is a formal system for building plots. The core idea is that
 - a faceting scheme
 
 
-## Step 1
+## Data
 
 <hr>
 
-Let us build a bar plot from scratch using the `mtcars` data. We will build the plot incrementally and understand the above components. 
-The first step in any data visualization exercise is to identify the data set. In `ggplot2`, we can specify the data set using  `ggplot()`.
-
+Let us build a scatter plot from scratch using the `mtcars` data. We will build the plot incrementally and understand the 
+above layers. The first step in any data visualization exercise is to identify the data set. In `ggplot2`, we can 
+specify the data set using `ggplot()`.
 
 ```{r gg1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
-ggplot2::ggplot(data = mtcars) 
+ggplot(data = mtcars) 
 ```
 
-## Step 2
+If you observe, `ggplot()` does not generate any plot, it just creates a coordinate system. 
+
+## Geom
 
 <hr>
 
-If you compare with the `barplot()` function from `base`, you can observe that instead of specifying the variable we are using the
-whole data set. And most importantly, the `ggplot()` function does not generate any plots. It just identifies the data that will be used by the other components.
+After specifying the data set, we have to decide how the data will be visualized. We will do this using  `geoms`. It basically details the geometric shapes that must be used to display the data. In our case, we want the data to displayed as `points`. 
 
+There are several `geoms` and we will explore them one by one. For the time time being, let us use `geom_point()`. This tells ggplot2 it must use points to represent the data. The next step is to specify the variables that will be represented by the `X` and `Y` axis. To do this we will use `mapping` and `aes`. 
 
-Once you have identified the data set, we need to specify how the data must be visualized. We will do this using  `geoms`. It basically indicate the geometric shapes that must be used to display the data. In our case, we are building bar plot and hence we want the data to be displayed as `bars`. 
+`aes` is the short for aesthetics. Using `mapping`, we can map variables to aesthetics. We specify the aesthetic type and the corresponding variable within `aes`.In our example, we want the `X` axis to be represented by `disp` and `Y` axis by `mpg`. ggplot2 will search for these variables in the data we have provided in `ggplot` which is `mtcars`. If ggplot2 can't find the variables, it will return an error.
 
+So far we have provided:
 
-There are several `geoms` and we will explore them one by one. For the time time being, let us use `geom_bar()` and map the `x` axis to a variable using `mapping`. We will use the `cyl` variable from `mtcars`.
+- data set
+- geometric shape to represent data
+- variables to represent `X` and `Y` axis
 
+The above layers are the bare minimum required to create a plot in ggplot2.
 
 ```{r gg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
-ggplot2::ggplot(data = mtcars) +
-  geom_bar(
-    mapping = aes(x = cyl)
-  )
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg))
 ```
+
+## Aesthetics
+
+What are aesthetics?
+
+- `x`
+- `y`
+- `shape`
+- `size`
+- `color`
+- `fill`
+- `alpha`
+- `linetype`
+
+Aestheics are the visual properties of the objects in the plot. We can display the geometric object in different ways by
+changing the values of its aesthetic properties.
+
+### Color
+
+```{r gg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, color = cyl))
+```
+
+### Shape
+
+```{r gg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, shape = gear))
+```
+
+### Size
+
+```{r gg5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, size = hp))
+```
+
+## Stat
+
+Some graphs plot the raw data set, but others like bar plot, box plot and histograms compute new values and plot them.
+In this section, we will look at how the data is transformed. 
+
+- `stat_count`
+- `stat_boxplot`
+- `stat_bin`
+- `stat_summary`
+
+## Position
+
+- `position_dodge`
+- `position_identity`
+- `position_jitter`
+- `position_fill`
+
+## Coordinate System
+
+Default is the cartesian coordinate system.
+
+- `coord_flip`
+- `coord_polar`
+
+## Facet
+
+- `facet_grid`
+- `facet_wrap`
