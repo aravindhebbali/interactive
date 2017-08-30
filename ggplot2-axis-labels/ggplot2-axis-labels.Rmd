@@ -12,9 +12,7 @@ library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Introduction
-
-### Agenda
+## Agenda
 
 <hr>
 
@@ -23,163 +21,6 @@ knitr::opts_chunk$set(echo = FALSE)
 - modify axis range
 - remove axis
 - format axis
-
-## Title & Subtitle
-
-### Introduction
-
-<hr>
-
-```{r axis2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg))
-```
-
-### Title & Subtitle
-
-<hr>
-
-There are two ways to add title to a plot:
-
-- `ggtitle()`
-- `labs()`
-
-### ggtitle()
-
-<hr>
-
-Let us explore the `ggtitle()` function first. It takes two arguments:
-
-- label: title of the plot
-- subtitle: subtitle of the plot
-
-### Title & Subtitle
-
-<hr>
-
-```{r axis3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title & Subtitle'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  ggtitle(label = 'Displacement vs Mileage', subtitle = 'disp vs mpg')
-```
-
-## Axis Labels
-
-### Introduction
-
-<hr>
-
-You can add labels to the axis using:
-
-- `xlab()`
-- `ylab()`
-- `labs()`
-
-### Axis Labels
-
-<hr>
-
-```{r axis4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Labels'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  xlab('Displacement') + ylab('Miles Per Gallon')
-```
-
-### Labs
-
-<hr>
-
-The `labs()` function can be used to add the following to a plot:
-
-- title
-- subtitle
-- X axis label
-- Y axis label
-
-### Labs
-
-```{r axis5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Labels'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  labs(title = 'Displacement vs Mileage', subtitle = 'disp vs mpg', 
-    x = 'Displacement', y = 'Miles Per Gallon')
-```
-
-## Axis Range
-
-### Introduction
-
-<hr>
-
-In certain scenarios, you may want to modify the range of the axis. In ggplot2, we can achieve this using:
-
-- `xlim()`
-- `ylim()`
-- `expand_limits()`
-
-### Axis Range
-
-<hr>
-
-- `xlim()` and `ylim()` take a numeric vector of length 2 as input
-- `expand_limits()` takes two numeric vectors (each of length 2), one for each axis 
-- in all of the above functions, the first element represents the lower limit and the second element represents the upper limit
-
-### X Axis
-
-<hr>
-
-```{r axis6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'X Axis Range'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  xlim(c(0, 600))
-```
-
-### Y Axis
-
-<hr>
-
-```{r axis7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Y Axis Range'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  ylim(c(0, 40))
-```
-
-### Expand Limits
-
-<hr>
-
-```{r axis8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Expand Limits'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  expand_limits(x = c(0, 600), y = c(0, 40))
-```
-
-### Remove Axis Labels
-
-<hr>
-
-If you want to remove the axis labels all together, use the `theme()` function. It allows us to modify every aspect of the theme of the plot. Within `theme()`, set the following to `element_blank()`.
-
-- `axis.title.x`
-- `axis.title.y`
-
-### Remove Axis Labels using theme()
-
-<hr>
-
-```{r axis9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Remove Axis Labels'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  theme(axis.title.x = element_blank(), axis.title.y = element_blank())
-```
-
-
-## Format Title & Axis Labels
-
-### Introduction
-
-<hr>
 
 To format the title or the axis labels, we have to modify the theme of the plot using the `theme()` function.
 We can modify: 
@@ -191,27 +32,157 @@ We can modify:
 - horizontal alignment 
 - and angle
 
-### Color
+
+## Introduction
 
 <hr>
 
-```{r axis10, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Color'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
-  theme(plot.title = element_text(color = 'blue'))
-```
-
-### Font Family
+## Title & Subtitle
 
 <hr>
 
-```{r axis11, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Font'}
+There are two ways to add title to a plot:
+
+- `ggtitle()`
+- `labs()`
+
+Let us explore the `ggtitle()` function first. It takes two arguments:
+
+- label: title of the plot
+- subtitle: subtitle of the plot
+
+### Instructions
+
+```{r axis3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title & Subtitle'}
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
-  theme(plot.title = element_text(family = 'Arial'))
+  geom_point(aes(disp, mpg)) +
+  ggtitle(___________)
 ```
 
-### Font Face
+```{r axis3-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  ggtitle(label = 'Displacement vs Mileage', subtitle = 'disp vs mpg')
+```
+
+
+## Axis Labels
+
+<hr>
+
+You can add labels to the axis using:
+
+- `xlab()`
+- `ylab()`
+- `labs()`
+
+### Instructions
+
+```{r axis4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Labels'}
+# add X and Y axis labels
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) 
+```
+
+```{r axis4-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  xlab('Displacement') + ylab('Miles Per Gallon')
+```
+
+## Labs
+
+<hr>
+
+The `labs()` function can be used to add the following to a plot:
+
+- title
+- subtitle
+- X axis label
+- Y axis label
+
+### Instructions
+
+```{r axis5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  labs(___________)
+```
+
+```{r axis5-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  labs(title = 'Displacement vs Mileage', subtitle = 'disp vs mpg', 
+    x = 'Displacement', y = 'Miles Per Gallon')
+```
+
+
+## Axis Range
+
+<hr>
+
+In certain scenarios, you may want to modify the range of the axis. In ggplot2, we can achieve this using:
+
+- `xlim()`
+- `ylim()`
+- `expand_limits()`
+
+
+- `xlim()` and `ylim()` take a numeric vector of length 2 as input
+- `expand_limits()` takes two numeric vectors (each of length 2), one for each axis 
+- in all of the above functions, the first element represents the lower limit and the second element represents the upper limit
+
+### Instructions
+
+```{r axis6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'X Axis Range'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) 
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) 
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) 
+```
+
+```{r axis6-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  xlim(c(0, 600))
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  ylim(c(0, 40))
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  expand_limits(x = c(0, 600), y = c(0, 40))
+```
+
+
+## Remove Axis Labels
+
+<hr>
+
+If you want to remove the axis labels all together, use the `theme()` function. It allows us to modify every aspect of the theme of the plot. Within `theme()`, set the following to `element_blank()`.
+
+- `axis.title.x`
+- `axis.title.y`
+
+### Instructions
+
+```{r axis9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Remove Axis Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) 
+```
+
+```{r axis9-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())
+```
+
+## Color & Font
 
 <hr>
 
@@ -222,66 +193,72 @@ The font face can be any of the following:
 - `italic` 
 - `bold.italic`
 
-### Font Face 
 
-```{r axis12, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Font Face'}
+```{r axis10, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Color'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') 
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') 
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') 
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') 
+```
+
+```{r axis10-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
+  theme(plot.title = element_text(color = 'blue'))
+
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
+  theme(plot.title = element_text(family = 'Arial'))
+
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
   theme(plot.title = element_text(face = 'bold'))
-```
 
-### Font Size
-
-<hr>
-
-```{r axis13, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Font Size'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
   theme(plot.title = element_text(size = 8))
 ```
 
-### Horizontal Alignment
+
+## Horizontal Alignment
 
 <hr>
 
+### Instructions
+
 ```{r axis14, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Alignment'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') 
+```
+
+```{r axis14-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
   theme(plot.title = element_text(hjust = 0.3))
 ```
 
-### Title
+
+## Summary
 
 <hr>
+
+### Instructions
 
 ```{r axis15, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Format Title'}
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +
-  theme(plot.title = element_text(color = 'blue', family = 'Arial',
-    face = 'bold', size = 12, hjust = 0.5))
+  geom_point(aes(disp, mpg)) 
 ```
 
-### X axis label
-
-<hr>
-
-```{r axis16, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Format X Axis Label'}
+```{r axis15-solution}
 ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) + xlab('Diaplacement') +
-  theme(axis.title.x = element_text(color = 'blue', family = 'Arial',
-    face = 'bold', size = 8, hjust = 0.5, angle = 15))
+  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') + 
+  xlab('Diaplacement') + ylab('Miles Per Gallon') 
 ```
-
-
-### Y axis label
-
-<hr>
-
-```{r axis17, fig.align='center', message=FALSE, warning=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Format Y Axis Label'}
-ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) + ylab('Miles Per Gallon') +
-  theme(axis.title.y = element_text(color = 'blue', family = 'Arial',
-    face = 'italic', size = 8, vjust = 0.3, angle = 90))
-```
-
 
