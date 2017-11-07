@@ -1,0 +1,329 @@
+---
+title: "Introduction to R"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+tutorial_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## How It Works
+
+In the editor on the right you should type R code to solve the exercises. When you hit the 'Submit Answer' button, every line of code is interpreted and executed by R and you get a message whether or not your code was correct. The output of your R code is shown in the console in the lower right corner.
+
+R makes use of the # sign to add comments, so that you and others can understand what the R code is about. Just like Twitter! Comments are not run as R code, so they will not influence your result. For example, Calculate 3 + 4 in the editor on the right is a comment.
+
+You can also execute R commands straight in the console. This is a good way to experiment with R code, as your submission is not checked for correctness.
+
+#### Instructions
+
+- In the editor on the right there is already some sample code. Can you see which lines are actual R code and which are comments?
+
+- Add a line of code that calculates the sum of 6 and 12, and hit the 'Submit Answer' button.
+
+
+```{r howit, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'How It Works'}
+3 + 4  # calculate 3 + 4
+```
+
+```{r howitworks, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'How It Works'}
+# calculate 6 + 12
+
+```
+
+```{r howitworks-hint}
+Just add a line of R code that calculates the sum of 6 and 12, just like the example in the sample code!
+```
+
+```{r howitworks-solution}
+6 + 12
+```
+
+## Arithmetic With R
+
+In the most basic form, R can be used as a calculator. Consider the following arithmetic operations:
+
+- Addition:`+`
+- Subtraction:`-`
+- Multiplication:`*`
+- Division:`/`
+- Exponentiation:`^`
+- Modulo:`%%`
+
+The last two might need some explaining:
+
+- The `^` operator raises the number to its left to the power of the number to its right: for example `3 ^ 2` is 9.
+- The modulo returns the remainder of the division of the number to the left by the number on its right, for example `5 modulo 3` or `5 %% 3` is 2.
+
+```{r addition, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'Addition'}
+5 + 5 
+```
+
+```{r subtraction, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'Subtraction'}
+5 - 5 
+```
+
+```{r multiplication, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'Multiplication'}
+3 * 5 
+```
+
+```{r division, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'Division'}
+(5 + 5) / 2 
+```
+
+With this knowledge, follow the instructions below to complete the exercise.
+
+#### Instructions
+
+- Type `2 ^ 5` in the editor to calculate 2 to the power 5.
+- Type `28 %% 6` to calculate 28 modulo 6.
+- Click 'Run Code' and have a look at the R output in the console.
+- Note how the # symbol is used to add comments on the R code.
+
+### Exercise 
+
+```{r exponentiation, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'Exercise'}
+# Exponentiation
+
+```
+
+```{r exponentiation-hint}
+Another example of the modulo operator: 5 ^ 2 equals 25
+```
+
+```{r exponentiation-solution}
+2 ^ 5
+```
+
+```{r modulo, exercise=TRUE, exercise.eval = TRUE, exercise.cap = 'Exercise'}
+# modulo
+
+```
+
+```{r modulo-hint}
+Another example of the modulo operator: 9 %% 2 equals 1
+```
+
+```{r modulo-solution}
+28 %% 6  
+```
+
+## Variable Assignment
+
+A basic concept in (statistical) programming is called a variable.
+
+A variable allows you to store a value (e.g. 4) or an object (e.g. a function description) in R. You can then later use this variable's name to easily access the value or the object that is stored within this variable.
+
+You can assign a value 4 to a variable **my_var** with the command `my_var <- 4`.
+
+#### Instructions
+
+Over to you: complete the code in the editor such that it assigns the value 42 to the variable x in the editor. Click 'Run Code'. Notice that when you ask R to print x, the value 42 appears.
+
+
+```{r assign, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Assign'}
+# Assign the value 42 to x
+x <- 
+```
+
+```{r assign-hint}
+Look at how the value 4 was assigned to my_variable in the exercise's assignment. Do the exact same thing in the editor, but now assign 42 to the variable x.
+```
+
+```{r assign-solution}
+x <- 42
+```
+
+```{r print, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Print'}
+# Print out the value of the variable x
+x
+```
+
+## Variable Assignment - 2
+
+Suppose you have a fruit basket with five apples. As a data analyst in training, you want to store the number of apples in a variable with the name my_apples.
+
+#### Instructions
+
+- Type the following code in the editor: `my_apples <- 5`. This will assign the value 5 to my_apples.
+- Type: my_apples below the second comment. This will print out the value of my_apples.
+- Click 'Run Code', and look at the console: you see that the number 5 is printed. So R now links the variable my_apples to the value 5.
+
+
+```{r assign2, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Assign'}
+# Assign the value 5 to the variable my_apples
+
+```
+
+```{r assign2-hint}
+Remember that if you want to assign a number or an object to a variable in R, you can make use of the assignment operator <-. Alternatively, you can use =, but <- is widely preferred in the R community.
+```
+
+```{r assign2-solution}
+my_apples <- 5
+```
+
+
+```{r assign3, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Assign'}
+# Print out the value of the variable my_apples
+
+```
+
+```{r assign3-hint}
+Remember that if you want to print a variable, you just type the name of the variable in the console.
+```
+
+```{r assign3-solution}
+my_apples
+```
+
+## Variable Assignment - 3
+
+Every tasty fruit basket needs oranges, so you decide to add six oranges. As a data analyst, your reflex is to immediately create the variable `my_oranges` and assign the value 6 to it. Next, you want to calculate how many pieces of fruit you have in total. Since you have given meaningful names to these values, you can now code this in a clear way: `my_apples + my_oranges`.
+
+#### Instructions
+
+- Assign to `my_oranges` the value 6.
+- Add the variables `my_apples` and `my_oranges` and have R simply print the result.
+- Assign the result of adding `my_apples` and `my_oranges` to a new variable `my_fruit`.
+
+```{r assign4, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Assign'}
+my_apples <- 5
+
+# Assign to my_oranges the value 6.
+
+# Add these two variables together
+
+# Create the variable my_fruit 
+
+```
+
+```{r assign4-solution}
+my_oranges <- 6
+my_apples + my_oranges
+myfruit <- my_apples + my_oranges
+```
+
+## Apples & Oranges
+
+Common knowledge tells you not to add apples and oranges. But hey, that is what you just did, no :-)? The `my_apples` and `my_oranges` variables both contained a number in the previous exercise. The `+` operator works with numeric variables in R. If you really tried to add "apples" and "oranges", and assigned a text value to the variable `my_oranges` (see the editor), you would be trying to assign the addition of a numeric and a character variable to the variable `my_fruit`. This is not possible.
+
+#### Instructions
+
+- Click 'Run Code' and read the error message. Make sure to understand why this did not work.
+- Adjust the code so that R knows you have 6 oranges and thus a fruit basket with 11 pieces of fruit.
+
+```{r appanges, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Data Types'}
+# Assign a value to the variable my_apples
+my_apples <- 5 
+
+# Fix the assignment of my_oranges
+my_oranges <- "six" 
+
+# Create the variable my_fruit and print it out
+my_fruit <- my_apples + my_oranges 
+my_fruit
+```
+
+```{r appanges-solution}
+my_oranges <- 6
+```
+
+## Data Types
+
+R works with numerous data types. Some of the most basic types to get started are:
+
+- Decimals values like `4.5` are called numerics.
+- Natural numbers like `4` are called integers. Integers are also numerics.
+- Boolean values (`TRUE` or `FALSE`) are called logical.
+- Text (or string) values are called characters.
+
+Note how the quotation marks on the right indicate that "some text" is a character.
+
+#### Instructions
+
+Change the value of the:
+
+- `my_numeric` variable to `42`.
+- `my_character` variable to `"universe"`. Note that the quotation marks indicate that `"universe"` is a character.
+- `my_logical` variable to `FALSE`.
+
+Note that R is case sensitive!
+
+```{r dtypes, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Data Types'}
+# Change my_numeric to be 42
+my_numeric <- 42.5
+my_numeric
+
+# Change my_character to be "universe"
+my_character <- "some text"
+my_character
+
+# Change my_logical to be FALSE
+my_logical <- TRUE
+my_logical
+```
+
+```{r dtypes-solution}
+my_numeric <- 42
+my_character <- "universe"
+my_logical <- FALSE
+```
+
+## Data Types - 2
+
+Do you remember that when you added `5 + "six"`, you got an error due to a mismatch in data types? You can avoid such embarrassing situations by checking the data type of a variable beforehand. You can do this with the `class()` function, as the code on the right shows.
+
+#### Instructions
+
+Complete the code in the editor and also print out the classes of `my_character` and `my_logical`.
+
+```{r dtypes2, exercise=TRUE, exercise.eval = FALSE, exercise.cap = 'Data Types'}
+# Declare variables of different types
+my_numeric <- 42
+my_character <- "universe"
+my_logical <- FALSE 
+
+# Check class of my_numeric
+class(my_numeric)
+
+# Check class of my_character
+
+
+# Check class of my_logical
+
+```
+
+```{r dtypes2-solution}
+class(my_character)
+class(my_logical)
+```
+
+### Quiz
+
+```{r quiz-dplyr}
+quiz(caption = 'Quiz 1',
+  question("Which is the verb used to filter data in dplyr?",
+    answer("select"),
+    answer("mutate"),
+    answer("filter", correct = TRUE),
+    answer("slice"),
+    incorrect = 'Incorrect. The verb is `filter`.',
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Which is the verb used to create and retain only new variables?",
+    answer("transmute", correct = TRUE),
+    answer("mutate", message = 'mutate retains variables. The correct verb is transmute.'),
+    answer("select"),
+    answer("slice"),
+    incorrect = 'Incorrect. The verb is `transmute`.',
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+

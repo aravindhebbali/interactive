@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="progressive" content="false" />
+<meta name="allow-skip" content="false" />
+
+<title>Factors</title>
+
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+<div class="pageContent band">
+<div class="bandContent page">
+
+<div class="topics">
+
+<div id="section-introduction" class="section level2">
+<h2>Introduction</h2>
+<p>In this chapter you dive into the wonderful world of <strong>factors</strong>.</p>
+<p>The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a <strong>limited number of categories</strong>. A continuous variable, on the other hand, can correspond to an infinite number of values.</p>
+<p>It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently. (You will see later why this is the case.)</p>
+<p>A good example of a categorical variable is the variable ‘Gender’. A human individual can either be “Male” or “Female”, making abstraction of inter-sexes. So here “Male” and “Female” are, in a simplified sense, the two values of the categorical variable “Gender”, and every observation can be assigned to either the value “Male” of “Female”.</p>
+</div>
+<div id="section-introduction---2" class="section level2">
+<h2>Introduction - 2</h2>
+<p>To create factors in R, you make use of the function <code>factor()</code>. First thing that you have to do is create a vector that contains all the observations that belong to a limited number of categories. For example, <code>gender_vector</code> contains the sex of 5 different individuals:</p>
+<p>It is clear that there are two categories, or in R-terms <strong>‘factor levels’</strong>, at work here: “Male” and “Female”.</p>
+<p>The function <code>factor()</code> will encode the vector as a factor:</p>
+<p><code>factor_gender_vector &lt;- factor(gender_vector)</code></p>
+<div id="section-instructions" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Convert the character vector <code>gender_vector</code> to a factor with <code>factor()</code> and assign the result to <code>factor_gender_vector</code></li>
+<li>Print out <code>factor_gender_vector</code> and assert that R prints out the factor levels below the actual values.</li>
+</ul>
+<div class="tutor-exercise" data-label="factor1" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Gender vector
+gender_vector &lt;- c(&quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;)
+
+# Convert gender_vector to a factor
+factor_gender_vector &lt;-
+
+# Print out factor_gender_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="factor1-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>factor_gender_vector &lt;- factor(gender_vector)
+factor_gender_vector </code></pre>
+</div>
+</div>
+</div>
+<div id="section-how-to-use-factor" class="section level2">
+<h2>How to use Factor</h2>
+<p>There are two types of categorical variables: a nominal categorical variable and an ordinal categorical variable.</p>
+<p>A nominal variable is a categorical variable without an implied order. This means that it is impossible to say that ‘one is worth more than the other’. For example, think of the categorical variable <code>animals_vector</code> with the categories <code>&quot;Elephant&quot;</code>, <code>&quot;Giraffe&quot;</code>, <code>&quot;Donkey&quot;</code> and <code>&quot;Horse&quot;</code>. Here, it is impossible to say that one stands above or below the other. (Note that some of you might disagree ;-) ).</p>
+<p>In contrast, ordinal variables do have a natural ordering. Consider for example the categorical variable <code>temperature_vector</code> with the categories: <code>&quot;Low&quot;</code>, <code>&quot;Medium&quot;</code> and <code>&quot;High&quot;</code>. Here it is obvious that <code>&quot;Medium&quot;</code> stands above <code>&quot;Low&quot;</code>, and <code>&quot;High&quot;</code> stands above <code>&quot;Medium&quot;</code>.</p>
+<div id="section-instructions-1" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Click ‘Run Code’ to check how R constructs and prints nominal and ordinal variables. Do not worry if you do not understand all the code just yet, we will get to that.</li>
+</ul>
+<div class="tutor-exercise" data-label="factor2" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Animals
+animals_vector &lt;- c(&quot;Elephant&quot;, &quot;Giraffe&quot;, &quot;Donkey&quot;, &quot;Horse&quot;)
+factor_animals_vector &lt;- factor(animals_vector)
+factor_animals_vector
+
+# Temperature
+temperature_vector &lt;- c(&quot;High&quot;, &quot;Low&quot;, &quot;High&quot;,&quot;Low&quot;, &quot;Medium&quot;)
+factor_temperature_vector &lt;- factor(temperature_vector, order = TRUE, levels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;))
+factor_temperature_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-factor-levels" class="section level2">
+<h2>Factor Levels</h2>
+<p>When you first get a data set, you will often notice that it contains factors with specific factor levels. However, sometimes you will want to change the names of these levels for clarity or other reasons. R allows you to do this with the function <code>levels()</code>:</p>
+<p>A good illustration is the raw data that is provided to you by a survey. A standard question for every questionnaire is the gender of the respondent. You remember from the previous question that this is a factor and when performing the questionnaire on the streets its levels are often coded as <code>&quot;M&quot;</code> and <code>&quot;F&quot;</code>.</p>
+<p><code>survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)</code></p>
+<p>Next, when you want to start your data analysis, your main concern is to keep a nice overview of all the variables and what they mean. At that point, you will often want to change the factor levels to <code>&quot;Male&quot;</code> and <code>&quot;Female&quot;</code> instead of <code>&quot;M&quot;</code> and <code>&quot;F&quot;</code> to make your life easier.</p>
+<p><strong>Watch out:</strong> the order with which you assign the levels is important. If you type <code>levels(factor_survey_vector)</code>, you’ll see that it outputs <code>[1] &quot;F&quot; &quot;M&quot;</code>. If you don’t specify the levels of the factor when creating the vector, R will automatically assign them alphabetically. To correctly map <code>&quot;F&quot;</code> to <code>&quot;Female&quot;</code> and <code>&quot;M&quot;</code> to <code>&quot;Male&quot;</code>, the levels should be set to <code>c(&quot;Female&quot;, &quot;Male&quot;)</code>, in this order order.</p>
+<div id="section-instructions-2" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Check out the code that builds a factor vector from <code>survey_vector</code>. You should use <code>factor_survey_vector</code> in the next instruction.</li>
+<li>Change the factor levels of <code>factor_survey_vector</code> to <code>c(&quot;Female&quot;, &quot;Male&quot;)</code>. Mind the order of the vector elements here.</li>
+</ul>
+<div class="tutor-exercise" data-label="factor3" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Code to build factor_survey_vector
+survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector &lt;- factor(survey_vector)
+
+# Specify the levels of factor_survey_vector
+levels(factor_survey_vector) &lt;-
+
+factor_survey_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="factor3-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>levels(factor_survey_vector) &lt;- c(&quot;Female&quot;, &quot;Male&quot;)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-summarizing-factors" class="section level2">
+<h2>Summarizing Factors</h2>
+<p>After finishing this course, one of your favorite functions in R will be <code>summary()</code>. This will give you a quick overview of the contents of a variable:</p>
+<p><code>summary(my_var)</code></p>
+<p>Going back to our survey, you would like to know how many <code>&quot;Male&quot;</code> responses you have in your study, and how many <code>&quot;Female&quot;</code> responses. The <code>summary()</code> function gives you the answer to this question.</p>
+<div id="section-instructions-3" class="section level4">
+<h4>Instructions</h4>
+<p>Ask a <code>summary()</code> of the <code>survey_vector</code> and <code>factor_survey_vector</code>. Interpret the results of both vectors. Are they both equally useful in this case?</p>
+<div class="tutor-exercise" data-label="factor4" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Build factor_survey_vector with clean levels
+survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector &lt;- factor(survey_vector)
+levels(factor_survey_vector) &lt;- c(&quot;Female&quot;, &quot;Male&quot;)
+factor_survey_vector
+
+# Generate summary for survey_vector
+
+
+# Generate summary for factor_survey_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="factor4-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>summary(survey_vector)
+summary(factor_survey_vector)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-case-study---1" class="section level2">
+<h2>Case Study - 1</h2>
+<p>In <code>factor_survey_vector</code> we have a factor with two levels: Male and Female. But how does R value these relatively to each other? In other words, who does R think is better, males or females?</p>
+<div id="section-instructions-4" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Read the code in the editor and click ‘Run Code’ to see whether males are worth more than females.</li>
+</ul>
+<div class="tutor-exercise" data-label="factor5" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Build factor_survey_vector with clean levels
+survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector &lt;- factor(survey_vector)
+levels(factor_survey_vector) &lt;- c(&quot;Female&quot;, &quot;Male&quot;)
+
+# Male
+male &lt;- factor_survey_vector[1]
+
+# Female
+female &lt;- factor_survey_vector[2]
+
+# Battle of the sexes: Male &#39;larger&#39; than female?
+male &gt; female</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-ordered-factors---1" class="section level2">
+<h2>Ordered Factors - 1</h2>
+<p>Since <code>&quot;Male&quot;</code> and <code>&quot;Female&quot;</code> are unordered (or nominal) factor levels, R returns a warning message, telling you that the greater than operator is not meaningful. As seen before, R attaches an equal value to the levels for such factors.</p>
+<p>But this is not always the case! Sometimes you will also deal with factors that do have a natural ordering between its categories. If this is the case, we have to make sure that we pass this information to R…</p>
+<p>Let us say that you are leading a research team of five data analysts and that you want to evaluate their performance. To do this, you track their speed, evaluate each analyst as <code>&quot;slow&quot;</code>, <code>&quot;fast&quot;</code> or <code>&quot;insane&quot;</code>, and save the results in <code>speed_vector</code>.</p>
+<div id="section-instructions-5" class="section level4">
+<h4>Instructions</h4>
+<p>As a first step, assign <code>speed_vector</code> a vector with 5 entries, one for each analyst. Each entry should be either <code>&quot;slow&quot;</code>, <code>&quot;fast&quot;</code>, or <code>&quot;insane&quot;</code>. Use the list below:</p>
+<ul>
+<li>Analyst 1 is fast,</li>
+<li>Analyst 2 is slow,</li>
+<li>Analyst 3 is slow,</li>
+<li>Analyst 4 is fast and</li>
+<li>Analyst 5 is insane.</li>
+</ul>
+<p>No need to specify these are factors yet.</p>
+<div class="tutor-exercise" data-label="factor6" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Create speed_vector
+speed_vector &lt;- 
+
+# print out speed_vector
+speed_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="factor6-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>speed_vector &lt;- c(&#39;fast&#39;, &#39;slow&#39;, &#39;slow&#39;, &#39;fast&#39;, &#39;insane&#39;)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-ordered-factors---2" class="section level2">
+<h2>Ordered Factors - 2</h2>
+<p><code>speed_vector</code> should be converted to an ordinal factor since its categories have a natural ordering. By default, the function <code>factor()</code> transforms <code>speed_vector</code> into an unordered factor. To create an ordered factor, you have to add two additional arguments: <code>ordered</code> and <code>levels</code>.</p>
+<p>By setting the argument <code>ordered</code> to <code>TRUE</code> in the function <code>factor()</code>, you indicate that the factor is ordered. With the argument <code>levels</code> you give the values of the factor in the correct order.</p>
+<div id="section-instructions-6" class="section level4">
+<h4>Instructions</h4>
+<p>From <code>speed_vector</code>, create an ordered factor vector: <code>factor_speed_vector</code>. Set <code>ordered</code> to <code>TRUE</code>, and set <code>levels</code> to <code>c(&quot;slow&quot;, &quot;fast&quot;, &quot;insane&quot;)</code>.</p>
+<div class="tutor-exercise" data-label="factor7" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Create speed_vector
+speed_vector &lt;- c(&quot;fast&quot;, &quot;slow&quot;, &quot;slow&quot;, &quot;fast&quot;, &quot;insane&quot;)
+
+# Convert speed_vector to ordered factor vector
+factor_speed_vector &lt;-
+
+# Print factor_speed_vector
+factor_speed_vector
+summary(factor_speed_vector)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="factor7-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>factor_speed_vector &lt;- factor(speed_vector, ordered = TRUE, levels = c(&quot;slow&quot;, &quot;fast&quot;, &quot;insane&quot;))</code></pre>
+</div>
+</div>
+</div>
+<div id="section-comparing-ordered-factors" class="section level2">
+<h2>Comparing Ordered Factors</h2>
+<p>Having a bad day at work, ‘data analyst number two’ enters your office and starts complaining that ‘data analyst number five’ is slowing down the entire project. Since you know that ‘data analyst number two’ has the reputation of being a smarty-pants, you first decide to check if his statement is true.</p>
+<p>The fact that <code>factor_speed_vector</code> is now ordered enables us to compare different elements (the data analysts in this case). You can simply do this by using the well-known operators.</p>
+<div id="section-instructions-7" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Use <code>[2]</code> to select from <code>factor_speed_vector</code> the factor value for the second data analyst. Store it as <code>da2</code>.</li>
+<li>Use <code>[5]</code> to select the <code>factor_speed_vector</code> factor value for the fifth data analyst. Store it as <code>da5</code>.</li>
+<li>Check if <code>da2</code> is greater than <code>da5</code>; simply print out the result. Remember that you can use the <code>&gt;</code> operator to check whether one element is larger than the other.</li>
+</ul>
+<div class="tutor-exercise" data-label="factor8" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Create factor_speed_vector
+speed_vector &lt;- c(&quot;fast&quot;, &quot;slow&quot;, &quot;slow&quot;, &quot;fast&quot;, &quot;insane&quot;)
+factor_speed_vector &lt;- factor(speed_vector, ordered = TRUE, levels = c(&quot;slow&quot;, &quot;fast&quot;, &quot;insane&quot;))
+
+# Factor value for second data analyst
+da2 &lt;-
+
+# Factor value for fifth data analyst
+da5 &lt;-
+
+# Is data analyst 2 faster than data analyst 5?</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="factor8-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>da2 &lt;- factor_speed_vector[2]
+da5 &lt;- factor_speed_vector[5]
+da2 &gt; da5</code></pre>
+</div>
+
+<script type="application/shiny-prerendered" data-context="server-start">
+library(tutor)
+tutor_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
+knitr::opts_chunk$set(echo = FALSE)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+tutor:::register_http_handlers(session, metadata = NULL)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor1-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor1-code-editor`)), session)
+output$`tutor-exercise-factor1-output` <- renderUI({
+  `tutor-exercise-factor1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor2-code-editor`)), session)
+output$`tutor-exercise-factor2-output` <- renderUI({
+  `tutor-exercise-factor2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor3-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor3-code-editor`)), session)
+output$`tutor-exercise-factor3-output` <- renderUI({
+  `tutor-exercise-factor3-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor4-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor4-code-editor`)), session)
+output$`tutor-exercise-factor4-output` <- renderUI({
+  `tutor-exercise-factor4-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor5-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor5-code-editor`)), session)
+output$`tutor-exercise-factor5-output` <- renderUI({
+  `tutor-exercise-factor5-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor6-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor6-code-editor`)), session)
+output$`tutor-exercise-factor6-output` <- renderUI({
+  `tutor-exercise-factor6-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor7-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor7-code-editor`)), session)
+output$`tutor-exercise-factor7-output` <- renderUI({
+  `tutor-exercise-factor7-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-factor8-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-factor8-code-editor`)), session)
+output$`tutor-exercise-factor8-output` <- renderUI({
+  `tutor-exercise-factor8-result`()
+})
+</script>
+ <!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor.js"]},{"type":"character","attributes":{},"value":["tutor.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-autocompletion"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-diagnostics"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-tutorial-format"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["4.5.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/font-awesome-4.5.0"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/font-awesome.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.4.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor.js"]},{"type":"character","attributes":{},"value":["tutor.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-autocompletion"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-diagnostics"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]}]}
+</script>
+<!--/html_preserve-->
+</div>
+</div>
+
+</div> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h2 class="title toc-ignore" style="display:none;">Factors</h2>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</div> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+
+</body>
+
+</html>

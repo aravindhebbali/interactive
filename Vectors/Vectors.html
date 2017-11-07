@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="progressive" content="false" />
+<meta name="allow-skip" content="false" />
+
+<title>Vectors</title>
+
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+<div class="pageContent band">
+<div class="bandContent page">
+
+<div class="topics">
+
+<div id="section-create-a-vector" class="section level2">
+<h2>Create a Vector</h2>
+<p>Feeling lucky? You better, because this chapter takes you on a trip to the City of Sins, also known as Statisticians Paradise!</p>
+<p>Thanks to R and your new data-analytical skills, you will learn how to uplift your performance at the tables and fire off your career as a professional gambler. This chapter will show how you can easily keep track of your betting progress and how you can do some simple analyses on past actions. Next stop, Vegas Baby… VEGAS!!</p>
+<div id="section-instructions" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Do you still remember what you have learned in the first chapter? Assign the value “Go!” to the variable vegas. Remember: R is case sensitive!</li>
+</ul>
+<div class="tutor-exercise" data-label="vectors1" data-caption="Vectors" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Define the variable vegas and print it to the console</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectors1-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>vegas &lt;- &quot;Go!&quot;
+vegas</code></pre>
+</div>
+</div>
+</div>
+<div id="section-create-a-vector---2" class="section level2">
+<h2>Create a Vector - 2</h2>
+<p>Let us focus first!</p>
+<p>On your way from rags to riches, you will make extensive use of vectors. Vectors are one-dimension arrays that can hold numeric data, character data, or logical data. In other words, a vector is a simple tool to store data. For example, you can store your daily gains and losses in the casinos.</p>
+<p>In R, you create a vector with the combine function c(). You place the vector elements separated by a comma between the parentheses. For example:</p>
+<p><code>numeric_vector &lt;- c(1, 2, 3)</code></p>
+<p><code>character_vector &lt;- c('a', 'b', 'c')</code></p>
+<p>Once you have created these vectors in R, you can use them to do calculations.</p>
+<div id="section-instructions-1" class="section level4">
+<h4>Instructions</h4>
+<p>Complete the code such that boolean_vector contains the three elements: TRUE, FALSE and TRUE (in that order).</p>
+<div class="tutor-exercise" data-label="vectors2" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="6">
+<pre class="text"><code>numeric_vector &lt;- c(1, 10, 49)
+character_vector &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+
+# Complete the code for boolean_vector and print it to the console</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectors2-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>boolean_vector &lt;- c(&quot;TRUE&quot;, &quot;FALSE&quot;, &quot;TRUE&quot;)
+boolean_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-create-a-vector---3" class="section level2">
+<h2>Create a Vector - 3</h2>
+<p>After one week in Las Vegas and still zero Ferraris in your garage, you decide that it is time to start using your data analytical superpowers.</p>
+<p>Before doing a first analysis, you decide to first collect all the winnings and losses for the last week:</p>
+<p>For <code>poker_vector</code>:</p>
+<ul>
+<li>On Monday you won $140</li>
+<li>Tuesday you lost $50</li>
+<li>Wednesday you won $20</li>
+<li>Thursday you lost $120</li>
+<li>Friday you won $240</li>
+</ul>
+<p>For <code>roulette_vector</code>:</p>
+<ul>
+<li>On Monday you lost $24</li>
+<li>Tuesday you lost $50</li>
+<li>Wednesday you won $100</li>
+<li>Thursday you lost $350</li>
+<li>Friday you won $10</li>
+</ul>
+<p>You only played poker and roulette, since there was a delegation of mediums that occupied the craps tables. To be able to use this data in R, you decide to create the variables <code>poker_vector</code> and <code>roulette_vector</code>.</p>
+<div id="section-instructions-2" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Assign the winnings/losses for roulette to the variable <code>roulette_vector</code>.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectors3" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="6">
+<pre class="text"><code># Poker winnings from Monday to Friday
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+
+# Roulette winnings from Monday to Friday
+roulette_vector &lt;-  </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectors3-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+roulette_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-naming-a-vector" class="section level2">
+<h2>Naming a Vector</h2>
+<p>As a data analyst, it is important to have a clear view on the data that you are using. Understanding what each element refers to is therefore essential.</p>
+<p>In the previous exercise, we created a vector with your winnings over the week. Each vector element refers to a day of the week but it is hard to tell which element belongs to which day. It would be nice if you could show that in the vector itself.</p>
+<p>You can give a name to the elements of a vector with the <code>names()</code> function. Have a look at this example:</p>
+<p><code>some_vector &lt;- c(&quot;John Doe&quot;, &quot;poker player&quot;)</code></p>
+<p><code>names(some_vector) &lt;- c(&quot;Name&quot;, &quot;Profession&quot;)</code></p>
+<p>This code first creates a vector <code>some_vector</code> and then gives the two elements a name. The first element is assigned the name <code>Name</code>, while the second element is labeled <code>Profession</code>. Printing the contents to the console yields following output:</p>
+<p><code>Name   Profession</code></p>
+<p>`“John Doe” “poker player”</p>
+<div id="section-instructions-3" class="section level4">
+<h4>Instructions</h4>
+<p>The code on the right names the elements in <code>poker_vector</code> with the days of the week. Add code to do the same thing for <code>roulette_vector</code>.</p>
+<div class="tutor-exercise" data-label="vectorname" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="12">
+<pre class="text"><code># Poker winnings from Monday to Friday
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+
+# Roulette winnings from Monday to Friday
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+
+# Assign days as names of poker_vector
+names(poker_vector) &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+
+# Assign days as names of roulette_vectors and print to the console</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorname-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>names(roulette_vector) &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+roulette_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-naming-a-vector---2" class="section level2">
+<h2>Naming a Vector - 2</h2>
+<p>If you want to become a good statistician, you have to become lazy. (If you are already lazy, chances are high you are one of those exceptional, natural-born statistical talents.)</p>
+<p>In the previous exercises you probably experienced that it is boring and frustrating to type and retype information such as the days of the week. However, when you look at it from a higher perspective, there is a more efficient way to do this, namely, to assign the days of the week vector to a variable!</p>
+<p>Just like you did with your poker and roulette returns, you can also create a variable that contains the days of the week. This way you can use and re-use it.</p>
+<div id="section-instructions-4" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>A variable <code>days_vector</code> that contains the days of the week has already been created for you.</li>
+<li>Use <code>days_vector</code> to set the names of <code>poker_vector</code> and <code>roulette_vector</code>.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectorname2" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="12">
+<pre class="text"><code># Poker winnings from Monday to Friday
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+
+# Roulette winnings from Monday to Friday
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+
+# The variable days_vector
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+ 
+# Assign the names of the day to roulette_vector and poker_vector
+names(poker_vector) &lt;-   
+names(roulette_vector) &lt;-
+
+# print the vectors
+poker_vector
+roulette_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorname2-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>names(poker_vector) &lt;- days_vector  
+names(roulette_vector) &lt;- days_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-calculate-total-winnings" class="section level2">
+<h2>Calculate Total Winnings</h2>
+<p>Now that you have the poker and roulette winnings nicely as named vectors, you can start doing some data analytical magic.</p>
+<p>You want to find out the following type of information:</p>
+<ul>
+<li>How much has been your overall profit or loss per day of the week?</li>
+<li>Have you lost money over the week in total?</li>
+<li>Are you winning/losing money on poker or on roulette?</li>
+</ul>
+<p>To get the answers, you have to do arithmetic calculations on vectors.</p>
+<p>It is important to know that if you sum two vectors in R, it takes the element-wise sum. For example, the following three statements are completely equivalent:</p>
+<p><code>c(1, 2, 3) + c(4, 5, 6)</code></p>
+<p><code>c(1 + 4, 2 + 5, 3 + 6)</code></p>
+<p><code>c(5, 7, 9)</code></p>
+<p>You can also do the calculations with variables that represent vectors:</p>
+<p><code>a &lt;- c(1, 2, 3)</code></p>
+<p><code>b &lt;- c(4, 5, 6)</code></p>
+<p><code>c &lt;- a + b</code></p>
+<div id="section-instructions-5" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Take the sum of the variables <code>A_vector</code> and <code>B_vector</code> and it assign to <code>total_vector</code>.</li>
+<li>Inspect the result by printing out total_vector.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectoradd" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="8">
+<pre class="text"><code>A_vector &lt;- c(1, 2, 3)
+B_vector &lt;- c(4, 5, 6)
+
+# Take the sum of A_vector and B_vector
+total_vector &lt;- 
+  
+# Print out total_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectoradd-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>total_vector &lt;- A_vector + B_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-calculate-total-winnings---2" class="section level2">
+<h2>Calculate Total Winnings - 2</h2>
+<p>Now you understand how R does arithmetic with vectors, it is time to get those Ferraris in your garage! First, you need to understand what the overall profit or loss per day of the week was. The total daily profit is the sum of the profit/loss you realized on poker per day, and the profit/loss you realized on roulette per day.</p>
+<p>In R, this is just the sum of <code>roulette_vector</code> and <code>poker_vector</code>.</p>
+<div id="section-instructions-6" class="section level4">
+<h4>Instructions</h4>
+<p>Assign to the variable <code>total_daily</code> how much you won or lost on each day in total (poker and roulette combined).</p>
+<div class="tutor-exercise" data-label="vectoradd2" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="12">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Assign to total_daily how much you won/lost on each day
+total_daily &lt;- 
+
+# Print out total_daily</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectoradd2-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>total_daily &lt;- poker_vector + roulette_vector
+names(total_daily) &lt;- days_vector
+total_daily</code></pre>
+</div>
+</div>
+</div>
+<div id="section-calculate-total-winnings---3" class="section level2">
+<h2>Calculate Total Winnings - 3</h2>
+<p>Based on the previous analysis, it looks like you had a mix of good and bad days. This is not what your ego expected, and you wonder if there may be a very tiny chance you have lost money over the week in total?</p>
+<p>A function that helps you to answer this question is <code>sum()</code>. It calculates the sum of all elements of a vector. For example, to calculate the total amount of money you have lost/won with poker you do:</p>
+<p><code>total_poker &lt;- sum(poker_vector)</code></p>
+<div id="section-instructions-7" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Calculate the total amount of money that you have won/lost with roulette and assign to the variable <code>total_roulette</code>.</li>
+<li>Now that you have the totals for roulette and poker, you can easily calculate <code>total_week</code> (which is the sum of all gains and losses of the week).</li>
+<li>Print out <code>total_week</code>.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectoradd3" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="18">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Total winnings with poker
+total_poker &lt;- sum(poker_vector)
+
+# Total winnings with roulette
+total_roulette &lt;-  
+
+# Total winnings overall
+total_week &lt;- 
+
+# Print out total_week</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectoradd3-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>total_roulette &lt;- sum(roulette_vector)
+total_week &lt;- total_poker + total_roulette
+total_week</code></pre>
+</div>
+</div>
+</div>
+<div id="section-comparing-total-winnings" class="section level2">
+<h2>Comparing Total Winnings</h2>
+<p>Oops, it seems like you are losing money. Time to rethink and adapt your strategy! This will require some deeper analysis…</p>
+<p>After a short brainstorm in your hotel’s jacuzzi, you realize that a possible explanation might be that your skills in roulette are not as well developed as your skills in poker. So maybe your total gains in poker are higher (or <code>&gt;</code> ) than in roulette.</p>
+<div id="section-instructions-8" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Calculate <code>total_poker</code> and <code>total_roulette</code> as in the previous exercise. Use the <code>sum()</code> function twice.</li>
+<li>Check if your total gains in poker are higher than for roulette by using a comparison. Simply print out the result of this comparison. What do you conclude, should you focus on roulette or on poker?</li>
+</ul>
+<div class="tutor-exercise" data-label="vectorcompare" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="13">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Calculate total gains for poker and roulette
+total_poker &lt;-
+total_roulette &lt;-
+
+# Check if you realized higher total gains in poker than in roulette </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorcompare-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>total_poker &lt;- sum(poker_vector)
+total_roulette &lt;- sum(roulette_vector)
+total_poker &gt; total_roulette</code></pre>
+</div>
+</div>
+</div>
+<div id="section-vector-selection---1" class="section level2">
+<h2>Vector Selection - 1</h2>
+<p>Your hunch seemed to be right. It appears that the poker game is more your cup of tea than roulette.</p>
+<p>Another possible route for investigation is your performance at the beginning of the working week compared to the end of it. You did have a couple of Margarita cocktails at the end of the week…</p>
+<p>To answer that question, you only want to focus on a selection of the <code>total_vector</code>. In other words, our goal is to select specific elements of the vector. To select elements of a vector (and later matrices, data frames, …), you can use square brackets. Between the square brackets, you indicate what elements to select. For example, to select the first element of the vector, you type <code>poker_vector[1]</code>. To select the second element of the vector, you type <code>poker_vector[2]</code>, etc. Notice that the first element in a vector has index 1, not 0 as in many other programming languages.</p>
+<p>Instructions - Assign the poker results of Wednesday to the variable <code>poker_wednesday</code>.</p>
+<div class="tutor-exercise" data-label="vectorselect1" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="12">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Define a new variable based on a selection
+poker_wednesday &lt;- 
+
+# print out poker_wednesday</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorselect1-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>poker_vector[3]</code></pre>
+</div>
+</div>
+<div id="section-vector-selection---2" class="section level2">
+<h2>Vector Selection - 2</h2>
+<p>How about analyzing your midweek results?</p>
+<p>To select multiple elements from a vector, you can add square brackets at the end of it. You can indicate between the brackets what elements should be selected. For example: suppose you want to select the first and the fifth day of the week: use the vector <code>c(1, 5)</code> between the square brackets. For example, the code below selects the first and fifth element of <code>poker_vector</code>:</p>
+<p><code>poker_vector[c(1, 5)]</code></p>
+<div id="section-instructions-9" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Assign the poker results of Tuesday, Wednesday and Thursday to the variable <code>poker_midweek</code>.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectorselect2" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="12">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Define a new variable based on a selection
+poker_midweek &lt;- 
+
+# print out poker_midweek</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorselect2-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>poker_midweek &lt;- poker_vector[c(2, 3, 4)]
+poker_midweek</code></pre>
+</div>
+</div>
+</div>
+<div id="section-vector-selection---3" class="section level2">
+<h2>Vector Selection - 3</h2>
+<p>Selecting multiple elements of <code>poker_vector</code> with <code>c(2, 3, 4)</code> is not very convenient. Many statisticians are lazy people by nature, so they created an easier way to do this: <code>c(2, 3, 4)</code> can be abbreviated to <code>2:4</code>, which generates a vector with all natural numbers from 2 up to 4.</p>
+<p>So, another way to find the mid-week results is <code>poker_vector[2:4]</code>. Notice how the vector <code>2:4</code> is placed between the square brackets to select element 2 up to 4.</p>
+<div id="section-instructions-10" class="section level4">
+<h4>Instructions</h4>
+<p>Assign to <code>roulette_selection_vector</code> the roulette results from Tuesday up to Friday; make use of <code>:</code> if it makes things easier for you.</p>
+<div class="tutor-exercise" data-label="vectorselect3" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="12">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Define a new variable based on a selection
+roulette_selection_vector &lt;- 
+
+# print out roulette_selection_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorselect3-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>roulette_selection_vector &lt;- poker_roulette[2:4]
+roulette_selection_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-vector-selection---4" class="section level2">
+<h2>Vector Selection - 4</h2>
+<p>Another way to tackle the previous exercise is by using the names of the vector elements (Monday, Tuesday, …) instead of their numeric positions. For example,</p>
+<p><code>poker_vector[&quot;Monday&quot;]</code></p>
+<p>will select the first element of <code>poker_vector</code> since <code>&quot;Monday&quot;</code> is the name of that first element.</p>
+<p>Just like you did in the previous exercise with numerics, you can also use the element names to select multiple elements, for example:</p>
+<p><code>poker_vector[c(&quot;Monday&quot;,&quot;Tuesday&quot;)]</code></p>
+<div id="section-instructions-11" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li><p>Select the first three elements in <code>poker_vector</code> by using their names: <code>&quot;Monday&quot;</code>, <code>&quot;Tuesday&quot;</code> and <code>&quot;Wednesday&quot;</code>. Assign the result of the selection to <code>poker_start</code>.</p></li>
+<li><p>Calculate the average of the values in <code>poker_start</code> with the <code>mean()</code> function. Simply print out the result so you can inspect it.</p></li>
+</ul>
+<div class="tutor-exercise" data-label="vectorselect4" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="13">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Select poker results for Monday, Tuesday and Wednesday
+poker_start &lt;- 
+  
+# Calculate the average of the elements in poker_start</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorselect4-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>poker_start &lt;- poker_vector[c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;)]
+mean(poker_start)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-selection-by-comparison---1" class="section level2">
+<h2>Selection By Comparison - 1</h2>
+<p>By making use of comparison operators, we can approach the previous question in a more proactive way.</p>
+<p>The (logical) comparison operators known to R are:</p>
+<ul>
+<li><code>&lt;</code> for less than</li>
+<li><code>&gt;</code> for greater than</li>
+<li><code>&lt;=</code> for less than or equal to</li>
+<li><code>&gt;=</code> for greater than or equal to</li>
+<li><code>==</code> for equal to each other</li>
+<li><code>!=</code> not equal to each other</li>
+</ul>
+<p>As seen in the previous chapter, stating <code>6 &gt; 5</code> returns <code>TRUE</code>. The nice thing about R is that you can use these comparison operators also on vectors. For example:</p>
+<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
+<p>This command tests for every element of the vector if the condition stated by the comparison operator is <code>TRUE</code> or <code>FALSE</code>.</p>
+<div id="section-instructions-12" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Check which elements in <code>poker_vector</code> are positive (i.e. &gt; 0) and assign this to <code>selection_vector</code>.</li>
+<li>Print out <code>selection_vector</code> so you can inspect it. The printout tells you whether you won (<code>TRUE</code>) or lost (<code>FALSE</code>) any money for each day.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectorcomp1" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="13">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Which days did you make money on poker?
+selection_vector &lt;- 
+  
+# Print out selection_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorcomp1-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>selection_vector &lt;- poker_vector &gt; 0
+selection_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-selection-by-comparison---2" class="section level2">
+<h2>Selection By Comparison - 2</h2>
+<p>Working with comparisons will make your data analytical life easier. Instead of selecting a subset of days to investigate yourself (like before), you can simply ask R to return only those days where you realized a positive return for poker.</p>
+<p>In the previous exercises you used <code>selection_vector &lt;- poker_vector &gt; 0</code> to find the days on which you had a positive poker return. Now, you would like to know not only the days on which you won, but also how much you won on those days.</p>
+<p>You can select the desired elements, by putting <code>selection_vector</code> between the square brackets that follow <code>poker_vector</code>:</p>
+<p><code>poker_vector[selection_vector]</code></p>
+<p>R knows what to do when you pass a logical vector in square brackets: it will only select the elements that correspond to <code>TRUE</code> in <code>selection_vector</code>.</p>
+<div id="section-instructions-13" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Use <code>selection_vector</code> in square brackets to assign the amounts that you won on the profitable days to the variable <code>poker_winning_days</code>.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectorcomp2" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="15">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Which days did you make money on poker?
+selection_vector &lt;- poker_vector &gt; 0
+
+# Select from poker_vector these days
+poker_winning_days &lt;- 
+
+# print out poker_winning_days</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorcomp2-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>poker_winning_days &lt;- poker_vector[selection_vector]
+poker_winning_days</code></pre>
+</div>
+</div>
+</div>
+<div id="section-advanced-selection" class="section level2">
+<h2>Advanced Selection</h2>
+<p>Just like you did for poker, you also want to know those days where you realized a positive return for roulette.</p>
+<div id="section-instructions-14" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Create the variable <code>selection_vector</code>, this time to see if you made profit with roulette for different days.</li>
+<li>Assign the amounts that you made on the days that you ended positively for roulette to the variable <code>roulette_winning_days</code>. This vector thus contains the positive winnings of <code>roulette_vector</code>.</li>
+</ul>
+<div class="tutor-exercise" data-label="vectorcomp3" data-caption="Vectors" data-completion="1" data-diagnostics="0" data-lines="15">
+<pre class="text"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+
+# Which days did you make money on roulette?
+selection_vector &lt;-
+
+# Select from roulette_vector these days
+roulette_winning_days &lt;- 
+
+# print out poker_winning_days</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="vectorcomp3-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>selection_vector &lt;- roulette_vector &gt; 0
+roulette_winning_days &lt;- roulette_vector[selection_vector]
+roulette_winning_days</code></pre>
+</div>
+
+<script type="application/shiny-prerendered" data-context="server-start">
+library(tutor)
+tutor_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
+knitr::opts_chunk$set(echo = FALSE)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+tutor:::register_http_handlers(session, metadata = NULL)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectors1-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectors1-code-editor`)), session)
+output$`tutor-exercise-vectors1-output` <- renderUI({
+  `tutor-exercise-vectors1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectors2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectors2-code-editor`)), session)
+output$`tutor-exercise-vectors2-output` <- renderUI({
+  `tutor-exercise-vectors2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectors3-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectors3-code-editor`)), session)
+output$`tutor-exercise-vectors3-output` <- renderUI({
+  `tutor-exercise-vectors3-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorname-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorname-code-editor`)), session)
+output$`tutor-exercise-vectorname-output` <- renderUI({
+  `tutor-exercise-vectorname-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorname2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorname2-code-editor`)), session)
+output$`tutor-exercise-vectorname2-output` <- renderUI({
+  `tutor-exercise-vectorname2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectoradd-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectoradd-code-editor`)), session)
+output$`tutor-exercise-vectoradd-output` <- renderUI({
+  `tutor-exercise-vectoradd-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectoradd2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectoradd2-code-editor`)), session)
+output$`tutor-exercise-vectoradd2-output` <- renderUI({
+  `tutor-exercise-vectoradd2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectoradd3-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectoradd3-code-editor`)), session)
+output$`tutor-exercise-vectoradd3-output` <- renderUI({
+  `tutor-exercise-vectoradd3-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorcompare-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorcompare-code-editor`)), session)
+output$`tutor-exercise-vectorcompare-output` <- renderUI({
+  `tutor-exercise-vectorcompare-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorselect1-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorselect1-code-editor`)), session)
+output$`tutor-exercise-vectorselect1-output` <- renderUI({
+  `tutor-exercise-vectorselect1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorselect2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorselect2-code-editor`)), session)
+output$`tutor-exercise-vectorselect2-output` <- renderUI({
+  `tutor-exercise-vectorselect2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorselect3-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorselect3-code-editor`)), session)
+output$`tutor-exercise-vectorselect3-output` <- renderUI({
+  `tutor-exercise-vectorselect3-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorselect4-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorselect4-code-editor`)), session)
+output$`tutor-exercise-vectorselect4-output` <- renderUI({
+  `tutor-exercise-vectorselect4-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorcomp1-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorcomp1-code-editor`)), session)
+output$`tutor-exercise-vectorcomp1-output` <- renderUI({
+  `tutor-exercise-vectorcomp1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorcomp2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorcomp2-code-editor`)), session)
+output$`tutor-exercise-vectorcomp2-output` <- renderUI({
+  `tutor-exercise-vectorcomp2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-vectorcomp3-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-vectorcomp3-code-editor`)), session)
+output$`tutor-exercise-vectorcomp3-output` <- renderUI({
+  `tutor-exercise-vectorcomp3-result`()
+})
+</script>
+ <!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["rmarkdown"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["rmarkdown"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["rmarkdown"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs-1.1"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["rmarkdown"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutor.js"]},{"type":"character","attributes":{},"value":["tutor.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-autocompletion"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutor-autocompletion.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-diagnostics"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutor-diagnostics.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-tutorial-format"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["rmarkdown"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["4.5.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/font-awesome-4.5.0"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["css/font-awesome.min.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["rmarkdown"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.4.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutor.js"]},{"type":"character","attributes":{},"value":["tutor.css"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-autocompletion"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutor-autocompletion.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-diagnostics"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["tutor-diagnostics.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","all_files","package"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL","attributes":{},"value":{}},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"NULL","attributes":{},"value":{}},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["tutor"]}]}]}
+</script>
+<!--/html_preserve-->
+</div>
+</div>
+
+</div> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h2 class="title toc-ignore" style="display:none;">Vectors</h2>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</div> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+
+</body>
+
+</html>

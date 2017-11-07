@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="progressive" content="false" />
+<meta name="allow-skip" content="false" />
+
+<title>Data Frames</title>
+
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+<div class="pageContent band">
+<div class="bandContent page">
+
+<div class="topics">
+
+<div id="section-introduction" class="section level2">
+<h2>Introduction</h2>
+<p>You may remember from the chapter about matrices that all the elements that you put in a matrix should be of the same type. Back then, your data set on Star Wars only contained numeric elements.</p>
+<p>When doing a market research survey, however, you often have questions such as:</p>
+<ul>
+<li>‘Are your married?’ or ‘yes/no’ questions (<code>logical</code>)</li>
+<li>‘How old are you?’ (<code>numeric</code>)</li>
+<li>‘What is your opinion on this product?’ or other ‘open-ended’ questions (<code>character</code>) …</li>
+</ul>
+<p>The output, namely the respondents’ answers to the questions formulated above, is a data set of different data types. You will often find yourself working with data sets that contain different data types instead of only one.</p>
+<p>A data frame has the variables of a data set as columns and the observations as rows. This will be a familiar concept for those coming from different statistical software packages such as SAS or SPSS.</p>
+<div id="section-instructions" class="section level4">
+<h4>Instructions</h4>
+<p>Click ‘Run Code’. The data from the built-in example data frame <code>mtcars</code> will be printed to the console.</p>
+<div class="tutor-exercise" data-label="df1" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Print out built-in R data frame
+mtcars </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-quick-look" class="section level2">
+<h2>Quick Look</h2>
+<p>Wow, that is a lot of cars!</p>
+<p>Working with large data sets is not uncommon in data analysis. When you work with (extremely) large data sets and data frames, your first task as a data analyst is to develop a clear understanding of its structure and main elements. Therefore, it is often useful to show only a small part of the entire data set.</p>
+<p>So how to do this in R? Well, the function <code>head()</code> enables you to show the first observations of a data frame. Similarly, the function <code>tail()</code> prints out the last observations in your data set.</p>
+<p>Both <code>head()</code> and <code>tail()</code> print a top line called the ‘header’, which contains the names of the different variables in your data set.</p>
+<div id="section-instructions-1" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Call <code>head()</code> on the <code>mtcars</code> data set to have a look at the header and the first observations.</li>
+</ul>
+<div class="tutor-exercise" data-label="df2" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Call head() on mtcars</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df2-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>head(mtcars)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-structure" class="section level2">
+<h2>Structure</h2>
+<p>Another method that is often used to get a rapid overview of your data is the function <code>str()</code>. The function <code>str()</code> shows you the structure of your data set. For a data frame it tells you:</p>
+<ul>
+<li>The total number of observations (e.g. 32 car types)</li>
+<li>The total number of variables (e.g. 11 car features)</li>
+<li>A full list of the variables names (e.g. <code>mpg</code>, <code>cyl</code> … )</li>
+<li>The data type of each variable (e.g. <code>num</code>)</li>
+<li>The first observations</li>
+</ul>
+<p>Applying the <code>str()</code> function will often be the first thing that you do when receiving a new data set or data frame. It is a great way to get more insight in your data set before diving into the real analysis.</p>
+<div id="section-instructions-2" class="section level4">
+<h4>Instructions</h4>
+<p>Investigate the structure of <code>mtcars</code>. Make sure that you see the same numbers, variables and data types as mentioned above.</p>
+<div class="tutor-exercise" data-label="df3" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Investigate the structure of mtcars</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df3-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>str(mtcars)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-creating-data-frames---1" class="section level2">
+<h2>Creating Data Frames - 1</h2>
+<p>Since using built-in data sets is not even half the fun of creating your own data sets, the rest of this chapter is based on your personally developed data set. Put your jet pack on because it is time for some space exploration!</p>
+<p>As a first goal, you want to construct a data frame that describes the main characteristics of eight planets in our solar system. According to your good friend Buzz, the main features of a planet are:</p>
+<ul>
+<li>The type of planet (Terrestrial or Gas Giant).</li>
+<li>The planet’s diameter relative to the diameter of the Earth.</li>
+<li>The planet’s rotation across the sun relative to that of the Earth.</li>
+<li>If the planet has rings or not (TRUE or FALSE).</li>
+</ul>
+<p>After doing some high-quality research on Wikipedia, you feel confident enough to create the necessary vectors: <code>name</code>, <code>type</code>, <code>diameter</code>, <code>rotation</code> and <code>rings</code>; these vectors have already been coded up on the right. The first element in each of these vectors correspond to the first observation.</p>
+<p>You construct a data frame with the <code>data.frame()</code> function. As arguments, you pass the vectors from before: they will become the different columns of your data frame. Because every column has the same length, the vectors you pass should also have the same length. But don’t forget that it is possible (and likely) that they contain different types of data.</p>
+<div id="section-instructions-3" class="section level4">
+<h4>Instructions</h4>
+<p>Use the function <code>data.frame()</code> to construct a data frame. Pass the vectors <code>name</code>, <code>type</code>, <code>diameter</code>, <code>rotation</code> and <code>rings</code> as arguments to <code>data.frame()</code>, in this order. Call the resulting data frame <code>planets_df</code>.</p>
+<div class="tutor-exercise" data-label="df4" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# print first five rows of planets_df
+planets_df</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df4-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+planets_df</code></pre>
+</div>
+</div>
+</div>
+<div id="section-creating-data-frames---2" class="section level2">
+<h2>Creating Data Frames - 2</h2>
+<p>The <code>planets_df</code> data frame should have 8 observations and 5 variables. It has been made available in the workspace, so you can directly use it.</p>
+<div id="section-instructions-4" class="section level4">
+<h4>Instructions</h4>
+<p>Use <code>str()</code> to investigate the structure of the new <code>planets_df</code> variable.</p>
+<div class="tutor-exercise" data-label="df5" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# print structure of planets_df</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df5-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>str(planets_df)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-selecting-elements---1" class="section level2">
+<h2>Selecting Elements - 1</h2>
+<p>Similar to vectors and matrices, you select elements from a data frame with the help of square brackets <code>[ ]</code>. By using a comma, you can indicate what to select from the rows and the columns respectively. For example:</p>
+<ul>
+<li><code>my_df[1,2]</code> selects the value at the first row and select element in <code>my_df</code>.</li>
+<li><code>my_df[1:3,2:4]</code> selects rows 1, 2, 3 and columns 2, 3, 4 in <code>my_df</code>.</li>
+</ul>
+<p>Sometimes you want to select all elements of a row or column. For example, <code>my_df[1, ]</code> selects all elements of the first row. Let us now apply this technique on <code>planets_df</code>!</p>
+<div id="section-instructions-5" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>From <code>planets_df</code>, select the diameter of Mercury: this is the value at the first row and the third column. Simply print out the result.</li>
+<li>From <code>planets_df</code>, select all data on Mars (the fourth row). Simply print out the result.</li>
+</ul>
+<div class="tutor-exercise" data-label="df6" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# Print out diameter of Mercury (row 1, column 3)
+
+
+# Print out data for Mars (entire fourth row)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df6-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>planets_df[1, 3]
+planets_df[4, ]</code></pre>
+</div>
+</div>
+</div>
+<div id="section-selecting-elements---2" class="section level2">
+<h2>Selecting Elements - 2</h2>
+<p>Instead of using numerics to select elements of a data frame, you can also use the variable names to select columns of a data frame.</p>
+<p>Suppose you want to select the first three elements of the <code>type</code> column. One way to do this is</p>
+<p><code>planets_df[1:3, 1]</code></p>
+<p>A possible disadvantage of this approach is that you have to know (or look up) the column number of type, which gets hard if you have a lot of variables. It is often easier to just make use of the variable name:</p>
+<p><code>planets_df[1:3, &quot;type&quot;]</code></p>
+<div id="section-instructions-6" class="section level4">
+<h4>Instructions</h4>
+<p>Select and print out the first 5 values in the <code>&quot;diameter&quot;</code> column of <code>planets_df</code>.</p>
+<div class="tutor-exercise" data-label="df7" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# Select first 5 values of diameter column</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df7-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>planets_df[1:5, &#39;diameter&#39;]</code></pre>
+</div>
+</div>
+</div>
+<div id="section-case-study---1" class="section level2">
+<h2>Case Study - 1</h2>
+<p>You will often want to select an entire column, namely one specific variable from a data frame. If you want to select all elements of the variable <code>diameter</code>, for example, both of these will do the trick:</p>
+<p>However, there is a short-cut. If your columns have names, you can use the <code>$</code> sign:</p>
+<p><code>planets_df$diameter</code></p>
+<div id="section-instructions-7" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Use the <code>$</code> sign to select the <code>rings</code> variable from <code>planets_df</code>. Store the vector that results as <code>rings_vector</code>.</li>
+<li>Print out <code>rings_vector</code> to see if you got it right.</li>
+</ul>
+<div class="tutor-exercise" data-label="df8" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# Select the rings variable from planets_df
+
+  
+# Print out rings_vector</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df8-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>rings_vector &lt;- planets_df$rings
+rings_vector</code></pre>
+</div>
+</div>
+</div>
+<div id="section-case-study---2" class="section level2">
+<h2>Case Study - 2</h2>
+<p>You probably remember from high school that some planets in our solar system have rings and others do not. But due to other priorities at that time (read: puberty) you can not recall their names, let alone their rotation speed, etc.</p>
+<p>Could R help you out?</p>
+<p>If you type <code>rings_vector</code> in the console, you get:</p>
+<p><code>[1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</code></p>
+<p>This means that the first four observations (or planets) do not have a ring (<code>FALSE</code>), but the other four do (<code>TRUE</code>). However, you do not get a nice overview of the names of these planets, their diameter, etc. Let’s try to use <code>rings_vector</code> to select the data for the four planets with rings.</p>
+<div id="section-instructions-8" class="section level4">
+<h4>Instructions</h4>
+<p>The code on the right selects the <code>name</code> column of all planets that have rings. Adapt the code so that instead of only the <code>name</code> column, all columns for planets that have rings are selected.</p>
+<div class="tutor-exercise" data-label="df9" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# Select the rings variable from planets_df
+rings_vector &lt;- planets_df$rings
+
+# Adapt the code to select all columns for planets with rings
+planets_df[rings_vector, &quot;name&quot;]</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df9-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>planets_df[rings_vector, ]</code></pre>
+</div>
+</div>
+</div>
+<div id="section-case-study---3" class="section level2">
+<h2>Case Study - 3</h2>
+<p>So what exactly did you learn in the previous exercises? You selected a subset from a data frame (<code>planets_df</code>) based on whether or not a certain condition was true (rings or no rings), and you managed to pull out all relevant data. Pretty awesome! By now, NASA is probably already flirting with your CV ;-).</p>
+<p>Now, let us move up one level and use the function <code>subset()</code>. You should see the <code>subset()</code> function as a short-cut to do exactly the same as what you did in the previous exercises.</p>
+<p><code>subset(my_df, subset = some_condition)</code></p>
+<p>The first argument of <code>subset()</code> specifies the data set for which you want a subset. By adding the second argument, you give R the necessary information and conditions to select the correct subset.</p>
+<p>The code below will give the exact same result as you got in the previous exercise, but this time, you didn’t need the <code>rings_vector</code>!</p>
+<p><code>subset(planets_df, subset = rings)</code></p>
+<div id="section-instructions-9" class="section level4">
+<h4>Instructions</h4>
+<p>Use <code>subset()</code> on <code>planets_df</code> to select planets that have a <code>diameter</code> smaller than Earth. Because the diameter variable is a relative measure of the planet’s diameter w.r.t that of planet Earth, your condition is <code>diameter &lt; 1.</code></p>
+<div class="tutor-exercise" data-label="df10" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# Select planets with diameter &lt; 1</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df10-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>subset(planets_df, diameter &lt; 1)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-sorting-data-frames---1" class="section level2">
+<h2>Sorting Data Frames - 1</h2>
+<p>Making and creating rankings is one of mankind’s favorite affairs. These rankings can be useful (best universities in the world), entertaining (most influential movie stars) or pointless (best 007 look-a-like).</p>
+<p>In data analysis you can sort your data according to a certain variable in the data set. In R, this is done with the help of the function <code>order()</code>.</p>
+<p><code>order()</code> is a function that gives you the ranked position of each element when it is applied on a variable, such as a vector for example:</p>
+<p>10, which is the second element in <code>a</code>, is the smallest element, so 2 comes first in the output of <code>order(a)</code>. 100, which is the first element in <code>a</code> is the second smallest element, so 1 comes second in the output of <code>order(a)</code>.</p>
+<p>This means we can use the output of <code>order(a)</code> to reshuffle <code>a</code>:</p>
+<div id="section-instructions-10" class="section level4">
+<h4>Instructions</h4>
+<p>Experiment with the <code>order()</code> function in the console. Click ‘Run Code’ when you are ready to continue.</p>
+<div class="tutor-exercise" data-label="df11" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Play around with the order function in the console</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-sorting-data-frames---2" class="section level2">
+<h2>Sorting Data Frames - 2</h2>
+<p>Alright, now that you understand the <code>order()</code> function, let us do something useful with it. You would like to rearrange your data frame such that it starts with the smallest planet and ends with the largest one. A sort on the <code>diameter</code> column.</p>
+<div id="section-instructions-11" class="section level4">
+<h4>Instructions</h4>
+<ul>
+<li>Call <code>order()</code> on <code>planets_df$diameter</code> (the <code>diameter</code> column of <code>planets_df</code>). Store the result as <code>positions</code>.</li>
+<li>Now reshuffle <code>planets_df</code> with the <code>positions</code> vector as row indexes inside square brackets. Keep all columns. Simply print out the result.</li>
+</ul>
+<div class="tutor-exercise" data-label="df12" data-caption="Matrix" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code># Definition of vectors
+name &lt;- c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;)
+type &lt;- c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+          &quot;Terrestrial planet&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;, &quot;Gas giant&quot;)
+diameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df &lt;- data.frame(name, type, diameter, rotation, rings)
+
+# Use order() to create positions
+positions &lt;- 
+
+# Use positions to sort planets_df</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":0,"exercise.checker":"NULL"}</script>
+</div>
+<div class="tutor-exercise-support" data-label="df12-solution" data-caption="Sandbox" data-completion="0" data-diagnostics="0" data-lines="0">
+<pre class="text"><code>positions &lt;- order(planets_df$diameter)
+planets_df[positions, ]</code></pre>
+</div>
+
+<script type="application/shiny-prerendered" data-context="server-start">
+library(tutor)
+tutor_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
+knitr::opts_chunk$set(echo = FALSE)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+tutor:::register_http_handlers(session, metadata = NULL)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df1-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df1-code-editor`)), session)
+output$`tutor-exercise-df1-output` <- renderUI({
+  `tutor-exercise-df1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df2-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df2-code-editor`)), session)
+output$`tutor-exercise-df2-output` <- renderUI({
+  `tutor-exercise-df2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df3-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df3-code-editor`)), session)
+output$`tutor-exercise-df3-output` <- renderUI({
+  `tutor-exercise-df3-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df4-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df4-code-editor`)), session)
+output$`tutor-exercise-df4-output` <- renderUI({
+  `tutor-exercise-df4-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df5-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df5-code-editor`)), session)
+output$`tutor-exercise-df5-output` <- renderUI({
+  `tutor-exercise-df5-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df6-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df6-code-editor`)), session)
+output$`tutor-exercise-df6-output` <- renderUI({
+  `tutor-exercise-df6-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df7-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df7-code-editor`)), session)
+output$`tutor-exercise-df7-output` <- renderUI({
+  `tutor-exercise-df7-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df8-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df8-code-editor`)), session)
+output$`tutor-exercise-df8-output` <- renderUI({
+  `tutor-exercise-df8-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df9-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df9-code-editor`)), session)
+output$`tutor-exercise-df9-output` <- renderUI({
+  `tutor-exercise-df9-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df10-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df10-code-editor`)), session)
+output$`tutor-exercise-df10-output` <- renderUI({
+  `tutor-exercise-df10-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df11-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df11-code-editor`)), session)
+output$`tutor-exercise-df11-output` <- renderUI({
+  `tutor-exercise-df11-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutor-exercise-df12-result` <- tutor:::setup_exercise_handler(reactive(req(input$`tutor-exercise-df12-code-editor`)), session)
+output$`tutor-exercise-df12-output` <- renderUI({
+  `tutor-exercise-df12-result`()
+})
+</script>
+ <!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor.js"]},{"type":"character","attributes":{},"value":["tutor.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-autocompletion"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-diagnostics"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-tutorial-format"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["4.5.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/font-awesome-4.5.0"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/font-awesome.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.4.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor.js"]},{"type":"character","attributes":{},"value":["tutor.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-autocompletion"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutor-diagnostics"]},{"type":"character","attributes":{},"value":["0.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutor"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutor"]},{"type":"logical","attributes":{},"value":[true]}]}]}
+</script>
+<!--/html_preserve-->
+</div>
+</div>
+
+</div> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h2 class="title toc-ignore" style="display:none;">Data Frames</h2>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</div> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+
+</body>
+
+</html>
