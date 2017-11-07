@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Tutorial</title>
+<title>dplyr Verbs</title>
 
 
 <!-- highlightjs -->
@@ -46,11 +46,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
 <hr>
 <p>According to a <a href="http://visit.crowdflower.com/rs/416-ZBE-142/images/CrowdFlower_DataScienceReport_2016.pdf">survey</a> by <a href="https://www.crowdflower.com/">CrowdFlower</a>, data scientists spend most of their time cleaning and manipulating data rather than mining or modeling them for insights. As such, it becomes important to have tools that make data manipulation faster and easier. In today’s post, we introduce you to <a href="http://dplyr.tidyverse.org/">dplyr</a>, a grammar of data manipulation.</p>
-</div>
 <div id="section-why-dplyr" class="section level3">
 <h3>Why dplyr</h3>
 <hr>
@@ -71,7 +68,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="section-case-study" class="section level2">
 <h2>Case Study</h2>
-<div id="section-introduction-2" class="section level3">
+<div id="section-introduction-1" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p>We will explore dummy data that we have created to resemble web logs of a ecommerce company. You can download the data from <a href="https://github.com/rsquaredacademy/datasets/blob/master/web.csv">here</a> or import it directly using <code>read_csv()</code> from the <a href="readr.tidyverse.org">readr</a> package. We will use dplyr to answer a few questions we have about the above data:</p>
@@ -111,13 +108,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="section-average-order-value" class="section level2">
 <h2>Average Order Value</h2>
-<div id="section-introduction-3" class="section level3">
+<div id="section-introduction-2" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p><strong>What is the average order value by device types?</strong></p>
 <p>Average value of every order placed over a defined period of time. It is determined using sales per order and not sales per customer. Let us look at the steps to calculate AOV from the ecommerce data set.</p>
 <div class="figure">
-<img src="J:/R/tutorial_slides/data-wrangling/dplyr/aov.png" alt="alt text" />
+<img src="/images/aov.png" alt="alt text" />
 <p class="caption">alt text</p>
 </div>
 </div>
@@ -150,8 +147,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 </div>
 </div>
-<div id="section-step-1-filter-purchasers" class="section level2">
-<h2>Step 1: Filter Purchasers</h2>
+<div id="section-case-study-filter-purchasers" class="section level2">
+<h2>Case Study: Filter Purchasers</h2>
 <div id="section-intro" class="section level3">
 <h3>Intro</h3>
 <hr>
@@ -182,7 +179,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 </div>
 <div id="section-case-study-visits-that-converted" class="section level3">
-<h3>Case Study: visits that converted</h3>
+<h3>Case Study: Visits that converted</h3>
 <hr>
 <div class="tutorial-exercise" data-label="dplyr5" data-caption="Filter - Part 4" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>filter(ecom, purchase == &quot;true&quot;)</code></pre>
@@ -190,9 +187,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 </div>
 </div>
-<div id="section-step-2-select-relevant-columns" class="section level2">
-<h2>Step 2: Select relevant columns</h2>
-<div id="section-introduction-4" class="section level3">
+<div id="section-case-study-select-columns" class="section level2">
+<h2>Case Study: Select Columns</h2>
+<div id="section-introduction-3" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p>After filtering the data, we need to select relevent variables to compute the AOV. Remember, we do not need all the columns in the data to compute a required metric (in our case, AOV). The <code>select()</code> function allows us to select a subset of columns. The first argument is the name of the data frame and the subsequent arguments specify the columns by name or position. Let us look at a few examples:</p>
@@ -229,10 +226,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="text"><code>select(ecom, device, order_value, order_items)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-</div>
-<div id="section-case-study-select-1" class="section level3">
-<h3>Case Study: Select</h3>
-<hr>
 <p>But we want the above data only for purchasers. We will combine <code>filter()</code> and <code>select()</code> functions to extract data related to purchasers.</p>
 <div class="tutorial-exercise" data-label="dplyr10" data-caption="Select - Part 5" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ecom1 &lt;- filter(ecom, purchase == &quot;true&quot;)
@@ -242,16 +235,12 @@ ecom2</code></pre>
 </div>
 </div>
 </div>
-<div id="section-step-3-group-data-by-devices" class="section level2">
-<h2>Step 3: Group data by devices</h2>
-<div id="section-introduction-5" class="section level3">
+<div id="section-case-study-group-data" class="section level2">
+<h2>Case Study: Group Data</h2>
+<div id="section-introduction-4" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p>Since we want to compute the AOV for each device, we need to compute the total order value and total order items for each device. To achieve this, we will group the selected variables by device type. Using the <code>group_by()</code> function, we will group our case study data by device types. The first argument is the name of the data frame and the second argument is the name of the column based on which the data will be split. Let us look at a few examples:</p>
-</div>
-<div id="section-group-data-by-referrer-type" class="section level3">
-<h3>Group data by referrer type</h3>
-<hr>
 <div class="tutorial-exercise" data-label="dplyr11" data-caption="Group - Part 1" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>group_by(ecom, referrer)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -268,9 +257,9 @@ ecom3</code></pre>
 </div>
 </div>
 </div>
-<div id="section-step-4-total-order-value-and-order-items" class="section level2">
-<h2>Step 4: Total order value and order items</h2>
-<div id="section-introduction-6" class="section level3">
+<div id="section-case-study-order-value" class="section level2">
+<h2>Case Study: Order Value</h2>
+<div id="section-introduction-5" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p>The next step is to compute the total order value and total order items for each device. We will use them to then compute the average order value. Now we need to reduce the order value and order items data to a single summary. We can achieve this using the <code>summarise()</code> function. The first argument is the name of a data frame and the subsequent arguments are functions that can generate a summary. For example, we can use <code>min</code>, <code>max</code>, <code>sum</code>, <code>mean</code> etc.</p>
@@ -285,10 +274,6 @@ ecom3</code></pre>
 ecom4</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-</div>
-<div id="section-summarise-1" class="section level3">
-<h3>Summarise</h3>
-<hr>
 <p>There you go, we have the total order value and total order items for each device type. Another way to achieve the above result is to use the <code>summarise_all()</code> function. How does that work? It generates the specified summary for all the columns in the data set except for the column based on which the data has been grouped. So we need to ensure that the data frame does not have any irrelevant columns.</p>
 </div>
 <div id="section-case-study-summarise" class="section level3">
@@ -302,8 +287,8 @@ ecom4</code></pre>
 </div>
 </div>
 </div>
-<div id="section-step-5-compute-aov" class="section level2">
-<h2>Step 5: Compute AOV</h2>
+<div id="section-case-study-compute-aov" class="section level2">
+<h2>Case Study: Compute AOV</h2>
 <hr>
 <p>Now that we have the total order value and total order items for each device category, we can compute the AOV. We will create a new column to store the result. To create a new column, we will use the <code>mutate()</code> function. The first argument is the name of the data frame and the subsequent arguments are expressions for creating new columns based out of existing columns.</p>
 <div class="tutorial-exercise" data-label="dplyr15" data-caption="Mutate" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -312,8 +297,8 @@ ecom5</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-step-6-select-relevant-columns" class="section level2">
-<h2>Step 6: Select relevant columns</h2>
+<div id="section-case-study-select-deviceaov" class="section level2">
+<h2>Case Study: Select Device/AOV</h2>
 <hr>
 <p>The last step is to select the relevant columns. We require the device type and the corresponding aov and hence we can get rid of other columns. Use the <code>select()</code> function to extract the relevant columns.</p>
 <div class="tutorial-exercise" data-label="dplyr16" data-caption="Select" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -339,14 +324,10 @@ ecom6</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-aov-by-devices-2" class="section level3">
-<h3>AOV by Devices</h3>
+<div id="section-using-pipes" class="section level3">
+<h3>Using Pipes</h3>
 <hr>
 <p>If you observe, at each step we create a new variable(data frame) and then use it as an input in the next step i.e. the output from one function becomes the input for another function. Can we achieve the final outcome i.e. <code>ecom6</code> without creating the intermediate data frames (ecom1 - ecom5)? Yes, we can. We will use the <code>%&gt;%</code> operator to chain the above steps so that we can avoid creating the intermediate data frames. Let us see how to do that.</p>
-</div>
-<div id="section-aov-by-devices-3" class="section level3">
-<h3>AOV by Devices</h3>
-<hr>
 <div class="tutorial-exercise" data-label="dplyr18" data-caption="Solution" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ecom %&gt;%
   filter(purchase == &#39;true&#39;) %&gt;%
@@ -359,15 +340,7 @@ ecom6</code></pre>
   select(device, aov)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-</div>
-<div id="section-aov-by-devices-4" class="section level3">
-<h3>AOV by Devices</h3>
-<hr>
 <p>In the above code, we take the output from each step and use it as an input for the next step using the pipe <code>%&gt;%</code> operator. It reduces the intermediate data frames and makes the code readable. Take the <code>ecom</code> data frame <code>-&gt;</code> filter the purchasers <code>-&gt;</code> select device, order_value and order_items variables <code>-&gt;</code> group the resulting data frame by device type <code>-&gt;</code> compute the sum of all the variables in the grouped data frames <code>-&gt;</code> compute the average order value <code>-&gt;</code> select device type and aov</p>
-</div>
-<div id="section-aov-by-devices-5" class="section level3">
-<h3>AOV by Devices</h3>
-<hr>
 <p>It is the same as the steps we wrote at the beginning of this module. Now you realize how powerful dplyr is along with the <code>%&gt;%</code> operator. There are other functions in dplyr but we will cover them in another module. You are encouraged to use the above approach to answer the questions we have listed below.</p>
 </div>
 </div>
@@ -538,7 +511,7 @@ output$`tutorial-exercise-dplyr18-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Tutorial</h2>
+<h2 class="title toc-ignore" style="display:none;">dplyr Verbs</h2>
 </div>
 <!-- end doc-metadata -->
 

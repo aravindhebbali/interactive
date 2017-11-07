@@ -49,8 +49,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <hr>
 <p>In this module, we will learn to work with date/time data in R using <a href="https://CRAN.R-project.org/package=lubridate">lubridate</a>, an R package that makes it easy to work with dates and time. Let us begin by installing and loading the lubridate pacakge.</p>
 </div>
-<div id="section-basics" class="section level2">
-<h2>Basics</h2>
+<div id="section-quick-tour" class="section level2">
+<h2>Quick Tour</h2>
 <div id="section-origin" class="section level3">
 <h3>Origin</h3>
 <hr>
@@ -71,24 +71,9 @@ pm(now())</code></pre>
 </div>
 </div>
 </div>
-<div id="section-case-study" class="section level2">
-<h2>Case Study</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
-<hr>
-<p>We will use the functions in the lubridate package to answer a few questions we have about the transact data.</p>
-<ul>
-<li>extract date, month and year from Due</li>
-<li>compute the number of days to settle invoice</li>
-<li>compute days over due</li>
-<li>check if due year is a leap year</li>
-<li>check when due day in february is 29, whether it is a leap year</li>
-<li>how many invoices were settled within due date</li>
-<li>how many invoices are due in each quarter</li>
-<li>what is the average duration between invoice date and payment date</li>
-</ul>
-</div>
-<div id="section-data" class="section level3">
+<div id="section-data" class="section level2">
+<h2>Data</h2>
+<div id="section-data-1" class="section level3">
 <h3>Data</h3>
 <hr>
 <div class="tutorial-exercise" data-label="show" data-caption="Data Overview" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -104,6 +89,21 @@ pm(now())</code></pre>
 <li>Invoice: invoice date</li>
 <li>Due: due date</li>
 <li>Payment: payment date</li>
+</ul>
+</div>
+<div id="section-case-study" class="section level3">
+<h3>Case Study</h3>
+<hr>
+<p>We will use the functions in the lubridate package to answer a few questions we have about the transact data.</p>
+<ul>
+<li>extract date, month and year from Due</li>
+<li>compute the number of days to settle invoice</li>
+<li>compute days over due</li>
+<li>check if due year is a leap year</li>
+<li>check when due day in february is 29, whether it is a leap year</li>
+<li>how many invoices were settled within due date</li>
+<li>how many invoices are due in each quarter</li>
+<li>what is the average duration between invoice date and payment date</li>
 </ul>
 </div>
 </div>
@@ -247,7 +247,7 @@ transact %&gt;%
 </div>
 <div id="section-case-study-5" class="section level2">
 <h2>Case Study 5</h2>
-<div id="section-data-1" class="section level3">
+<div id="section-data-2" class="section level3">
 <h3>Data</h3>
 <hr>
 <div class="tutorial-exercise" data-label="lub9" data-caption="Data" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">

@@ -23,7 +23,7 @@ traffic <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/da
 
 In this module, we will learn to work with categorical/qualitative data in R using [forcats](http://forcats.tidyverse.org). Let us begin by installing and loading forcats and a set of other pacakges we will be using.
 
-## Case Study
+## Case Study - Part 1
 
 ### Introduction
 
@@ -62,15 +62,22 @@ ecom
 - purchase: whether visitor purchased
 - order_value: order value of visitor (in dollars)
 
-## Case Study - Part 1
  
-### Tabulate Referrers
+## Tabulate Referrers
+
+### Introduction
 
 <hr>
 
 ```{r cat2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate Referrers'}
+# using dplyr
 ecom %>%
   count(referrer)
+
+# using forcats
+ecom %>%
+  use_series(referrer) %>%
+  fct_count()
 ```
 
 ### Avg. page visits by referrer type
@@ -89,7 +96,7 @@ refer_summary <- ecom %>%
 refer_summary
 ```
 
-### Avg. page visits by referrer type
+### Visualize 
 
 <hr>
 
@@ -97,13 +104,15 @@ refer_summary
 ggplot(refer_summary, aes(page, referrer)) + geom_point()
 ```
 
-### Reorder Referrers
+## Reorder Referrers
 
 <hr>
 
 ```{r cat11, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Reorder Referrers'}
 ggplot(refer_summary, aes(page, fct_reorder(referrer, page))) + geom_point()
 ```
+
+## Referrer Frequency
 
 ### Plot Referrer Frequency (Descending Order)
 
@@ -127,7 +136,7 @@ ecom %>%
   geom_bar()
 ```
 
-## Case Study 2
+## Case Study - Part 2
 
 <hr>
 
@@ -139,15 +148,7 @@ ecom %>%
 traffic
 ```
 
-### Tabulate Referrer
-
-<hr>
-
-```{r cat6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate Referrer'}
-traffic$traffics %>% fct_count()
-```
-
-### Collapse Referrer Categories
+## Collapse Referrer Categories
 
 <hr>
 
@@ -160,7 +161,7 @@ traffic2 <- fct_collapse(traffic$traffics,
 traffic2 %>% fct_count() 
 ```
 
-### Lump Infrequent Referrer Types
+## Lump Infrequent Referrer Types
 
 <hr>
 
@@ -170,7 +171,9 @@ traffic$traffics %>% fct_count()
 traffic$traffics %>% fct_lump() %>% table()
 ```
 
-### Retain top 3 referrers
+## Top 3 Referrers
+
+### Introduction
 
 <hr>
 

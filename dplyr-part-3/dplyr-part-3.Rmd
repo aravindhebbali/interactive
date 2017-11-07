@@ -1,5 +1,5 @@
 ---
-title: "Tutorial"
+title: "dplyr Part 3"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -183,7 +183,7 @@ ecom %>%
   slice(n())
 ```
 
-## Total Observations in Data
+## Tabulate Data
 
 <hr>
 

@@ -93,130 +93,257 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ul>
 </div>
 </div>
-<div id="section-case-study" class="section level2">
-<h2>Case Study</h2>
-<div id="section-data-overview" class="section level3">
-<h3>Data Overview</h3>
+<div id="section-get-started" class="section level2">
+<h2>Get Started</h2>
+<div id="section-introduction-1" class="section level3">
+<h3>Introduction</h3>
 <hr>
+</div>
+<div id="section-instructions" class="section level3">
+<h3>Instructions</h3>
+<hr>
+<ul>
+<li>use <code>%&gt;%</code> and <code>tail()</code> to get the last 10 rows of <code>mtcars</code></li>
+</ul>
 <div class="tutorial-exercise" data-label="mag1" data-caption="View Data" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>head(ecom, 10)
 
 # using pipe
-ecom %&gt;% head(10)</code></pre>
+ecom %&gt;% head(10)
+
+# tail</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="mag1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>mtcars %&gt;% tail(10)</code></pre>
 </div>
 </div>
 </div>
 <div id="section-square-root" class="section level2">
 <h2>Square Root</h2>
+<div id="section-introduction-2" class="section level3">
+<h3>Introduction</h3>
 <hr>
 <div class="tutorial-exercise" data-label="mag3" data-caption="Square Root" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>y &lt;- ecom$n_pages
 y &lt;- sqrt(y)
-head(y)</code></pre>
+y</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<div id="section-square-root---using-pipe" class="section level3">
-<h3>Square Root - Using pipe</h3>
+</div>
+<div id="section-using-pipe---1" class="section level3">
+<h3>Using pipe - 1</h3>
 <hr>
+<p>Now let us learn how to compute square root using pipe operators. In the above example, we have done two things:</p>
+<ul>
+<li>assign <code>n_pages</code> to <code>y</code> using <code>$</code></li>
+<li>compuate square root of <code>y</code> and assign the result to <code>y</code> itself</li>
+</ul>
+<p>We can assign expose a column from a data set using the <code>%$%</code> operator. For example, <code>y &lt;- mtcars %$% mpg</code> will assign <code>mpg</code> to <code>y</code>. Similarly, we can assign the result of an operation performed on a variable to itself using <code>%&lt;&gt;%</code> operator. Let us assume you want to assign the absolute value of a variable to itself. This is how you would do it normally:</p>
+<p><code>y &lt;- abs(y)</code></p>
+<p>Using <code>%&lt;&gt;%</code> operator, this is how you will achieve it:</p>
+<p><code>y %&lt;&gt;% abs()</code></p>
+</div>
+<div id="section-instructions-1" class="section level3">
+<h3>Instructions</h3>
+<hr>
+<ul>
+<li>use <code>%$%</code> to assing <code>n_pages</code> from <code>ecom</code> to <code>y</code></li>
+<li>use <code>%&lt;&gt;%</code> to compute square root of <code>y</code> and assign it to <code>y</code></li>
+</ul>
 <div class="tutorial-exercise" data-label="mag4" data-caption="Square Root" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># select n_pages variable and assign it to y
-y &lt;- ecom %$% n_pages
-head(y)
+y &lt;- ecom 
 
 # compute square root of y and assign it to y 
-y %&lt;&gt;% sqrt()
-head(y)</code></pre>
+y </code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
+<div class="tutorial-exercise-support" data-label="mag4-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># select n_pages variable and assign it to y
+y &lt;- ecom %$% n_pages
+
+# compute square root of y and assign it to y 
+y %&lt;&gt;% sqrt()</code></pre>
 </div>
-<div id="section-square-root---using-pipe-1" class="section level3">
-<h3>Square Root - Using pipe</h3>
+</div>
+<div id="section-using-pipe---2" class="section level3">
+<h3>Using pipe - 2</h3>
 <hr>
+<p>In the first example, we computed the square root of <code>y</code> in two steps while we could have achieved it in a single step like this:</p>
+<p><code>y &lt;- sqrt(econ$n_pages)</code></p>
+<p>What we are doing above is:</p>
+<ul>
+<li>select <code>n_pages</code> from <code>econ</code></li>
+<li>pass it on to <code>sqrt()</code></li>
+<li>assign the result to <code>y</code></li>
+</ul>
+</div>
+<div id="section-instructions-2" class="section level3">
+<h3>Instructions</h3>
+<hr>
+<p>Let us try to do this using pipes:</p>
+<ul>
+<li>expose <code>n_pages</code> from <code>econ</code> using <code>%$%</code></li>
+<li>pass it on to <code>sqrt()</code> using <code>%&gt;%</code></li>
+<li>assign the result to <code>y</code></li>
+</ul>
+<p>We have written the first part for you.</p>
 <div class="tutorial-exercise" data-label="mag5" data-caption="Square Root" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>y &lt;- ecom %$% 
-  n_pages %&gt;% 
-  sqrt()
-head(y)</code></pre>
+  n_pages</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="mag5-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>y &lt;- ecom %$% 
+  n_pages %&gt;% 
+  sqrt()</code></pre>
 </div>
 </div>
 </div>
 <div id="section-correlation" class="section level2">
 <h2>Correlation</h2>
+<div id="section-introduction-3" class="section level3">
+<h3>Introduction</h3>
 <hr>
+<p>From the ecommerce data, we want to explore the relationship between number of visits and time spent on the site for those who purchase/convert. We can achieve this in the following steps:</p>
+<ul>
+<li>filter data for those who have purchased/converted</li>
+<li>compute correlation by selecting <code>n_visit</code> and <code>duration</code></li>
+</ul>
+<pre class="r"><code>ecom1 &lt;- subset(ecom, purchase == &#39;true&#39;)
+cor(ecom1$n_visit, ecom1$duration)</code></pre>
+</div>
+<div id="section-using-pipe" class="section level3">
+<h3>Using pipe</h3>
+<p>We can chain functions using pipe operators. For example, using <code>mtcars</code>, to compute the average miles per gallon for cars with eight cylinders we will write:</p>
+<pre class="r"><code>mtcars %&gt;% 
+  subset(cyl == 8) %$% 
+  mean(mpg)</code></pre>
+<p>This is how you can read the above code:</p>
+<ul>
+<li>filter data from <code>mtcars</code> where <code>cyl == 8</code> using <code>subset()</code></li>
+<li>from the filtered data set expose <code>mpg</code> using <code>%$%</code> and pass it into <code>mean()</code></li>
+</ul>
+</div>
+<div id="section-instructions-3" class="section level3">
+<h3>Instructions</h3>
+<p>Let us use pipe operators to compute the correlation between <code>n_visit</code> and <code>duration</code>:</p>
+<ul>
+<li>filter data for those who have purchased (<code>purchase == 'true'</code>) using <code>subset()</code> and <code>%&gt;%</code></li>
+<li>expose <code>n_visit</code> and <code>duration</code> using <code>%$%</code> and pass them onto <code>cor()</code></li>
+</ul>
 <div class="tutorial-exercise" data-label="mag6" data-caption="Correlation" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># without pipe
-ecom1 &lt;- subset(ecom, purchase == &#39;true&#39;)
-cor(ecom1$n_pages, ecom1$duration)
-
-# with pipe
+<pre class="text"><code># with pipe
+ecom %&gt;%
+  subset(purchase == &#39;true&#39;) </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="mag6-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># with pipe
 ecom %&gt;%
   subset(purchase == &#39;true&#39;) %$% 
-  cor(n_pages, duration)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+  cor(n_visit, duration)</code></pre>
+</div>
 </div>
 </div>
 <div id="section-visualization" class="section level2">
 <h2>Visualization</h2>
+<div id="section-introduction-4" class="section level3">
+<h3>Introduction</h3>
 <hr>
+<p>Let us look at a visualization example. From the ecommerce data set, we have the distribution of referrers (for those who have purchased/converted). We can decompose the code into the following steps:</p>
+<ul>
+<li><code>subset</code> data for those who have purchased/converted</li>
+<li>extract the referrer column using <code>$</code></li>
+<li>compute the frequency using <code>table()</code></li>
+<li>pass the data to <code>barplot()</code></li>
+</ul>
 <div class="tutorial-exercise" data-label="mag21" data-caption="Visualize" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>barplot(table(subset(ecom, purchase == &#39;true&#39;)$referrer))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<div id="section-visualization---using-pipe" class="section level3">
-<h3>Visualization - Using pipe</h3>
+</div>
+<div id="section-using-pipe-1" class="section level3">
+<h3>Using pipe</h3>
 <hr>
-<div class="tutorial-exercise" data-label="mag7" data-caption="Visualize - Using Pipe" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ecom %&gt;%
-  subset(purchase == &#39;true&#39;) %&gt;%
-  extract(&#39;referrer&#39;) %&gt;%
+<p>Let us build a barplot from <code>mtcars</code> data.</p>
+<pre class="r"><code># without pipe
+barplot(table(subset(mtcars, cyl == 8)$am))
+
+# with pipe
+mtcars %&gt;%`
+  subset(cyl == 8) %$%
+  am %&gt;%
   table() %&gt;%
   barplot()</code></pre>
+</div>
+<div id="section-instructions-4" class="section level3">
+<h3>Instructions</h3>
+<hr>
+<p>Let us now use pipes to build the same plot. We have written the partial code for you:</p>
+<ul>
+<li>pass on the referrer data to <code>table()</code> using <code>%&gt;%</code></li>
+<li>pass on the result from the previous step to <code>barplot()</code> using <code>%&gt;%</code></li>
+</ul>
+<div class="tutorial-exercise" data-label="mag7" data-caption="Visualize - Using Pipe" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>ecom %&gt;%
+  subset(purchase == &#39;true&#39;) %$%
+  referrer</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="mag7-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>ecom %&gt;%
+  subset(purchase == &#39;true&#39;) %$%
+  referrer %&gt;%
+  table() %&gt;%
+  barplot()</code></pre>
 </div>
 </div>
 </div>
 <div id="section-regression" class="section level2">
 <h2>Regression</h2>
+<div id="section-introduction-5" class="section level3">
+<h3>Introduction</h3>
 <hr>
 <div class="tutorial-exercise" data-label="mag8" data-caption="Regression" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>summary(lm(duration ~ n_pages, data = ecom))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<div id="section-regression---using-pipe" class="section level3">
-<h3>Regression - Using pipe</h3>
+</div>
+<div id="section-using-pipe-2" class="section level3">
+<h3>Using pipe</h3>
 <hr>
+<pre class="r"><code># without pipe
+summary(lm(disp ~ mpg, data = mtcars))
+
+# with pipe
+mtcars %$%`
+  lm(disp ~ mpg) %&gt;%
+  summary()</code></pre>
+</div>
+<div id="section-instructions-5" class="section level3">
+<h3>Instructions</h3>
+<hr>
+<ul>
+<li>expose <code>duration</code> and <code>n_pages</code> from <code>ecom</code> using <code>%$%</code></li>
+<li>pass them onto <code>lm()</code></li>
+<li>pass the result from <code>lm()</code> to <code>summary()</code> using <code>%&gt;%</code></li>
+</ul>
 <div class="tutorial-exercise" data-label="mag22" data-caption="Regression - Using Pipe" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>ecom %$%</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="mag22-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ecom %$%
   lm(duration ~ n_pages) %&gt;%
   summary()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-</div>
-</div>
-<div id="section-string-manipulation" class="section level2">
-<h2>String Manipulation</h2>
-<hr>
-<div class="tutorial-exercise" data-label="mag9" data-caption="String Manipulation" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>email &lt;- &#39;jovialcann@anymail.com&#39;
-
-# without pipe
-toupper(strtrim(strsplit(email, &#39;@&#39;)[[1]][1], 6))
-
-# with pipe
-email %&gt;%
-  strsplit(split = &#39;@&#39;) %&gt;%
-  extract2(1) %&gt;%
-  extract(1) %&gt;%
-  strtrim(width = 6) %&gt;%
-  toupper()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 <div id="section-data-extraction" class="section level2">
 <h2>Data Extraction</h2>
-<div id="section-introduction-1" class="section level3">
+<div id="section-introduction-6" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <ul>
@@ -303,7 +430,7 @@ mt %&gt;%
 </div>
 <div id="section-arithmetic-operations" class="section level2">
 <h2>Arithmetic Operations</h2>
-<div id="section-introduction-2" class="section level3">
+<div id="section-introduction-7" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <ul>
@@ -368,7 +495,7 @@ mt %&gt;%
 </div>
 <div id="section-logical-operators" class="section level2">
 <h2>Logical Operators</h2>
-<div id="section-introduction-3" class="section level3">
+<div id="section-introduction-8" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <ul>
@@ -404,6 +531,30 @@ mt %&gt;%
 1:10 %&gt;%
   is_weakly_greater_than(5)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-practice" class="section level2">
+<h2>Practice</h2>
+<div id="section-introduction-9" class="section level3">
+<h3>Introduction</h3>
+<hr>
+<div class="tutorial-exercise" data-label="mag9" data-caption="String Manipulation" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>email &lt;- &#39;jovialcann@anymail.com&#39;
+
+# without pipe
+toupper(strtrim(strsplit(email, &#39;@&#39;)[[1]][1], 6))
+
+# with pipe</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="mag9-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>email %&gt;%
+  strsplit(split = &#39;@&#39;) %&gt;%
+  extract2(1) %&gt;%
+  extract(1) %&gt;%
+  strtrim(width = 6) %&gt;%
+  toupper()</code></pre>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
@@ -489,13 +640,6 @@ output$`tutorial-exercise-mag22-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-mag9-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-mag9-code-editor`)), session)
-output$`tutorial-exercise-mag9-output` <- renderUI({
-  `tutorial-exercise-mag9-result`()
-})
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-mag10-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-mag10-code-editor`)), session)
 output$`tutorial-exercise-mag10-output` <- renderUI({
   `tutorial-exercise-mag10-result`()
@@ -576,6 +720,13 @@ output$`tutorial-exercise-mag19-output` <- renderUI({
 `tutorial-exercise-mag20-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-mag20-code-editor`)), session)
 output$`tutorial-exercise-mag20-output` <- renderUI({
   `tutorial-exercise-mag20-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-mag9-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-mag9-code-editor`)), session)
+output$`tutorial-exercise-mag9-output` <- renderUI({
+  `tutorial-exercise-mag9-result`()
 })
 </script>
  <!--html_preserve-->

@@ -1,5 +1,5 @@
 ---
-title: "Tutorial"
+title: "dplyr Joins"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -14,8 +14,6 @@ customer <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/d
 ```
 
 ## Introduction
-
-### Introduction
 
 <hr>
 

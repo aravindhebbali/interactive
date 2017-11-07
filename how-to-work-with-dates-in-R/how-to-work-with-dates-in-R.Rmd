@@ -19,7 +19,7 @@ transact <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/d
 
  In this module, we will learn to work with date/time data in R using [lubridate]( https://CRAN.R-project.org/package=lubridate), an R package that makes it easy to work with dates and time. Let us begin by installing and loading the lubridate pacakge.
 
-## Basics
+## Quick Tour
 
 ### Origin
 
@@ -40,24 +40,7 @@ am(now())
 pm(now())
 ```
 
-## Case Study
-
-### Introduction
-
-<hr>
-
-We will use the functions in the lubridate package to answer a few 
-questions we have about the transact data.
-
-- extract date, month and year from Due
-- compute the number of days to settle invoice
-- compute days over due
-- check if due year is a leap year
-- check when due day in february is 29, whether it is a leap year
-- how many invoices were settled within due date
-- how many invoices are due in each quarter
-- what is the average duration between invoice date and payment date
-
+## Data
 
 ### Data
 
@@ -76,6 +59,22 @@ The data set has 3 columns. All the dates are in the format (yyyy-mm-dd).
 - Invoice: invoice date 
 - Due: due date
 - Payment: payment date
+
+### Case Study
+
+<hr>
+
+We will use the functions in the lubridate package to answer a few 
+questions we have about the transact data.
+
+- extract date, month and year from Due
+- compute the number of days to settle invoice
+- compute days over due
+- check if due year is a leap year
+- check when due day in february is 29, whether it is a leap year
+- how many invoices were settled within due date
+- how many invoices are due in each quarter
+- what is the average duration between invoice date and payment date
 
 
 ## Case Study 1

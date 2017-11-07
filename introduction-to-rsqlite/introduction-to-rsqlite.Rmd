@@ -20,6 +20,11 @@ result <- DBI::dbFetch(query, n = 30)
 
 ## Connection
 
+[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
+[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
+
+<hr>
+
 ### Connection Summary
 
 <hr>

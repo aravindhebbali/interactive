@@ -1,5 +1,5 @@
 ---
-title: "Tutorial"
+title: "dplyr Verbs"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -13,8 +13,6 @@ ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datas
 
 
 ## Introduction
-
-### Introduction
 
 <hr>
 
@@ -93,7 +91,7 @@ Below is the description of the data set:
 
 Average value of every order placed over a defined period of time. It is determined using sales per order and not sales per customer. Let us look at the steps to calculate AOV from the ecommerce data set.
 
-![alt text](J:/R/tutorial_slides/data-wrangling/dplyr/aov.png)
+![alt text](/images/aov.png)
 
 ### AOV Computation
 
@@ -122,7 +120,7 @@ ecom %>%
   select(device, aov)
 ```
 
-## Step 1: Filter Purchasers
+## Case Study: Filter Purchasers
 
 ### Intro
 
@@ -154,7 +152,7 @@ filter(ecom, device == "mobile", purchase == "true")
 filter(ecom, device == "mobile", n_pages > 5)
 ```
 
-### Case Study: visits that converted
+### Case Study: Visits that converted
 
 <hr>
 
@@ -162,7 +160,7 @@ filter(ecom, device == "mobile", n_pages > 5)
 filter(ecom, purchase == "true")
 ```
 
-## Step 2: Select relevant columns
+## Case Study: Select Columns
 
 ### Introduction
 
@@ -204,11 +202,8 @@ For our case study, we need to select the columns order value and order items to
 select(ecom, device, order_value, order_items)
 ```
 
-### Case Study: Select
-
-<hr>
-
-But we want the above data only for purchasers. We will combine `filter()` and `select()` functions to extract data related to purchasers.
+But we want the above data only for purchasers. We will combine `filter()` and `select()` functions 
+to extract data related to purchasers.
 
 ```{r dplyr10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 5'}
 ecom1 <- filter(ecom, purchase == "true")
@@ -216,17 +211,13 @@ ecom2 <- select(ecom1, device, order_value, order_items)
 ecom2
 ```
 
-## Step 3: Group data by devices
+## Case Study: Group Data
 
 ### Introduction
 
 <hr>
 
 Since we want to compute the AOV for each device, we need to compute the total order value and total order items for each device. To achieve this, we will group the selected variables by device type. Using the `group_by()` function, we will group our case study data by device types. The first argument is the name of the data frame and the second argument is the name of the column based on which the data will be split. Let us look at a few examples:
-
-### Group data by referrer type 
-
-<hr>
 
 ```{r dplyr11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Group - Part 1'}
 group_by(ecom, referrer)
@@ -243,7 +234,7 @@ ecom3 <- group_by(ecom2, device)
 ecom3
 ```
 
-## Step 4: Total order value and order items
+## Case Study: Order Value
 
 ### Introduction
 
@@ -263,10 +254,6 @@ ecom4 <- summarise(ecom3, total_value = sum(order_value),
 ecom4
 ```
 
-### Summarise
-
-<hr>
-
 There you go, we have the total order value and total order items for each device type. Another way to achieve the above result is to use the `summarise_all()` function. How does that work? It generates the specified summary for all the columns in the data set except for the column based on which the data has been grouped. So we need to ensure that the data frame does not have any irrelevant columns.
 
 ### Case Study: Summarise
@@ -280,7 +267,7 @@ ecom4 <- summarise_all(ecom3, funs(sum))
 ecom4
 ```
 
-## Step 5: Compute AOV
+## Case Study: Compute AOV
 
 <hr>
 
@@ -291,7 +278,7 @@ ecom5 <- mutate(ecom4, aov = order_value / order_items)
 ecom5
 ```
 
-## Step 6: Select relevant columns
+## Case Study: Select Device/AOV
 
 <hr>
 
@@ -320,15 +307,11 @@ ecom6 <- select(ecom5, device, aov)
 ecom6
 ```
 
-### AOV by Devices
+### Using Pipes
 
 <hr>
 
 If you observe, at each step we create a new variable(data frame) and then use it as an input in the next step i.e. the output from one function becomes the input for another function. Can we achieve the final outcome i.e. `ecom6` without creating the intermediate data frames (ecom1 - ecom5)? Yes, we can. We will use the `%>%` operator to chain the above steps so that we can avoid creating the intermediate data frames. Let us see how to do that.
-
-### AOV by Devices
-
-<hr>
 
 ```{r dplyr18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Solution'}
 ecom %>%
@@ -342,15 +325,8 @@ ecom %>%
   select(device, aov)
 ```
 
-### AOV by Devices
-
-<hr>
-
 In the above code, we take the output from each step and use it as an input for the next step using the pipe `%>%` operator. It reduces the intermediate data frames and makes the code readable. Take the `ecom` data frame `->` filter the purchasers `->` select device, order_value and order_items variables `->` group the resulting data frame by device type `->` compute the sum of all the variables in the grouped data frames `->` compute the average order value `->` select device type and aov
 
-### AOV by Devices
-
-<hr>
 
 It is the same as the steps we wrote at the beginning of this module. Now you realize how powerful dplyr is along with the `%>%` operator. There are other functions in dplyr but we will cover them in another module. You are encouraged to use the above approach to answer the questions we have listed below.
 

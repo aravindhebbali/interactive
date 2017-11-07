@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Tutorial</title>
+<title>dplyr Joins</title>
 
 
 <!-- highlightjs -->
@@ -46,8 +46,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
 <hr>
 <p>In a previous module, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this post, we will learn to combine tables using different <code>*_join</code> functions provided in dplyr. Let us assume we have 2 tables <strong>x</strong> and <strong>y</strong>.</p>
 <p>The following types of <code>join</code> functions are provided in dplyr:</p>
@@ -60,10 +58,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><code>full_join()</code></li>
 </ul>
 </div>
-</div>
 <div id="section-case-study" class="section level2">
 <h2>Case Study</h2>
-<div id="section-introduction-2" class="section level3">
+<div id="section-introduction-1" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p>We have two data sets with details of customers and their orders. We will use the above functions to combine the data sets in different ways to glean information about customer orders.</p>
@@ -229,7 +226,7 @@ output$`tutorial-exercise-dplyr8-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Tutorial</h2>
+<h2 class="title toc-ignore" style="display:none;">dplyr Joins</h2>
 </div>
 <!-- end doc-metadata -->
 
