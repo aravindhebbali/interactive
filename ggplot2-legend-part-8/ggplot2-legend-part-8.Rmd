@@ -1,0 +1,114 @@
+---
+title: "Legend - Part 8"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Learn to modify legend
+
+- bar
+
+## Legend Bar 
+
+### Introduction
+
+<hr>
+
+- width
+- height
+- bins
+- ticks
+- limits
+
+
+## Bar Width
+
+<hr>
+
+```{r leg24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Bar Width'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barwidth = 10))
+```
+
+## Bar Height
+
+<hr>
+
+```{r leg25, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Bar Height'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barheight = 3))
+```
+
+## Bar Bins
+
+<hr>
+
+```{r leg26, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Bar Bins'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    nbin = 4))
+```
+
+## Bar Ticks
+
+<hr>
+
+```{r leg28, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Bar Ticks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    ticks = FALSE))
+```
+
+## Bar Limits
+
+<hr>
+
+```{r leg29, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Bar limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    draw.ulim = TRUE, draw.llim = FALSE))
+```
+
+## Guides
+
+<hr>
+
+```{r leg34, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Guides'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp, 
+    size = qsec, shape = factor(gear))) + 
+  guides(color = "colorbar", shape = "legend", size = "legend")
+```
+
+## Guides: Color, Shape & Size
+
+<hr>
+
+```{r leg35, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Guides: Color, Shape & Size'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + 
+  guides(color = guide_colorbar(title = "Horsepower"),
+    shape = guide_legend(title = "Weight"), size = guide_legend(title = "Gear")
+  )
+```

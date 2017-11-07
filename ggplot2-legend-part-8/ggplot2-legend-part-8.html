@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Legends - Part 1</title>
+<title>Legend - Part 8</title>
 
 
 <!-- highlightjs -->
@@ -46,94 +46,104 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<p>If the aesthetics are mapped to variables, ggplot2 automatically creates legends wherever applicable. You may want to modify the appearance of legends. In this module, we will learn to modify the legends when <code>color</code> is mapped to categorical variables.</p>
 <div id="section-agenda" class="section level3">
 <h3>Agenda</h3>
 <hr>
-<p>Modify legend when <code>color</code> is mapped to variables. Specifically</p>
+<p>Learn to modify legend</p>
 <ul>
-<li>title</li>
-<li>breaks</li>
-<li>limits</li>
-<li>labels</li>
-<li>values</li>
+<li>bar</li>
 </ul>
 </div>
 </div>
-<div id="section-plot" class="section level2">
-<h2>Plot</h2>
+<div id="section-legend-bar" class="section level2">
+<h2>Legend Bar</h2>
 <div id="section-introduction-1" class="section level3">
 <h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="leg15" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<ul>
+<li>width</li>
+<li>height</li>
+<li>bins</li>
+<li>ticks</li>
+<li>limits</li>
+</ul>
+</div>
+</div>
+<div id="section-bar-width" class="section level2">
+<h2>Bar Width</h2>
+<hr>
+<div class="tutorial-exercise" data-label="leg24" data-caption="Legend Bar Width" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl)))</code></pre>
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barwidth = 10))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-title" class="section level2">
-<h2>Title</h2>
+<div id="section-bar-height" class="section level2">
+<h2>Bar Height</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg16" data-caption="Legend Title" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="leg25" data-caption="Legend Bar Height" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(name = &quot;Cylinders&quot;, 
-    values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></pre>
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barheight = 3))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-values" class="section level2">
-<h2>Values</h2>
+<div id="section-bar-bins" class="section level2">
+<h2>Bar Bins</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg17" data-caption="Legend Values" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="leg26" data-caption="Legend Bar Bins" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></pre>
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    nbin = 4))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-labels" class="section level2">
-<h2>Labels</h2>
+<div id="section-bar-ticks" class="section level2">
+<h2>Bar Ticks</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg18" data-caption="Legend Labels" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="leg28" data-caption="Legend Bar Ticks" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    limits = c(4, 6, 8))</code></pre>
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    ticks = FALSE))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-limits" class="section level2">
-<h2>Limits</h2>
+<div id="section-bar-limits" class="section level2">
+<h2>Bar Limits</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg19" data-caption="Legend Limits" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="leg29" data-caption="Legend Bar limits" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    labels = c(&#39;Four&#39;, &#39;Six&#39;, &#39;Eight&#39;))</code></pre>
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    draw.ulim = TRUE, draw.llim = FALSE))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-breaks" class="section level2">
-<h2>Breaks</h2>
+<div id="section-guides" class="section level2">
+<h2>Guides</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg20" data-caption="Legend Breaks" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="leg34" data-caption="Guides" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    breaks = c(4, 6, 8))</code></pre>
+  geom_point(aes(disp, mpg, color = hp, 
+    size = qsec, shape = factor(gear))) + 
+  guides(color = &quot;colorbar&quot;, shape = &quot;legend&quot;, size = &quot;legend&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-summary" class="section level2">
-<h2>Summary</h2>
+<div id="section-guides-color-shape-size" class="section level2">
+<h2>Guides: Color, Shape &amp; Size</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg21" data-caption="Color - Discrete Variable" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="leg35" data-caption="Guides: Color, Shape &amp; Size" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(name = &quot;Cylinders&quot;, values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    labels = c(&#39;Four&#39;, &#39;Six&#39;, &#39;Eight&#39;), limits = c(4, 6, 8), breaks = c(4, 6, 8))</code></pre>
+  geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + 
+  guides(color = guide_colorbar(title = &quot;Horsepower&quot;),
+    shape = guide_legend(title = &quot;Weight&quot;), size = guide_legend(title = &quot;Gear&quot;)
+  )</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
@@ -150,51 +160,51 @@ learnr:::register_http_handlers(session, metadata = NULL)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg15-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg15-code-editor`)), session)
-output$`tutorial-exercise-leg15-output` <- renderUI({
-  `tutorial-exercise-leg15-result`()
+`tutorial-exercise-leg24-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg24-code-editor`)), session)
+output$`tutorial-exercise-leg24-output` <- renderUI({
+  `tutorial-exercise-leg24-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg16-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg16-code-editor`)), session)
-output$`tutorial-exercise-leg16-output` <- renderUI({
-  `tutorial-exercise-leg16-result`()
+`tutorial-exercise-leg25-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg25-code-editor`)), session)
+output$`tutorial-exercise-leg25-output` <- renderUI({
+  `tutorial-exercise-leg25-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg17-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg17-code-editor`)), session)
-output$`tutorial-exercise-leg17-output` <- renderUI({
-  `tutorial-exercise-leg17-result`()
+`tutorial-exercise-leg26-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg26-code-editor`)), session)
+output$`tutorial-exercise-leg26-output` <- renderUI({
+  `tutorial-exercise-leg26-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg18-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg18-code-editor`)), session)
-output$`tutorial-exercise-leg18-output` <- renderUI({
-  `tutorial-exercise-leg18-result`()
+`tutorial-exercise-leg28-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg28-code-editor`)), session)
+output$`tutorial-exercise-leg28-output` <- renderUI({
+  `tutorial-exercise-leg28-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg19-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg19-code-editor`)), session)
-output$`tutorial-exercise-leg19-output` <- renderUI({
-  `tutorial-exercise-leg19-result`()
+`tutorial-exercise-leg29-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg29-code-editor`)), session)
+output$`tutorial-exercise-leg29-output` <- renderUI({
+  `tutorial-exercise-leg29-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg20-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg20-code-editor`)), session)
-output$`tutorial-exercise-leg20-output` <- renderUI({
-  `tutorial-exercise-leg20-result`()
+`tutorial-exercise-leg34-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg34-code-editor`)), session)
+output$`tutorial-exercise-leg34-output` <- renderUI({
+  `tutorial-exercise-leg34-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg21-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg21-code-editor`)), session)
-output$`tutorial-exercise-leg21-output` <- renderUI({
-  `tutorial-exercise-leg21-result`()
+`tutorial-exercise-leg35-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg35-code-editor`)), session)
+output$`tutorial-exercise-leg35-output` <- renderUI({
+  `tutorial-exercise-leg35-result`()
 })
 </script>
  <!--html_preserve-->
@@ -213,7 +223,7 @@ output$`tutorial-exercise-leg21-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Legends - Part 1</h2>
+<h2 class="title toc-ignore" style="display:none;">Legend - Part 8</h2>
 </div>
 <!-- end doc-metadata -->
 

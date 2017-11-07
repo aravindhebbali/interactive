@@ -1,0 +1,169 @@
+---
+title: "Legend - Part 3"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+If the aesthetics are mapped to variables, ggplot2 automatically creates legends wherever applicable. 
+You may want to modify the appearance of legends. In this module, we will learn to modify the legends when
+`shape` is mapped to categorical variables. If you have mapped shape/size to a discrete variable which has 
+less than six categories, you can use `scale_shape()`
+
+
+### Agenda
+
+<hr>
+
+Modify legend when `shape` is mapped to variables. Specifically
+
+- title
+- breaks
+- limits
+- range
+- labels
+- values
+- symbol type
+
+
+## Plot
+
+### Introduction
+
+<hr>
+
+```{r leg29, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl)))
+```
+
+```{r leg50, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape()
+```
+
+## Title
+
+<hr>
+
+```{r leg30, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(name = "Cylinders",values = c(4, 12, 24))
+```
+
+<hr>
+
+```{r leg51, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(name = 'Cylinders')
+```
+
+
+## Values
+
+<hr>
+
+```{r leg31, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24))
+```
+
+## Labels
+
+<hr>
+
+```{r leg32, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), labels = c('Four', 'Six', 'Eight'))
+```
+
+<hr>
+
+```{r leg52, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(labels = c('Four', 'Six', 'Eight'))
+```
+
+## Limits
+
+<hr>
+
+```{r leg33, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), limits = c(4, 6, 8))
+```
+
+<hr>
+
+```{r leg53, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(limits = c(4, 6, 8))
+```
+
+## Breaks
+
+<hr>
+
+```{r leg34, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), breaks = c(4, 6, 8))
+```
+
+<hr>
+
+```{r leg54, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(breaks = c(4, 6, 8))
+```
+
+## Symbol
+
+<hr>
+
+```{r leg55, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Types'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(solid = FALSE)
+```
+
+
+## Summary
+
+<hr>
+
+```{r leg35, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape Discrete'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(name = "Cylinders", labels = c('Four', 'Six', 'Eight'),  
+     values = c(4, 12, 24), limits = c(4, 6, 8), breaks = c(4, 6, 8))
+```
+
+<hr>
+
+```{r leg56, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(solid = FALSE, name = 'Cylinders', limits = c(4, 6, 8),
+    labels = c('Four', 'Six', 'Eight'), breaks = c(4, 6, 8))
+```
+
+

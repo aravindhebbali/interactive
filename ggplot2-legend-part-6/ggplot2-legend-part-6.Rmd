@@ -1,0 +1,57 @@
+---
+title: "Legend - Part 6"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Learn to modify legend
+
+- title
+
+## Alignment
+
+### Introduction
+
+<hr>
+
+- alignment
+    - 0 (left)
+    - 1 (right)
+
+
+```{r leg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Alignment'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5))
+```
+
+## Position
+
+- position
+    - top
+    - bottom
+    - left
+    - right
+
+```{r leg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Position'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top"))
+```
+

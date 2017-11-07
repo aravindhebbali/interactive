@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>ggplot2: Line Graph</title>
+<title>Line Graph</title>
 
 
 <!-- highlightjs -->
@@ -82,9 +82,12 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
+<div id="section-data-dictionary" class="section level3">
+<h3>Data Dictionary</h3>
 </div>
-<div id="section-line-chart" class="section level2">
-<h2>Line Chart</h2>
+</div>
+<div id="section-plot" class="section level2">
+<h2>Plot</h2>
 <div id="section-introduction-2" class="section level3">
 <h3>Introduction</h3>
 <hr>
@@ -94,8 +97,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-line-color" class="section level3">
-<h3>Line Color</h3>
+</div>
+<div id="section-line-color" class="section level2">
+<h2>Line Color</h2>
 <hr>
 <div class="tutorial-exercise" data-label="line1" data-caption="Line Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(gdp, aes(year, india)) +
@@ -103,8 +107,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-line-type" class="section level3">
-<h3>Line Type</h3>
+<div id="section-line-type" class="section level2">
+<h2>Line Type</h2>
 <hr>
 <ul>
 <li>0 : blank</li>
@@ -120,7 +124,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   geom_line(linetype = 2)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-</div>
 <div id="section-line-type-dashed" class="section level3">
 <h3>Line Type (Dashed)</h3>
 <hr>
@@ -130,8 +133,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-line-size" class="section level3">
-<h3>Line Size</h3>
+</div>
+<div id="section-line-size" class="section level2">
+<h2>Line Size</h2>
 <hr>
 <div class="tutorial-exercise" data-label="line4" data-caption="Line Size" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(gdp, aes(year, india)) +
@@ -139,17 +143,17 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-modify-data" class="section level2">
-<h2>Modify Data</h2>
+<div id="section-reshape-data" class="section level2">
+<h2>Reshape Data</h2>
 <hr>
 <p>Now let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use <code>gather()</code> function from the <code>tidyr</code> package to reshape the data.</p>
 <div class="tutorial-exercise" data-label="line5" data-caption="Data" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gdp2</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<div id="section-grouped-line-chart" class="section level3">
-<h3>Grouped Line Chart</h3>
+</div>
+<div id="section-grouped-line-chart" class="section level2">
+<h2>Grouped Line Chart</h2>
 <hr>
 <div class="tutorial-exercise" data-label="line6" data-caption="Grouped Line Chart" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(gdp2, aes(year, gdp, group = country)) +
@@ -157,8 +161,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-map-color-to-country" class="section level3">
-<h3>Map Color to Country</h3>
+<div id="section-map-color" class="section level2">
+<h2>Map Color</h2>
 <hr>
 <div class="tutorial-exercise" data-label="line7" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(gdp2, aes(year, gdp, group = country)) +
@@ -166,8 +170,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-map-line-type-to-country" class="section level3">
-<h3>Map Line Type to Country</h3>
+<div id="section-map-line-type" class="section level2">
+<h2>Map Line Type</h2>
 <hr>
 <div class="tutorial-exercise" data-label="line8" data-caption="Line Type" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(gdp2, aes(year, gdp, group = country)) +
@@ -175,8 +179,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-map-line-width-to-country" class="section level3">
-<h3>Map Line Width to Country</h3>
+<div id="section-map-line-width" class="section level2">
+<h2>Map Line Width</h2>
 <hr>
 <div class="tutorial-exercise" data-label="line9" data-caption="Line Width" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(gdp2, aes(year, gdp, group = country)) +
@@ -190,10 +194,10 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
-gdp2 <- gdp %>% 
-  select(year, growth, india, china) %>% 
-  gather(key = country, value = gdp, -year)
+# gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+# gdp2 <- gdp %>% 
+#  select(year, growth, india, china) %>% 
+#  gather(key = country, value = gdp, -year)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -282,7 +286,6 @@ output$`tutorial-exercise-line9-output` <- renderUI({
 </script>
 <!--/html_preserve-->
 </div>
-</div>
 
 </div> <!-- topics -->
 
@@ -293,7 +296,7 @@ output$`tutorial-exercise-line9-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">ggplot2: Line Graph</h2>
+<h2 class="title toc-ignore" style="display:none;">Line Graph</h2>
 </div>
 <!-- end doc-metadata -->
 

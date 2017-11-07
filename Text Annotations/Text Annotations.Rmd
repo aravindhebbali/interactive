@@ -88,7 +88,7 @@ for (i in values) {
 }
 ```
 
-## Font
+## Font Type
 
 ### Introduction
 

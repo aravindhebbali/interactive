@@ -1,0 +1,81 @@
+---
+title: "Themes - Part 3"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Use `theme()` to modify the appearance of panel
+
+- background
+- border
+- grid (major)
+- grid (minor)
+
+## Plot
+
+<hr>
+
+```{r theme9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+p
+```
+
+## Background
+
+<hr>
+
+```{r theme10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Background'}
+p + theme(panel.background = element_rect(fill = 'gray'))
+```
+
+## Border
+
+<hr>
+
+```{r theme24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Border'}
+p + theme(panel.border = element_rect(fill = NA, color = 'blue', 
+          linetype = 1, size = 2))
+```
+
+## Grid
+
+<hr>
+
+```{r theme25, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Grid'}
+p + theme(panel.grid = element_line(color = 'blue', linetype = 2, size = 0.5))
+```
+
+## Grid - Major
+
+<hr>
+
+```{r theme12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Grid (Major)'}
+p + theme(panel.grid.major.x = element_line(color = 'blue', 
+          linetype = 2, size = 0.5))
+```
+
+
+## Grid - Minor
+
+<hr>
+
+```{r theme26, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Grid (Minor)'}
+p + theme(panel.grid.minor.y = element_line(color = 'red', 
+          linetype = 3, size = 0.2))
+```

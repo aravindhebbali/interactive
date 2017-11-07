@@ -220,19 +220,15 @@ ggplot(mtcars, aes(disp, mpg)) +
 </div>
 <div class="tutorial-exercise-support" data-label="aes12-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = &#39;jitter&#39;) +
   geom_smooth(method = &#39;lm&#39;, se = FALSE)
 
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = &#39;jitter&#39;) +
   geom_smooth(method = &#39;lm&#39;, se = TRUE)
 
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = &#39;jitter&#39;) +
   geom_smooth(method = &#39;loess&#39;, se = FALSE)
 
 ggplot(mtcars, aes(disp, mpg)) +
-  geom_point(position = &#39;jitter&#39;) +
   geom_abline(slope = 29.59985, intercept = -0.04122)</code></pre>
 </div>
 

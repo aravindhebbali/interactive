@@ -1,0 +1,86 @@
+---
+title: "Themes - Part 5"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+## Classic Dark on Light
+
+<hr>
+
+```{r theme17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Classic Dark on Light'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_bw()
+```
+
+## Default Gray
+
+<hr>
+
+```{r theme18, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Default Gray'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_gray()
+```
+
+## Light
+
+<hr>
+
+```{r theme19, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Light'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_light()
+```
+
+## Minimal
+
+<hr>
+
+```{r theme20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Minimal'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_minimal()
+```
+
+## Dark
+
+<hr>
+
+```{r theme21, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Dark'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_dark()
+```
+
+## Classic
+
+<hr>
+
+```{r theme22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Classic'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_classic()
+```
+
+## Void (Empty)
+
+<hr>
+
+```{r theme23, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Void'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_void()
+```
+

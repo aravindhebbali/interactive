@@ -1,0 +1,134 @@
+---
+title: "Legend - Part 7"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Learn to modify legend
+
+- labek
+
+## Position
+
+### Introduction
+
+<hr>
+
+- position
+    - top
+    - bottom
+    - left 
+    - right
+
+```{r leg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label Position'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(label.position = "right"))
+```
+
+## Alignment
+
+### Introduction
+
+<hr>
+
+- alignment 
+    - 0 (left)
+    - 1 (right)
+
+
+```{r leg5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label Alignment'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(label.hjust = 0.5))
+```
+
+## Direction
+
+### Introduction
+
+<hr>
+
+- direction
+    - horizontal
+    - vertical
+
+```{r leg6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Direction'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(direction = "horizontal"))
+```
+
+## Rows
+
+<hr>
+
+```{r leg7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(nrow = 2))
+```
+
+## Reverse
+
+### Introduction
+
+<hr>
+
+- reverse
+    - TRUE
+    - FALSE
+
+```{r leg8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Reverse'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(reverse = TRUE))
+```
+
+## Guides
+
+<hr>
+
+```{r leg20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Guides'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top", label.position = "right", 
+      direction = "horizontal", label.hjust = 0.5, nrow = 2, reverse = TRUE)
+  )
+```
+
+## Title Alignment 
+
+<hr>
+
+```{r leg22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Alignment'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    title = "Horsepower", title.position = "top", title.vjust = 1))
+```
+
+## Labels Alignment 
+
+<hr>
+
+```{r leg23, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label Alignment'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    label.vjust = 0.8))
+```

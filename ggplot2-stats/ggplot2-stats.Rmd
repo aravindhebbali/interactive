@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Statistical Plots"
+title: "Statistical Plots"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---

@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Line Graph"
+title: "Line Graph"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -10,10 +10,10 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
-gdp2 <- gdp %>% 
-  select(year, growth, india, china) %>% 
-  gather(key = country, value = gdp, -year)
+# gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+# gdp2 <- gdp %>% 
+#  select(year, growth, india, china) %>% 
+#  gather(key = country, value = gdp, -year)
 ```
 
 ## Introduction
@@ -51,7 +51,9 @@ We will use a data set related to GDP growth rate. You can download it from [her
 gdp
 ```
 
-## Line Chart
+### Data Dictionary
+
+## Plot
 
 ### Introduction
 
@@ -62,7 +64,7 @@ ggplot(gdp, aes(year, india)) +
   geom_line()
 ```
 
-### Line Color
+## Line Color
 
 <hr>
 
@@ -71,7 +73,7 @@ ggplot(gdp, aes(year, india)) +
   geom_line(color = 'blue')
 ```
 
-### Line Type
+## Line Type
 
 <hr>
 
@@ -98,7 +100,7 @@ ggplot(gdp, aes(year, india)) +
   geom_line(linetype = 'dashed')
 ```
 
-### Line Size
+## Line Size
 
 <hr>
 
@@ -107,7 +109,7 @@ ggplot(gdp, aes(year, india)) +
   geom_line(size = 2)
 ```
 
-## Modify Data
+## Reshape Data
 
 <hr>
 
@@ -117,7 +119,7 @@ Now let us map the aesthetics to the variables. The data used in the above examp
 gdp2
 ```
 
-### Grouped Line Chart
+## Grouped Line Chart
 
 <hr>
 
@@ -126,7 +128,7 @@ ggplot(gdp2, aes(year, gdp, group = country)) +
   geom_line()
 ```
 
-### Map Color to Country
+## Map Color 
 
 <hr>
 
@@ -135,7 +137,7 @@ ggplot(gdp2, aes(year, gdp, group = country)) +
   geom_line(aes(color = country))
 ```
 
-### Map Line Type to Country
+## Map Line Type
 
 <hr>
 
@@ -144,7 +146,7 @@ ggplot(gdp2, aes(year, gdp, group = country)) +
   geom_line(aes(linetype = country))
 ```
 
-### Map Line Width to Country
+## Map Line Width
 
 <hr>
 

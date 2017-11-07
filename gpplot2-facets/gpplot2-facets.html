@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>ggplot2: Facets</title>
+<title>Facets</title>
 
 
 <!-- highlightjs -->
@@ -46,8 +46,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<div id="section-data" class="section level3">
-<h3>Data</h3>
+</div>
+<div id="section-data" class="section level2">
+<h2>Data</h2>
+<div id="section-introduction-1" class="section level3">
+<h3>Introduction</h3>
 <hr>
 <div class="tutorial-exercise" data-label="import" data-caption="Data" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ecom</code></pre>
@@ -74,7 +77,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="section-grid" class="section level2">
 <h2>Grid</h2>
-<div id="section-introduction-1" class="section level3">
+<div id="section-introduction-2" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <p>Generate subplots that each display one subset of the data using</p>
@@ -83,8 +86,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><code>facet_wrap()</code></li>
 </ul>
 </div>
-<div id="section-columns" class="section level3">
-<h3>Columns</h3>
+</div>
+<div id="section-grid---columns" class="section level2">
+<h2>Grid - Columns</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet1" data-caption="Columns" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) + 
@@ -93,8 +97,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-rows" class="section level3">
-<h3>Rows</h3>
+<div id="section-grid---rows" class="section level2">
+<h2>Grid - Rows</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet2" data-caption="Rows" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) + 
@@ -103,8 +107,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-rows-columns" class="section level3">
-<h3>Rows &amp; Columns</h3>
+<div id="section-grid---rows-columns" class="section level2">
+<h2>Grid - Rows &amp; Columns</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet3" data-caption="Rows &amp; Columns" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) + 
@@ -112,9 +116,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   facet_grid(purchase ~ device)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-</div>
-<div id="section-rows-columns-1" class="section level3">
-<h3>Rows &amp; Columns</h3>
 <div class="tutorial-exercise" data-label="facet4" data-caption="Rows &amp; Columns" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) + 
   geom_point() +
@@ -122,8 +123,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-scales" class="section level3">
-<h3>Scales</h3>
+<div id="section-grid---scales" class="section level2">
+<h2>Grid - Scales</h2>
 <hr>
 <p>Different range instead of fixed range.</p>
 <div class="tutorial-exercise" data-label="facet5" data-caption="Scales" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -133,8 +134,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-switch-axis" class="section level3">
-<h3>Switch Axis</h3>
+<div id="section-grid---switch-axis" class="section level2">
+<h2>Grid - Switch Axis</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet6" data-caption="Switch Axis" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) + 
@@ -143,10 +144,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
 <div id="section-wrap" class="section level2">
 <h2>Wrap</h2>
-<div id="section-introduction-2" class="section level3">
+<div id="section-introduction-3" class="section level3">
 <h3>Introduction</h3>
 <hr>
 <div class="tutorial-exercise" data-label="facet7" data-caption="Wrap" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -156,8 +156,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-specify-rows" class="section level3">
-<h3>Specify Rows</h3>
+</div>
+<div id="section-wrap---specify-rows" class="section level2">
+<h2>Wrap - Specify Rows</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet8" data-caption="Specify Rows" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) +
@@ -172,8 +173,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-rows-columns-2" class="section level3">
-<h3>Rows &amp; Columns</h3>
+<div id="section-wrap---rows-columns" class="section level2">
+<h2>Wrap - Rows &amp; Columns</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet10" data-caption="Rows &amp; Columns" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) +
@@ -188,8 +189,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-scales-1" class="section level3">
-<h3>Scales</h3>
+<div id="section-wrap---scales" class="section level2">
+<h2>Wrap - Scales</h2>
 <hr>
 <div class="tutorial-exercise" data-label="facet12" data-caption="Scales" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(n_pages, duration)) +
@@ -204,7 +205,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -307,7 +308,6 @@ output$`tutorial-exercise-facet12-output` <- renderUI({
 </script>
 <!--/html_preserve-->
 </div>
-</div>
 
 </div> <!-- topics -->
 
@@ -318,7 +318,7 @@ output$`tutorial-exercise-facet12-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">ggplot2: Facets</h2>
+<h2 class="title toc-ignore" style="display:none;">Facets</h2>
 </div>
 <!-- end doc-metadata -->
 

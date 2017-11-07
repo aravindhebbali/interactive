@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Histogram"
+title: "Histogram"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -10,7 +10,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 ```
 
 ## Introduction
@@ -57,7 +57,7 @@ ecom
 - order_value: order value of visitor (in dollars)
 
 
-## Histogram
+## Plot
 
 ### Introduction
 
@@ -68,7 +68,7 @@ ggplot(ecom) +
   geom_histogram(aes(n_visit))
 ```
 
-### Specify Bins
+## Specify Bins
 
 <hr>
 
@@ -77,70 +77,15 @@ ggplot(ecom) +
   geom_histogram(aes(n_visit), bins = 7)
 ```
 
-### Fill
+## Fill
+
+### Specify Value
 
 <hr>
 
 ```{r hist3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
 ggplot(ecom) +
   geom_histogram(aes(n_visit), bins = 7, fill = 'blue')
-```
-
-### Alpha
-
-<hr>
-
-```{r hist11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
-ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7, fill = 'blue', alpha = 0.3)
-```
-
-### Color
-
-<hr>
-
-```{r hist8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
-ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')
-```
-
-### Bins, Color & Fill
-
-<hr>
-
-```{r hist9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bins, Color & Fill'}
-ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7, fill = 'blue', color = 'white')
-```
-
-
-### Bin Width
-
-<hr>
-
-```{r hist5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bin Width'}
-ggplot(ecom) +
-  geom_histogram(aes(n_visit), binwidth = 2, fill = 'blue', color = 'black')
-```
-
-### Line Type
-
-<hr>
-
-```{r hist6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Type'}
-ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 5, fill = 'white', 
-    color = 'blue', linetype = 3)
-```
-
-### Line Size
-
-<hr>
-
-```{r hist10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Size'}
-ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 5, fill = 'white', 
-    color = 'blue', size = 1.25)
 ```
 
 ### Map Fill to Variable
@@ -151,3 +96,52 @@ ggplot(ecom) +
 ggplot(ecom) +
   geom_histogram(aes(n_visit, fill = device), bins = 7)
 ```
+
+
+## Alpha
+
+<hr>
+
+```{r hist11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'blue', alpha = 0.3)
+```
+
+## Color
+
+<hr>
+
+```{r hist8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')
+```
+
+## Bin Width
+
+<hr>
+
+```{r hist5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bin Width'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), binwidth = 2, fill = 'blue', color = 'black')
+```
+
+## Line Type
+
+<hr>
+
+```{r hist6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Type'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 5, fill = 'white', 
+    color = 'blue', linetype = 3)
+```
+
+## Line Size
+
+<hr>
+
+```{r hist10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Size'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 5, fill = 'white', 
+    color = 'blue', size = 1.25)
+```
+

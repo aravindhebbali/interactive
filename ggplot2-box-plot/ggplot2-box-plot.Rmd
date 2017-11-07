@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Box Plot"
+title: "Box Plot"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -10,7 +10,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 ```
 
 ## Introduction
@@ -58,7 +58,7 @@ ecom
 - purchase: whether visitor purchased
 - order_value: order value of visitor (in dollars)
 
-## Box Plot
+## Plot
 
 ### Univariate Box Plot
 
@@ -69,7 +69,7 @@ ggplot(ecom) +
   geom_boxplot(aes(x = factor(1), y = n_visit))
 ```
 
-### Box Plot
+### 2 Factor Box Plot
 
 <hr>
 
@@ -78,7 +78,7 @@ ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = n_visit))
 ```
 
-### Horizontal Box Plot
+## Horizontal Box Plot
 
 <hr>   
 
@@ -88,7 +88,7 @@ ggplot(ecom) +
   coord_flip()
 ```
 
-### Notch
+## Notch
 
 <hr>
 
@@ -98,7 +98,7 @@ ggplot(ecom) +
                notch = TRUE) 
 ```
 
-### Jitter
+## Jitter
 
 <hr>
 
@@ -171,18 +171,7 @@ ggplot(ecom) +
   expand_limits(y = c(0, 1100))
 ```
 
-## Box Aesthetics
-
-### Introduction
-
-<hr>
-
-- color
-- fill
-- alpha
-- line type
-- line width
-
+## Fill
 
 ### Specify Values for Fill
 
@@ -206,6 +195,8 @@ ggplot(ecom) +
   expand_limits(y = c(0, 1100))
 ```
 
+## Alpha
+
 ### Specify Values for Alpha
 
 ```{r box14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Alpha'}
@@ -226,6 +217,8 @@ ggplot(ecom) +
   expand_limits(y = c(0, 1100))
 ```
 
+## Color
+
 ### Map Color to Variables
 
 <hr>
@@ -237,6 +230,8 @@ ggplot(ecom) +
   expand_limits(y = c(0, 1100))
 ```
 
+## Line Width
+
 ### Specify Values for Line Width
 
 <hr>
@@ -247,6 +242,8 @@ ggplot(ecom) +
                size = 1.5) +
   expand_limits(y = c(0, 1100))
 ```
+
+## Line Type
 
 ### Specify Values for Line Type
 

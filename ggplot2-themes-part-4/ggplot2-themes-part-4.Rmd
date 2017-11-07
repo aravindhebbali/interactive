@@ -1,0 +1,94 @@
+---
+title: "Themes - Part 4"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Use `theme()` to modify the appearance of 
+
+- plot background
+- plot title
+- plot margin
+- facet strip background
+- facet strip text
+
+## Plot
+
+<hr>
+
+```{r theme13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Plot Area'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + 
+  ggtitle('Theme Modification')
+p
+```
+
+## Background
+
+<hr>
+
+```{r theme14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Plot Background'}
+p + theme(plot.background = element_rect(color = 'blue', 
+          fill = '#4682B4'))
+```
+
+## Title
+
+<hr>
+
+```{r theme27, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Plot Title'}
+p + theme(plot.title = element_text(color = 'red'))
+```
+
+## Margin
+
+<hr>
+
+```{r theme28, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Plot Margin'}
+p + theme(plot.margin = unit(c(1, 1, 1, 1), "cm"))
+```
+
+## Facets
+
+### Introduction
+
+<hr>
+
+```{r theme15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Facets'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + 
+  facet_grid(~cyl)
+p
+```
+
+## Strip Background
+
+<hr>
+
+```{r theme16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Strip Background'}
+p + theme(strip.background = element_rect(color = 'red', 
+          fill = '#4682B4'))
+```
+
+## Strip Text
+
+<hr>
+
+```{r theme29, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Strip Text'}
+p + theme(strip.text = element_text(face = 'italic', size = 8,
+          color = 'red'))
+```

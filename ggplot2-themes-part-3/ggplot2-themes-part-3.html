@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Text Annotations</title>
+<title>Themes - Part 3</title>
 
 
 <!-- highlightjs -->
@@ -49,112 +49,73 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="section-agenda" class="section level3">
 <h3>Agenda</h3>
 <hr>
+<p>Use <code>theme()</code> to modify the appearance of panel</p>
 <ul>
-<li>add custom text</li>
-<li>modify color</li>
-<li>modify size</li>
-<li>modify fontface</li>
-<li>modify angle</li>
+<li>background</li>
+<li>border</li>
+<li>grid (major)</li>
+<li>grid (minor)</li>
 </ul>
 </div>
 </div>
-<div id="section-overview" class="section level2">
-<h2>Overview</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
+<div id="section-plot" class="section level2">
+<h2>Plot</h2>
 <hr>
-<p>Use <code>annotate()</code> to add custom text to a plot. It takes the following arguments:</p>
-<ul>
-<li><code>geom</code> : specify text</li>
-<li><code>x</code> : x axis location</li>
-<li><code>y</code> : y axis location</li>
-<li><code>label</code> : custom text</li>
-<li><code>color</code> : color of text</li>
-<li><code>size</code> : size of text</li>
-<li><code>fontface</code> : fontface of text</li>
-<li><code>angle</code> : angle of text</li>
-</ul>
-</div>
-</div>
-<div id="section-add-text" class="section level2">
-<h2>Add Text</h2>
-<div id="section-introduction-2" class="section level3">
-<h3>Introduction</h3>
-<hr>
-<div class="tutorial-exercise" data-label="ann2" data-caption="Add Text" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  annotate(&#39;text&#39;, x = 200, y = 30, label = &#39;Sample Text&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="theme9" data-caption="Panel" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p &lt;- ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+p</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-color" class="section level2">
-<h2>Color</h2>
-<div id="section-introduction-3" class="section level3">
-<h3>Introduction</h3>
+<div id="section-background" class="section level2">
+<h2>Background</h2>
 <hr>
-<div class="tutorial-exercise" data-label="ann4" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  annotate(&#39;text&#39;, x = 200, y = 30, label = &#39;Sample Text&#39;, color = &#39;red&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="theme10" data-caption="Panel Background" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(panel.background = element_rect(fill = &#39;gray&#39;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-size" class="section level2">
-<h2>Size</h2>
-<div id="section-introduction-4" class="section level3">
-<h3>Introduction</h3>
+<div id="section-border" class="section level2">
+<h2>Border</h2>
 <hr>
-<div class="tutorial-exercise" data-label="ann5" data-caption="Size" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  annotate(&#39;text&#39;, x = 200, y = 30, label = &#39;Sample Text&#39;, size = 6)</code></pre>
+<div class="tutorial-exercise" data-label="theme24" data-caption="Panel Border" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(panel.border = element_rect(fill = NA, color = &#39;blue&#39;, 
+          linetype = 1, size = 2))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-font" class="section level2">
-<h2>Font</h2>
-<div id="section-introduction-5" class="section level3">
-<h3>Introduction</h3>
+<div id="section-grid" class="section level2">
+<h2>Grid</h2>
 <hr>
-<div class="tutorial-exercise" data-label="ann6" data-caption="Font" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  annotate(&#39;text&#39;, x = 200, y = 30, label = &#39;Sample Text&#39;, fontface = &#39;bold&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="theme25" data-caption="Panel Grid" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(panel.grid = element_line(color = &#39;blue&#39;, linetype = 2, size = 0.5))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-angle" class="section level2">
-<h2>Angle</h2>
-<div id="section-introduction-6" class="section level3">
-<h3>Introduction</h3>
+<div id="section-grid---major" class="section level2">
+<h2>Grid - Major</h2>
 <hr>
-<div class="tutorial-exercise" data-label="ann7" data-caption="Angle" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  annotate(&#39;text&#39;, x = 200, y = 30, label = &#39;Sample Text&#39;, angle = 25)</code></pre>
+<div class="tutorial-exercise" data-label="theme12" data-caption="Panel Grid (Major)" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(panel.grid.major.x = element_line(color = &#39;blue&#39;, 
+          linetype = 2, size = 0.5))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-summary" class="section level2">
-<h2>Summary</h2>
+<div id="section-grid---minor" class="section level2">
+<h2>Grid - Minor</h2>
 <hr>
-<div class="tutorial-exercise" data-label="ann3" data-caption="Annotate" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg)) +
-  annotate(&#39;text&#39;, x = 200, y = 30, label = &#39;Sample Text&#39;,
-           color = &#39;red&#39;, size = 6, fontface = &#39;bold&#39;, angle = 25)</code></pre>
+<div class="tutorial-exercise" data-label="theme26" data-caption="Panel Grid (Minor)" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(panel.grid.minor.y = element_line(color = &#39;red&#39;, 
+          linetype = 3, size = 0.2))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 library(ggplot2)
+library(dplyr)
+library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
 </script>
  
@@ -163,44 +124,44 @@ learnr:::register_http_handlers(session, metadata = NULL)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-ann2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ann2-code-editor`)), session)
-output$`tutorial-exercise-ann2-output` <- renderUI({
-  `tutorial-exercise-ann2-result`()
+`tutorial-exercise-theme9-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme9-code-editor`)), session)
+output$`tutorial-exercise-theme9-output` <- renderUI({
+  `tutorial-exercise-theme9-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-ann4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ann4-code-editor`)), session)
-output$`tutorial-exercise-ann4-output` <- renderUI({
-  `tutorial-exercise-ann4-result`()
+`tutorial-exercise-theme10-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme10-code-editor`)), session)
+output$`tutorial-exercise-theme10-output` <- renderUI({
+  `tutorial-exercise-theme10-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-ann5-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ann5-code-editor`)), session)
-output$`tutorial-exercise-ann5-output` <- renderUI({
-  `tutorial-exercise-ann5-result`()
+`tutorial-exercise-theme24-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme24-code-editor`)), session)
+output$`tutorial-exercise-theme24-output` <- renderUI({
+  `tutorial-exercise-theme24-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-ann6-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ann6-code-editor`)), session)
-output$`tutorial-exercise-ann6-output` <- renderUI({
-  `tutorial-exercise-ann6-result`()
+`tutorial-exercise-theme25-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme25-code-editor`)), session)
+output$`tutorial-exercise-theme25-output` <- renderUI({
+  `tutorial-exercise-theme25-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-ann7-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ann7-code-editor`)), session)
-output$`tutorial-exercise-ann7-output` <- renderUI({
-  `tutorial-exercise-ann7-result`()
+`tutorial-exercise-theme12-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme12-code-editor`)), session)
+output$`tutorial-exercise-theme12-output` <- renderUI({
+  `tutorial-exercise-theme12-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-ann3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ann3-code-editor`)), session)
-output$`tutorial-exercise-ann3-output` <- renderUI({
-  `tutorial-exercise-ann3-result`()
+`tutorial-exercise-theme26-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme26-code-editor`)), session)
+output$`tutorial-exercise-theme26-output` <- renderUI({
+  `tutorial-exercise-theme26-result`()
 })
 </script>
  <!--html_preserve-->
@@ -219,7 +180,7 @@ output$`tutorial-exercise-ann3-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Text Annotations</h2>
+<h2 class="title toc-ignore" style="display:none;">Themes - Part 3</h2>
 </div>
 <!-- end doc-metadata -->
 

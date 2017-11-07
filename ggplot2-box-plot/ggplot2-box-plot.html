@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>ggplot2: Box Plot</title>
+<title>Box Plot</title>
 
 
 <!-- highlightjs -->
@@ -97,8 +97,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ul>
 </div>
 </div>
-<div id="section-box-plot" class="section level2">
-<h2>Box Plot</h2>
+<div id="section-plot" class="section level2">
+<h2>Plot</h2>
 <div id="section-univariate-box-plot" class="section level3">
 <h3>Univariate Box Plot</h3>
 <hr>
@@ -108,8 +108,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-box-plot-1" class="section level3">
-<h3>Box Plot</h3>
+<div id="section-factor-box-plot" class="section level3">
+<h3>2 Factor Box Plot</h3>
 <hr>
 <div class="tutorial-exercise" data-label="box3" data-caption="Box Plot" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom) +
@@ -117,8 +117,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-horizontal-box-plot" class="section level3">
-<h3>Horizontal Box Plot</h3>
+</div>
+<div id="section-horizontal-box-plot" class="section level2">
+<h2>Horizontal Box Plot</h2>
 <hr>
 <div class="tutorial-exercise" data-label="box4" data-caption="Horizontal Box Plot" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom) +
@@ -127,8 +128,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-notch" class="section level3">
-<h3>Notch</h3>
+<div id="section-notch" class="section level2">
+<h2>Notch</h2>
 <hr>
 <div class="tutorial-exercise" data-label="box5" data-caption="Notch" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom) +
@@ -137,15 +138,14 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-jitter" class="section level3">
-<h3>Jitter</h3>
+<div id="section-jitter" class="section level2">
+<h2>Jitter</h2>
 <hr>
 <div class="tutorial-exercise" data-label="box6" data-caption="Jitter" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>ggplot(ecom, aes(x = factor(device), y = n_visit)) +
   geom_boxplot() +
   geom_jitter(width = 0.2, color = &#39;blue&#39;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
 </div>
 </div>
 <div id="section-outliers" class="section level2">
@@ -212,19 +212,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 </div>
 </div>
-<div id="section-box-aesthetics" class="section level2">
-<h2>Box Aesthetics</h2>
-<div id="section-introduction-3" class="section level3">
-<h3>Introduction</h3>
-<hr>
-<ul>
-<li>color</li>
-<li>fill</li>
-<li>alpha</li>
-<li>line type</li>
-<li>line width</li>
-</ul>
-</div>
+<div id="section-fill" class="section level2">
+<h2>Fill</h2>
 <div id="section-specify-values-for-fill" class="section level3">
 <h3>Specify Values for Fill</h3>
 <hr>
@@ -247,6 +236,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
+</div>
+<div id="section-alpha" class="section level2">
+<h2>Alpha</h2>
 <div id="section-specify-values-for-alpha" class="section level3">
 <h3>Specify Values for Alpha</h3>
 <div class="tutorial-exercise" data-label="box14" data-caption="Specify Values for Alpha" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -268,6 +260,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
+</div>
+<div id="section-color" class="section level2">
+<h2>Color</h2>
 <div id="section-map-color-to-variables" class="section level3">
 <h3>Map Color to Variables</h3>
 <hr>
@@ -279,6 +274,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
+</div>
+<div id="section-line-width" class="section level2">
+<h2>Line Width</h2>
 <div id="section-specify-values-for-line-width" class="section level3">
 <h3>Specify Values for Line Width</h3>
 <hr>
@@ -290,6 +288,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
+</div>
+<div id="section-line-type" class="section level2">
+<h2>Line Type</h2>
 <div id="section-specify-values-for-line-type" class="section level3">
 <h3>Specify Values for Line Type</h3>
 <hr>
@@ -307,7 +308,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -456,7 +457,7 @@ output$`tutorial-exercise-box18-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">ggplot2: Box Plot</h2>
+<h2 class="title toc-ignore" style="display:none;">Box Plot</h2>
 </div>
 <!-- end doc-metadata -->
 

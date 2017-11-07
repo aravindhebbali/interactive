@@ -1,0 +1,84 @@
+---
+title: "Themes - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+Use `theme()` to modify the appearance of 
+
+- axis title
+- axis text
+- axis font
+- axis ticks
+- axis line
+
+## Plot
+
+<hr>
+
+```{r theme1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+p
+```
+
+## Axis Title
+
+<hr>
+
+```{r theme2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Title'}
+p + theme(axis.title.x = element_text(color = "red", size = 10))
+```
+
+## Axis Text
+
+<hr>
+
+```{r theme3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Text'}
+p + theme(axis.text.x = element_text(color = "red", size = 10))
+```
+
+## Axis Font
+
+<hr>
+
+
+```{r theme4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Font'}
+p + theme(axis.text = element_text(color = "red", size = 10, face = "italic"))
+```
+
+## Axis Ticks
+
+<hr>
+
+```{r theme5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Ticks'}
+p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2), 
+          axis.ticks.length = unit(1, "cm"))
+```
+
+## Axis Line
+
+<hr>
+
+```{r theme6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Line'}
+p + theme(axis.line = element_line(color = 'red', size = 1.5, linetype = 3))
+```
+
+
+
+
+

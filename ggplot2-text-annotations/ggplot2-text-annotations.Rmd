@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Text Annotations"
+title: "Text Annotations"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - modify fontface
 - modify angle
 
-## Annotate
+## Overview
 
 ### Introduction
 
@@ -99,9 +99,7 @@ ggplot(mtcars) +
   annotate('text', x = 200, y = 30, label = 'Sample Text', angle = 25)
 ```
 
-## Annotate
-
-### Introduction
+## Summary
 
 <hr>
 

@@ -1,0 +1,107 @@
+---
+title: "Legend - Part 4"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+If the aesthetics are mapped to variables, ggplot2 automatically creates legends wherever applicable. 
+You may want to modify the appearance of legends. In this module, we will learn to modify the legends when
+`size` is mapped to categorical variables.
+
+### Agenda
+
+<hr>
+
+Modify legend when `size` is mapped to variables. Specifically
+
+- title
+- breaks
+- limits
+- range
+- labels
+- values
+- symbol type
+
+
+## Plot
+
+<hr>
+
+```{r leg36, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp))
+```
+
+## Title
+
+<hr>
+
+```{r leg37, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Title'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower")
+```
+
+## Range
+
+<hr>
+
+```{r leg38, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Range'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(range = c(3, 6))
+```
+
+## Limits
+
+<hr>
+
+```{r leg39, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Limits'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(limits = c(0, 400))
+```
+
+## Breaks
+
+<hr>
+
+```{r leg40, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400))
+```
+
+## Labels
+
+<hr>
+
+```{r leg41, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Labels'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400),
+    labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
+```
+
+## Summary
+
+<hr>
+
+```{r leg42, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size Continuous'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower", range = c(3, 6), 
+    limits = c(0, 400), breaks = c(100, 200, 300, 400),
+    labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
+```
+

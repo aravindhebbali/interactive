@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Legends - Part 1</title>
+<title>Themes - Part 4</title>
 
 
 <!-- highlightjs -->
@@ -46,94 +46,84 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<p>If the aesthetics are mapped to variables, ggplot2 automatically creates legends wherever applicable. You may want to modify the appearance of legends. In this module, we will learn to modify the legends when <code>color</code> is mapped to categorical variables.</p>
 <div id="section-agenda" class="section level3">
 <h3>Agenda</h3>
 <hr>
-<p>Modify legend when <code>color</code> is mapped to variables. Specifically</p>
+<p>Use <code>theme()</code> to modify the appearance of</p>
 <ul>
-<li>title</li>
-<li>breaks</li>
-<li>limits</li>
-<li>labels</li>
-<li>values</li>
+<li>plot background</li>
+<li>plot title</li>
+<li>plot margin</li>
+<li>facet strip background</li>
+<li>facet strip text</li>
 </ul>
 </div>
 </div>
 <div id="section-plot" class="section level2">
 <h2>Plot</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="leg15" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl)))</code></pre>
+<div class="tutorial-exercise" data-label="theme13" data-caption="Plot Area" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p &lt;- ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + 
+  ggtitle(&#39;Theme Modification&#39;)
+p</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
+</div>
+<div id="section-background" class="section level2">
+<h2>Background</h2>
+<hr>
+<div class="tutorial-exercise" data-label="theme14" data-caption="Plot Background" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(plot.background = element_rect(color = &#39;blue&#39;, 
+          fill = &#39;#4682B4&#39;))</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 <div id="section-title" class="section level2">
 <h2>Title</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg16" data-caption="Legend Title" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(name = &quot;Cylinders&quot;, 
-    values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></pre>
+<div class="tutorial-exercise" data-label="theme27" data-caption="Plot Title" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(plot.title = element_text(color = &#39;red&#39;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-values" class="section level2">
-<h2>Values</h2>
+<div id="section-margin" class="section level2">
+<h2>Margin</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg17" data-caption="Legend Values" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></pre>
+<div class="tutorial-exercise" data-label="theme28" data-caption="Plot Margin" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(plot.margin = unit(c(1, 1, 1, 1), &quot;cm&quot;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-labels" class="section level2">
-<h2>Labels</h2>
+<div id="section-facets" class="section level2">
+<h2>Facets</h2>
+<div id="section-introduction-1" class="section level3">
+<h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="leg18" data-caption="Legend Labels" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    limits = c(4, 6, 8))</code></pre>
+<div class="tutorial-exercise" data-label="theme15" data-caption="Facets" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p &lt;- ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + 
+  facet_grid(~cyl)
+p</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-limits" class="section level2">
-<h2>Limits</h2>
+</div>
+<div id="section-strip-background" class="section level2">
+<h2>Strip Background</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg19" data-caption="Legend Limits" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    labels = c(&#39;Four&#39;, &#39;Six&#39;, &#39;Eight&#39;))</code></pre>
+<div class="tutorial-exercise" data-label="theme16" data-caption="Strip Background" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(strip.background = element_rect(color = &#39;red&#39;, 
+          fill = &#39;#4682B4&#39;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-breaks" class="section level2">
-<h2>Breaks</h2>
+<div id="section-strip-text" class="section level2">
+<h2>Strip Text</h2>
 <hr>
-<div class="tutorial-exercise" data-label="leg20" data-caption="Legend Breaks" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    breaks = c(4, 6, 8))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-<div id="section-summary" class="section level2">
-<h2>Summary</h2>
-<hr>
-<div class="tutorial-exercise" data-label="leg21" data-caption="Color - Discrete Variable" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(mtcars) +
-  geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(name = &quot;Cylinders&quot;, values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
-    labels = c(&#39;Four&#39;, &#39;Six&#39;, &#39;Eight&#39;), limits = c(4, 6, 8), breaks = c(4, 6, 8))</code></pre>
+<div class="tutorial-exercise" data-label="theme29" data-caption="Strip Text" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(strip.text = element_text(face = &#39;italic&#39;, size = 8,
+          color = &#39;red&#39;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
@@ -150,51 +140,51 @@ learnr:::register_http_handlers(session, metadata = NULL)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg15-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg15-code-editor`)), session)
-output$`tutorial-exercise-leg15-output` <- renderUI({
-  `tutorial-exercise-leg15-result`()
+`tutorial-exercise-theme13-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme13-code-editor`)), session)
+output$`tutorial-exercise-theme13-output` <- renderUI({
+  `tutorial-exercise-theme13-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg16-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg16-code-editor`)), session)
-output$`tutorial-exercise-leg16-output` <- renderUI({
-  `tutorial-exercise-leg16-result`()
+`tutorial-exercise-theme14-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme14-code-editor`)), session)
+output$`tutorial-exercise-theme14-output` <- renderUI({
+  `tutorial-exercise-theme14-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg17-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg17-code-editor`)), session)
-output$`tutorial-exercise-leg17-output` <- renderUI({
-  `tutorial-exercise-leg17-result`()
+`tutorial-exercise-theme27-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme27-code-editor`)), session)
+output$`tutorial-exercise-theme27-output` <- renderUI({
+  `tutorial-exercise-theme27-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg18-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg18-code-editor`)), session)
-output$`tutorial-exercise-leg18-output` <- renderUI({
-  `tutorial-exercise-leg18-result`()
+`tutorial-exercise-theme28-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme28-code-editor`)), session)
+output$`tutorial-exercise-theme28-output` <- renderUI({
+  `tutorial-exercise-theme28-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg19-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg19-code-editor`)), session)
-output$`tutorial-exercise-leg19-output` <- renderUI({
-  `tutorial-exercise-leg19-result`()
+`tutorial-exercise-theme15-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme15-code-editor`)), session)
+output$`tutorial-exercise-theme15-output` <- renderUI({
+  `tutorial-exercise-theme15-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg20-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg20-code-editor`)), session)
-output$`tutorial-exercise-leg20-output` <- renderUI({
-  `tutorial-exercise-leg20-result`()
+`tutorial-exercise-theme16-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme16-code-editor`)), session)
+output$`tutorial-exercise-theme16-output` <- renderUI({
+  `tutorial-exercise-theme16-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-leg21-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-leg21-code-editor`)), session)
-output$`tutorial-exercise-leg21-output` <- renderUI({
-  `tutorial-exercise-leg21-result`()
+`tutorial-exercise-theme29-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme29-code-editor`)), session)
+output$`tutorial-exercise-theme29-output` <- renderUI({
+  `tutorial-exercise-theme29-result`()
 })
 </script>
  <!--html_preserve-->
@@ -213,7 +203,7 @@ output$`tutorial-exercise-leg21-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Legends - Part 1</h2>
+<h2 class="title toc-ignore" style="display:none;">Themes - Part 4</h2>
 </div>
 <!-- end doc-metadata -->
 

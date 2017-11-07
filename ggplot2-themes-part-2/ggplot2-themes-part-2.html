@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Histogram</title>
+<title>Themes - Part 2</title>
 
 
 <!-- highlightjs -->
@@ -49,136 +49,105 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="section-agenda" class="section level3">
 <h3>Agenda</h3>
 <hr>
+<p>Use <code>theme()</code> to modify the appearance of legend</p>
 <ul>
-<li>build histogram</li>
-<li>specify bins</li>
-<li>modify
-<ul>
-<li>color</li>
-<li>fill</li>
-<li>alpha</li>
-<li>bin width</li>
-<li>line type</li>
-<li>line size</li>
-</ul></li>
-<li>map aesthetics to variables</li>
-</ul>
-</div>
-</div>
-<div id="section-data" class="section level2">
-<h2>Data</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
-<hr>
-<div class="tutorial-exercise" data-label="import" data-caption="Data" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ecom</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-<div id="section-data-dictionary" class="section level3">
-<h3>Data Dictionary</h3>
-<hr>
-<ul>
-<li>id: row id</li>
-<li>referrer: referrer website/search engine</li>
-<li>os: operating system</li>
-<li>browser: browser</li>
-<li>device: device used to visit the website</li>
-<li>n_pages: number of pages visited</li>
-<li>duration: time spent on the website (in seconds)</li>
-<li>repeat: frequency of visits</li>
-<li>country: country of origin</li>
-<li>purchase: whether visitor purchased</li>
-<li>order_value: order value of visitor (in dollars)</li>
+<li>background</li>
+<li>margin</li>
+<li>spacing</li>
+<li>key</li>
+<li>text</li>
+<li>title</li>
+<li>position</li>
+<li>direction</li>
+<li>box</li>
 </ul>
 </div>
 </div>
 <div id="section-plot" class="section level2">
 <h2>Plot</h2>
-<div id="section-introduction-2" class="section level3">
-<h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="hist2" data-caption="Histogram" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit))</code></pre>
+<div class="tutorial-exercise" data-label="theme7" data-caption="Legend" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p &lt;- ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl), shape = factor(gear)))
+p</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-specify-bins" class="section level2">
-<h2>Specify Bins</h2>
+<div id="section-background" class="section level2">
+<h2>Background</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist4" data-caption="Specify Bins" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7)</code></pre>
+<div class="tutorial-exercise" data-label="theme30" data-caption="Background" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.background = element_rect(fill = &#39;gray&#39;, linetype = 3,  
+          color = &quot;black&quot;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-fill" class="section level2">
-<h2>Fill</h2>
-<div id="section-specify-value" class="section level3">
-<h3>Specify Value</h3>
+<div id="section-margin" class="section level2">
+<h2>Margin</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist3" data-caption="Fill" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7, fill = &#39;blue&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="theme31" data-caption="Margin" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.margin = margin(4, 8, 4, 8))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-map-fill-to-variable" class="section level3">
-<h3>Map Fill to Variable</h3>
+<div id="section-spacing" class="section level2">
+<h2>Spacing</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist7" data-caption="Map Fill to Variable" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit, fill = device), bins = 7)</code></pre>
+<div class="tutorial-exercise" data-label="theme32" data-caption="Spacing" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.spacing = unit(1.5, &quot;cm&quot;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-alpha" class="section level2">
-<h2>Alpha</h2>
+<div id="section-key" class="section level2">
+<h2>Key</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist11" data-caption="Alpha" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7, fill = &#39;blue&#39;, alpha = 0.3)</code></pre>
+<div class="tutorial-exercise" data-label="theme33" data-caption="Key" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.key = element_rect(fill = &#39;red&#39;),
+          legend.key.size = unit(0.4, &quot;cm&quot;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-color" class="section level2">
-<h2>Color</h2>
+<div id="section-text" class="section level2">
+<h2>Text</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist8" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 7, fill = &#39;white&#39;, color = &#39;blue&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="theme34" data-caption="Text" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.text = element_text(color = &#39;green&#39;, face = &#39;italic&#39;))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-bin-width" class="section level2">
-<h2>Bin Width</h2>
+<div id="section-title" class="section level2">
+<h2>Title</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist5" data-caption="Bin Width" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), binwidth = 2, fill = &#39;blue&#39;, color = &#39;black&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="theme35" data-caption="Title" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.title = element_text(color = &#39;blue&#39;, face = &#39;bold&#39;),
+          legend.title.align = 0.1)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-line-type" class="section level2">
-<h2>Line Type</h2>
+<div id="section-position" class="section level2">
+<h2>Position</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist6" data-caption="Line Type" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 5, fill = &#39;white&#39;, 
-    color = &#39;blue&#39;, linetype = 3)</code></pre>
+<div class="tutorial-exercise" data-label="theme36" data-caption="Position" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.position = &quot;top&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-line-size" class="section level2">
-<h2>Line Size</h2>
+<div id="section-direction" class="section level2">
+<h2>Direction</h2>
 <hr>
-<div class="tutorial-exercise" data-label="hist10" data-caption="Line Size" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>ggplot(ecom) +
-  geom_histogram(aes(n_visit), bins = 5, fill = &#39;white&#39;, 
-    color = &#39;blue&#39;, size = 1.25)</code></pre>
+<div class="tutorial-exercise" data-label="theme37" data-caption="Direction" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.direction = &quot;horizontal&quot;)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-box" class="section level2">
+<h2>Box</h2>
+<hr>
+<div class="tutorial-exercise" data-label="theme38" data-caption="Box" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>p + theme(legend.box = &quot;horizontal&quot;,
+  legend.box.background = element_rect(fill = &quot;gray&quot;),
+  legend.box.spacing = unit(1, &quot;cm&quot;), legend.box.just = &quot;left&quot;,
+  legend.box.margin = margin(4, 8, 4, 8))</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
@@ -188,7 +157,6 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -196,72 +164,72 @@ learnr:::register_http_handlers(session, metadata = NULL)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-import-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-import-code-editor`)), session)
-output$`tutorial-exercise-import-output` <- renderUI({
-  `tutorial-exercise-import-result`()
+`tutorial-exercise-theme7-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme7-code-editor`)), session)
+output$`tutorial-exercise-theme7-output` <- renderUI({
+  `tutorial-exercise-theme7-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist2-code-editor`)), session)
-output$`tutorial-exercise-hist2-output` <- renderUI({
-  `tutorial-exercise-hist2-result`()
+`tutorial-exercise-theme30-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme30-code-editor`)), session)
+output$`tutorial-exercise-theme30-output` <- renderUI({
+  `tutorial-exercise-theme30-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist4-code-editor`)), session)
-output$`tutorial-exercise-hist4-output` <- renderUI({
-  `tutorial-exercise-hist4-result`()
+`tutorial-exercise-theme31-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme31-code-editor`)), session)
+output$`tutorial-exercise-theme31-output` <- renderUI({
+  `tutorial-exercise-theme31-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist3-code-editor`)), session)
-output$`tutorial-exercise-hist3-output` <- renderUI({
-  `tutorial-exercise-hist3-result`()
+`tutorial-exercise-theme32-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme32-code-editor`)), session)
+output$`tutorial-exercise-theme32-output` <- renderUI({
+  `tutorial-exercise-theme32-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist7-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist7-code-editor`)), session)
-output$`tutorial-exercise-hist7-output` <- renderUI({
-  `tutorial-exercise-hist7-result`()
+`tutorial-exercise-theme33-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme33-code-editor`)), session)
+output$`tutorial-exercise-theme33-output` <- renderUI({
+  `tutorial-exercise-theme33-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist11-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist11-code-editor`)), session)
-output$`tutorial-exercise-hist11-output` <- renderUI({
-  `tutorial-exercise-hist11-result`()
+`tutorial-exercise-theme34-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme34-code-editor`)), session)
+output$`tutorial-exercise-theme34-output` <- renderUI({
+  `tutorial-exercise-theme34-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist8-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist8-code-editor`)), session)
-output$`tutorial-exercise-hist8-output` <- renderUI({
-  `tutorial-exercise-hist8-result`()
+`tutorial-exercise-theme35-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme35-code-editor`)), session)
+output$`tutorial-exercise-theme35-output` <- renderUI({
+  `tutorial-exercise-theme35-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist5-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist5-code-editor`)), session)
-output$`tutorial-exercise-hist5-output` <- renderUI({
-  `tutorial-exercise-hist5-result`()
+`tutorial-exercise-theme36-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme36-code-editor`)), session)
+output$`tutorial-exercise-theme36-output` <- renderUI({
+  `tutorial-exercise-theme36-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist6-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist6-code-editor`)), session)
-output$`tutorial-exercise-hist6-output` <- renderUI({
-  `tutorial-exercise-hist6-result`()
+`tutorial-exercise-theme37-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme37-code-editor`)), session)
+output$`tutorial-exercise-theme37-output` <- renderUI({
+  `tutorial-exercise-theme37-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-hist10-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-hist10-code-editor`)), session)
-output$`tutorial-exercise-hist10-output` <- renderUI({
-  `tutorial-exercise-hist10-result`()
+`tutorial-exercise-theme38-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-theme38-code-editor`)), session)
+output$`tutorial-exercise-theme38-output` <- renderUI({
+  `tutorial-exercise-theme38-result`()
 })
 </script>
  <!--html_preserve-->
@@ -280,7 +248,7 @@ output$`tutorial-exercise-hist10-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Histogram</h2>
+<h2 class="title toc-ignore" style="display:none;">Themes - Part 2</h2>
 </div>
 <!-- end doc-metadata -->
 

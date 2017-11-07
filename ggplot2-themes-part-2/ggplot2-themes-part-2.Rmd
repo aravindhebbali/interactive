@@ -1,0 +1,118 @@
+---
+title: "Themes - Part 2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Introduction
+
+### Agenda
+
+<hr>
+
+Use `theme()` to modify the appearance of legend
+
+- background
+- margin
+- spacing
+- key
+- text
+- title
+- position
+- direction
+- box
+
+## Plot
+
+<hr>
+
+```{r theme7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl), shape = factor(gear)))
+p
+```
+
+## Background 
+
+<hr>
+
+```{r theme30, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Background'}
+p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,  
+          color = "black"))
+```
+
+## Margin 
+
+<hr>
+
+```{r theme31, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Margin'}
+p + theme(legend.margin = margin(4, 8, 4, 8))
+```
+
+## Spacing 
+
+<hr>
+
+```{r theme32, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Spacing'}
+p + theme(legend.spacing = unit(1.5, "cm"))
+```
+
+## Key 
+
+<hr>
+
+```{r theme33, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Key'}
+p + theme(legend.key = element_rect(fill = 'red'),
+          legend.key.size = unit(0.4, "cm"))
+```
+
+## Text 
+
+<hr>
+
+```{r theme34, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text'}
+p + theme(legend.text = element_text(color = 'green', face = 'italic'))
+```
+
+## Title 
+
+<hr>
+
+```{r theme35, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title'}
+p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
+          legend.title.align = 0.1)
+```
+
+## Position 
+
+<hr>
+
+```{r theme36, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Position'}
+p + theme(legend.position = "top")
+```
+
+## Direction 
+
+<hr>
+
+```{r theme37, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Direction'}
+p + theme(legend.direction = "horizontal")
+```
+
+## Box 
+
+<hr>
+
+```{r theme38, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box'}
+p + theme(legend.box = "horizontal",
+  legend.box.background = element_rect(fill = "gray"),
+  legend.box.spacing = unit(1, "cm"), legend.box.just = "left",
+  legend.box.margin = margin(4, 8, 4, 8))
+```

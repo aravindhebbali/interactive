@@ -1,5 +1,5 @@
 ---
-title: "ggplot2: Facets"
+title: "Facets"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -10,12 +10,14 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 ```
 
 ## Introduction
 
-### Data
+## Data
+
+### Introduction
 
 <hr>
 
@@ -50,7 +52,7 @@ Generate subplots that each display one subset of the data using
 - `facet_grid()`
 - `facet_wrap()`
 
-### Columns
+## Grid - Columns
 
 <hr>
 
@@ -60,7 +62,7 @@ ggplot(ecom, aes(n_pages, duration)) +
   facet_grid(. ~ device)
 ```
 
-### Rows
+## Grid - Rows
 
 <hr>
 
@@ -70,7 +72,7 @@ ggplot(ecom, aes(n_pages, duration)) +
   facet_grid(device ~ .)
 ```
 
-### Rows & Columns
+## Grid - Rows & Columns
 
 <hr>
 
@@ -80,15 +82,13 @@ ggplot(ecom, aes(n_pages, duration)) +
   facet_grid(purchase ~ device)
 ```
 
-### Rows & Columns
-
 ```{r facet4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows & Columns'}
 ggplot(ecom, aes(n_pages, duration)) + 
   geom_point() +
   facet_grid(device ~ purchase)
 ```
 
-### Scales
+## Grid - Scales
 
 <hr>
 
@@ -100,7 +100,7 @@ ggplot(ecom, aes(n_pages, duration, color = factor(device))) +
   facet_grid(. ~ device, scales = "free")
 ```
 
-### Switch Axis
+## Grid - Switch Axis
 
 <hr>
 
@@ -122,7 +122,7 @@ ggplot(ecom, aes(n_pages, duration)) +
   facet_wrap(~device)
 ```
 
-### Specify Rows
+## Wrap - Specify Rows
 
 <hr>
 
@@ -139,7 +139,7 @@ ggplot(ecom, aes(n_pages, duration)) +
   facet_wrap(~device, nrow = 3)
 ```
 
-### Rows & Columns
+## Wrap - Rows & Columns
 
 <hr>
 
@@ -155,7 +155,7 @@ ggplot(ecom, aes(n_pages, duration)) +
   facet_wrap(c("device", "purchase"))
 ```
 
-### Scales
+## Wrap - Scales
 
 <hr>
 
