@@ -9,9 +9,7 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Introduction
-
-### Agenda
+## Agenda
 
 <hr>
 
@@ -22,6 +20,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - learn to modify
     - axis range
+
+
+## Introduction
+
 
 ## Syntax
 

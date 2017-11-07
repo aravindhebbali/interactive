@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Scatter Plot</title>
+<title>Line Chart - Part 2</title>
 
 
 <!-- highlightjs -->
@@ -44,142 +44,164 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div class="topics">
 
-<div id="section-introduction" class="section level2">
-<h2>Introduction</h2>
-<div id="section-agenda" class="section level3">
-<h3>Agenda</h3>
+<div id="section-agenda" class="section level2">
+<h2>Agenda</h2>
 <hr>
 <ul>
-<li>create scatter plot</li>
-<li>modify symbol
-<ul>
-<li>color</li>
-<li>shape</li>
-<li>and shape</li>
-</ul></li>
+<li>create line plots</li>
+<li>add color to lines</li>
+<li>modify line type/style</li>
+<li>modify line width</li>
+<li>add points to the lines</li>
+<li>modify axis range</li>
+<li>add additional lines to the plot</li>
 </ul>
 </div>
+<div id="section-introduction" class="section level2">
+<h2>Introduction</h2>
 </div>
-<div id="section-scatter-plot" class="section level2">
-<h2>Scatter Plot</h2>
+<div id="section-line-types" class="section level2">
+<h2>Line Types</h2>
 <div id="section-introduction-1" class="section level3">
 <h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="scatter1" data-caption="Scatter Plot" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<ul>
+<li>1: solid</li>
+<li>2: dashed</li>
+<li>3: dotted</li>
+<li>4: dotdash</li>
+<li>5: longdash</li>
+<li>6: twodash</li>
+</ul>
 </div>
 </div>
-</div>
-<div id="section-syntax" class="section level2">
-<h2>Syntax</h2>
-</div>
-<div id="section-title-axis-labels" class="section level2">
-<h2>Title &amp; Axis Labels</h2>
+<div id="section-line-type---1" class="section level2">
+<h2>Line Type - 1</h2>
+<div id="section-line-types-1" class="section level3">
+<h3>Line Types</h3>
 <hr>
-<div class="tutorial-exercise" data-label="scatter2" data-caption="Title &amp; Axis Labels" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg,
-     main = &#39;Displacement vs Miles Per Gallon&#39;,
-     xlab = &#39;Displacement&#39;, ylab = &#39;Miles Per Gallon&#39;)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-<div id="section-symbol---1" class="section level2">
-<h2>Symbol - 1</h2>
-<div id="section-introduction-2" class="section level3">
-<h3>Introduction</h3>
-<hr>
-<div class="tutorial-exercise" data-label="scatter-shape" data-caption="Shape" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, pch = 6)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-</div>
-<div id="section-symbol---2" class="section level2">
-<h2>Symbol - 2</h2>
-<hr>
-<div class="tutorial-exercise" data-label="scatter-pch" data-caption="Shape" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="lin7" data-caption="Line Types" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>init &lt;- par(no.readonly = TRUE)
-par(mfrow = c(2, 2))
-values &lt;- c(4, 10, 16, 22)
+par(mfrow = c(3, 2))
+values &lt;- 1:6
 for (i in values) {
-    plot(mtcars$disp, mtcars$mpg, pch = i, cex = 1.5)
-    mtext(paste(&quot;pch = &quot;, i), side = 3, col = &quot;blue&quot;)
+    plot(data, type = &quot;l&quot;, lty = i, col =&quot;red&quot;)
+    mtext(paste(&quot;lty = &quot;, i), side = 3, col = &quot;blue&quot;, line = 1)
 }</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":10,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":960,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-symbol---3" class="section level2">
-<h2>Symbol - 3</h2>
-<hr>
-<div class="tutorial-exercise" data-label="scatter-pch2" data-caption="Shape" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, pch = nlevels(factor(mtcars$cyl)))</code></pre>
+</div>
+<div id="section-line-type---2" class="section level2">
+<h2>Line Type - 2</h2>
+<div class="tutorial-exercise" data-label="line9" data-caption="Line Types" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data, type = &#39;l&#39;, lty = 3)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-symbol---4" class="section level2">
-<h2>Symbol - 4</h2>
+<div id="section-line-type---3" class="section level2">
+<h2>Line Type - 3</h2>
 <hr>
-<div class="tutorial-exercise" data-label="scatter-pch3" data-caption="Shape" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, pch = unclass(mtcars$cyl))</code></pre>
+<div class="tutorial-exercise" data-label="line17" data-caption="Line Types" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data, type = &#39;l&#39;, lty = dotted)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
+<div class="tutorial-exercise" data-label="lin8" data-caption="Line Types" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>init &lt;- par(no.readonly = TRUE)
+par(mfrow = c(3, 2))
+values &lt;- c(&quot;solid&quot;, &quot;dashed&quot;, &quot;dotted&quot;, &quot;dotdash&quot;, &quot;longdash&quot;, &quot;twodash&quot;)
+for (i in values) {
+    plot(data, type = &quot;l&quot;, lty = i, col =&quot;red&quot;)
+    mtext(paste(&quot;lty = &quot;, i), side = 3, col = &quot;blue&quot;, line = 1)
+}</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":10,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":960,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<div id="section-size---1" class="section level2">
-<h2>Size - 1</h2>
-<div id="section-introduction-3" class="section level3">
+</div>
+<div id="section-line-width---1" class="section level2">
+<h2>Line Width - 1</h2>
+<div id="section-introduction-2" class="section level3">
 <h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="scatter-size" data-caption="Size" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, cex = 1.5)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-</div>
-<div id="section-size---2" class="section level2">
-<h2>Size - 2</h2>
-<hr>
-<div class="tutorial-exercise" data-label="scatter-cex" data-caption="Size" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="lin11" data-caption="Line Width" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>init &lt;- par(no.readonly = TRUE)
 par(mfrow = c(2, 2))
 values &lt;- c(0.5, 1, 1.5, 2)
 for (i in values) {
-    plot(mtcars$disp, mtcars$mpg, pch = 6, cex = i)
-    mtext(paste(&quot;cex = &quot;, i), side = 3, col = &quot;blue&quot;)
+    plot(data, type = &quot;l&quot;, lwd = i, col =&quot;red&quot;)
+    mtext(paste(&quot;lwd = &quot;, i), side = 3, col = &quot;blue&quot;, line = 1)
 }</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":10,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":960,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-color---1" class="section level2">
-<h2>Color - 1</h2>
-<div id="section-introduction-4" class="section level3">
+</div>
+<div id="section-line-width---2" class="section level2">
+<h2>Line Width - 2</h2>
+<hr>
+<div class="tutorial-exercise" data-label="line10" data-caption="Line Width" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data, type = &#39;l&#39;, lwd = 2.5)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-add-points---1" class="section level2">
+<h2>Add Points - 1</h2>
+<div id="section-enhance-points" class="section level3">
+<h3>Enhance Points</h3>
+<hr>
+<div class="tutorial-exercise" data-label="line12" data-caption="Points" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data, type = &#39;b&#39;, pch = 23, col = &#39;red&#39;, cex = 1.5)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-add-points---2" class="section level2">
+<h2>Add Points - 2</h2>
+<hr>
+<div class="tutorial-exercise" data-label="line13" data-caption="Add Points" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data, type = &#39;l&#39;, col = &#39;red&#39;)
+points(data, pch = 23, col = &#39;blue&#39;, bg = &#39;green&#39;, cex = 1.5)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-additional-lines---1" class="section level2">
+<h2>Additional Lines - 1</h2>
+<div id="section-introduction-3" class="section level3">
 <h3>Introduction</h3>
 <hr>
-<div class="tutorial-exercise" data-label="col1" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, pch = 5, col = &#39;blue&#39;, bg = &#39;red&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="line14" data-caption="Additional Lines" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>data1 &lt;- c(7.2, 7.6, 6.8, 6.5, 7)
+data2 &lt;- c(6.8, 7.2, 7.8, 7, 6.2)
+plot(data1, type = &quot;b&quot;, col = &quot;blue&quot;)
+lines(data2, type = &quot;b&quot;, col = &quot;red&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
-<div id="section-color---2" class="section level2">
-<h2>Color - 2</h2>
+<div id="section-additional-lines---2" class="section level2">
+<h2>Additional Lines - 2</h2>
 <hr>
-<div class="tutorial-exercise" data-label="col2" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, pch = 24, col = &#39;red&#39;, bg = &#39;blue&#39;)</code></pre>
+<div class="tutorial-exercise" data-label="line15" data-caption="Modify Axis Ranges" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data1, type = &quot;b&quot;, col = &quot;blue&quot;, ylim = c(5, 9))
+lines(data2, type = &quot;b&quot;, col = &quot;red&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-color---3" class="section level2">
-<h2>Color - 3</h2>
+<div id="section-summary" class="section level2">
+<h2>Summary</h2>
 <hr>
-<div class="tutorial-exercise" data-label="col3" data-caption="Color" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg, pch = 5, col = factor(mtcars$cyl))</code></pre>
+<div class="tutorial-exercise" data-label="line16" data-caption="Line Chart" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>plot(data1, type = &quot;b&quot;, col = &quot;blue&quot;, 
+     ylim = c(5, 9), main = &#39;Line Graph&#39;,
+     xlab = &#39;Index&#39;, ylab = &#39;Data&#39;)
+lines(data2, type = &quot;b&quot;, col = &quot;red&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+data <- head(AirPassengers)
+data1 <- c(7.2, 7.6, 6.8, 6.5, 7)
+data2 <- c(6.8, 7.2, 7.8, 7, 6.2)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -187,79 +209,79 @@ learnr:::register_http_handlers(session, metadata = NULL)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter1-code-editor`)), session)
-output$`tutorial-exercise-scatter1-output` <- renderUI({
-  `tutorial-exercise-scatter1-result`()
+`tutorial-exercise-lin7-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-lin7-code-editor`)), session)
+output$`tutorial-exercise-lin7-output` <- renderUI({
+  `tutorial-exercise-lin7-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter2-code-editor`)), session)
-output$`tutorial-exercise-scatter2-output` <- renderUI({
-  `tutorial-exercise-scatter2-result`()
+`tutorial-exercise-line9-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line9-code-editor`)), session)
+output$`tutorial-exercise-line9-output` <- renderUI({
+  `tutorial-exercise-line9-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter-shape-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter-shape-code-editor`)), session)
-output$`tutorial-exercise-scatter-shape-output` <- renderUI({
-  `tutorial-exercise-scatter-shape-result`()
+`tutorial-exercise-line17-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line17-code-editor`)), session)
+output$`tutorial-exercise-line17-output` <- renderUI({
+  `tutorial-exercise-line17-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter-pch-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter-pch-code-editor`)), session)
-output$`tutorial-exercise-scatter-pch-output` <- renderUI({
-  `tutorial-exercise-scatter-pch-result`()
+`tutorial-exercise-lin8-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-lin8-code-editor`)), session)
+output$`tutorial-exercise-lin8-output` <- renderUI({
+  `tutorial-exercise-lin8-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter-pch2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter-pch2-code-editor`)), session)
-output$`tutorial-exercise-scatter-pch2-output` <- renderUI({
-  `tutorial-exercise-scatter-pch2-result`()
+`tutorial-exercise-lin11-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-lin11-code-editor`)), session)
+output$`tutorial-exercise-lin11-output` <- renderUI({
+  `tutorial-exercise-lin11-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter-pch3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter-pch3-code-editor`)), session)
-output$`tutorial-exercise-scatter-pch3-output` <- renderUI({
-  `tutorial-exercise-scatter-pch3-result`()
+`tutorial-exercise-line10-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line10-code-editor`)), session)
+output$`tutorial-exercise-line10-output` <- renderUI({
+  `tutorial-exercise-line10-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter-size-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter-size-code-editor`)), session)
-output$`tutorial-exercise-scatter-size-output` <- renderUI({
-  `tutorial-exercise-scatter-size-result`()
+`tutorial-exercise-line12-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line12-code-editor`)), session)
+output$`tutorial-exercise-line12-output` <- renderUI({
+  `tutorial-exercise-line12-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-scatter-cex-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-scatter-cex-code-editor`)), session)
-output$`tutorial-exercise-scatter-cex-output` <- renderUI({
-  `tutorial-exercise-scatter-cex-result`()
+`tutorial-exercise-line13-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line13-code-editor`)), session)
+output$`tutorial-exercise-line13-output` <- renderUI({
+  `tutorial-exercise-line13-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-col1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-col1-code-editor`)), session)
-output$`tutorial-exercise-col1-output` <- renderUI({
-  `tutorial-exercise-col1-result`()
+`tutorial-exercise-line14-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line14-code-editor`)), session)
+output$`tutorial-exercise-line14-output` <- renderUI({
+  `tutorial-exercise-line14-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-col2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-col2-code-editor`)), session)
-output$`tutorial-exercise-col2-output` <- renderUI({
-  `tutorial-exercise-col2-result`()
+`tutorial-exercise-line15-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line15-code-editor`)), session)
+output$`tutorial-exercise-line15-output` <- renderUI({
+  `tutorial-exercise-line15-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-col3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-col3-code-editor`)), session)
-output$`tutorial-exercise-col3-output` <- renderUI({
-  `tutorial-exercise-col3-result`()
+`tutorial-exercise-line16-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-line16-code-editor`)), session)
+output$`tutorial-exercise-line16-output` <- renderUI({
+  `tutorial-exercise-line16-result`()
 })
 </script>
  <!--html_preserve-->
@@ -278,7 +300,7 @@ output$`tutorial-exercise-col3-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Scatter Plot</h2>
+<h2 class="title toc-ignore" style="display:none;">Line Chart - Part 2</h2>
 </div>
 <!-- end doc-metadata -->
 

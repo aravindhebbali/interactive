@@ -9,9 +9,7 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Introduction
-
-### Agenda
+## Agenda
 
 <hr>
 
@@ -22,6 +20,9 @@ knitr::opts_chunk$set(echo = FALSE)
     - ggplot2
     - lattice
 - build some simple plots
+
+
+## Introduction
 
 ### What is data visualization?
 
@@ -41,7 +42,7 @@ In simple words, data visualization is the representation of data in graphical f
 - Communicate: Easy to communicate and share the insights from data
 
 
-### R Graphics System
+## R Graphics System
 
 <hr>
 
@@ -98,7 +99,7 @@ head(mtcars)
 str(mtcars)
 ```
 
-## Plotting
+## Plot Function
 
 ### Introduction
 
@@ -113,7 +114,9 @@ Now that we have some idea about the data set, let us explore the `plot()` funct
 - Case 5: 1 continuous and 1 categorical variable
 - Case 6: 1 categorical and 1 continuous variable
 
-### One continuous variable
+## Continuous Data - 1
+
+### One Continuous Variable
 
 <hr>
 
@@ -121,15 +124,9 @@ Now that we have some idea about the data set, let us explore the `plot()` funct
 plot(mtcars$mpg)
 ```
 
-### One categorical variable
+## Continuous Data - 2
 
-<hr>
-
-```{r plot2,fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'One Categorical Variable'}
-plot(as.factor(mtcars$cyl))
-```
-
-### Two continuous variables
+### Two continuous Variables
 
 <hr>
 
@@ -137,7 +134,20 @@ plot(as.factor(mtcars$cyl))
 plot(mtcars$disp, mtcars$mpg)
 ```
 
-### Two categorical variables
+
+## Categorical Data - 1
+
+### One Categorical Variable
+
+<hr>
+
+```{r plot2,fig.align='center',fig.height=5,fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'One Categorical Variable'}
+plot(as.factor(mtcars$cyl))
+```
+
+## Categorical Data - 2
+
+### Two Categorical Variables
 
 <hr>
 
@@ -145,7 +155,9 @@ plot(mtcars$disp, mtcars$mpg)
 plot(as.factor(mtcars$am), as.factor(mtcars$cyl))
 ```
 
-### Continuous/Categorical variable
+## Combined Data - 1
+
+### Continuous/Categorical Variables
 
 <hr>
 
@@ -153,7 +165,9 @@ plot(as.factor(mtcars$am), as.factor(mtcars$cyl))
 plot(mtcars$mpg, mtcars$cyl)
 ```
 
-### Categorical/Continuous variable
+## Combined Data - 2
+
+### Categorical/Continuous Variables
 
 <hr>
 

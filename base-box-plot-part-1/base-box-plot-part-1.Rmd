@@ -1,0 +1,237 @@
+---
+title: "Box Plot - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+mpg_split <- split(mtcars$mpg, mtcars$cyl)
+```
+
+## Agenda
+
+<hr>
+
+- create univariate/multivariate box plots
+- interpret box plots
+- create horizontal box plots
+- detect outliers
+- modify box color
+- use formula to compare distributions of different variables
+- use notches to compare medians
+
+
+## Introduction
+
+The box plot is a standardized way of displaying the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum. Box plots are useful for detecting outliers and for comparing distributions. It shows the shape, central tendancy and variability of the data.
+
+### Structure
+
+<hr>
+
+- The body of the boxplot consists of a "box" (hence, the name), which goes from the first quartile (Q1) to the third quartile (Q3). 
+- Within the box, a vertical line is drawn at the Q2, the median of the data set. 
+- Two horizontal lines, called whiskers, extend from the front and back of the box. 
+- The front whisker goes from Q1 to the smallest non-outlier in the data set, and the back whisker goes from Q3 to the largest non-outlier. 
+- If the data set includes one or more outliers, they are plotted separately as points on the chart. 
+
+
+
+
+## Box Plot
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+To create a boxplot, we use the `boxplot()` function. For example, to create a box plot of `mpg` from `mtcars`, this is how your code would look like:
+
+<br>
+
+#### Example
+
+<hr> 
+
+```{r box8, eval=FALSE, echo=TRUE}
+boxplot(mtcars$mpg)
+```
+
+<br>
+
+#### Instructions
+
+<hr> 
+
+- apply the `boxplot()` function to `disp` variable from `mtcars`
+
+<br>
+
+#### Script
+
+<hr> 
+
+
+```{r box1, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+# box plot of disp
+
+```
+
+```{r box1-solution}
+boxplot(mtcars$mpg)
+```
+
+## Horizontal Box Plot
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+To change the direction of the box plot, use the `horizontal` argument. For example, to change the direction of the plot from the previous section, set the value of the `horizontal` argument to `TRUE`:
+
+<br>
+
+#### Example
+
+<hr> 
+
+```{r box9, eval=FALSE, echo=TRUE}
+# horizontal box plot
+boxplot(mtcars$mpg, horizontal = TRUE)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- apply the `boxplot()` function to `disp` variable from `mtcars`
+- change the direction of the box plot using `horizontal`
+
+<br>
+
+#### Script
+
+<hr>
+
+
+```{r box2, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Box Plot'}
+# horizontal box plot
+
+```
+
+```{r box2-solution}
+# horizontal box plot
+boxplot(mtcars$disp, horizontal = TRUE)
+```
+
+## Color
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+
+The default color of the box plot in R is white. Let us add some color to the box plot using the `col` argument. 
+
+<br>
+
+#### Example
+
+<hr> 
+
+```{r box10, eval=FALSE, echo=TRUE}
+# modify box color
+boxplot(mtcars$mpg, col = 'blue')
+```
+
+<br>
+
+#### Instructions
+
+<hr> 
+
+- apply the `boxplot()` function to `disp` variable from `mtcars`
+- set the value of the `col` argument to `red` to modify plot color
+
+<br>
+
+#### Script
+
+<hr>
+
+
+```{r box3, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# modify box color
+```
+
+```{r box3-solution}
+boxplot(mtcars$disp, col = 'red')
+```
+
+## Range - 1
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+
+Range this determines how far the plot whiskers extend out from the box. If range is positive, the whiskers extend to the most extreme data point which is no more than range times the interquartile range from the box. A value of zero causes the whiskers to extend to the data extremes.
+
+```{r box7, fig.align='center', fig.width=5, fig.height=5, echo=FALSE, eval=TRUE}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(0, 0.25, 0.63, 1)
+for (i in values) {
+  boxplot(mtcars$mpg, range = i)
+  mtext(paste("range = ", i), side = 3, col = "blue")
+}
+```
+
+## Range - 2
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+<br>
+
+#### Instructions
+
+<hr> 
+
+- apply the `boxplot()` function to `disp` variable from `mtcars`
+- set the value of the `range` argument to `0` and run the code
+- now change the value of `range` to `1` and obverve the changes
+
+<br>
+
+#### Script
+
+<hr>
+
+
+```{r box5, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Range'}
+# range
+
+```
+
+```{r box5-solution}
+# range
+boxplot(mtcars$disp, range = 0)
+boxplot(mtcars$disp, range = 1)
+```
+
+

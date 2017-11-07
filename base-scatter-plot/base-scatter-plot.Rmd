@@ -32,6 +32,8 @@ knitr::opts_chunk$set(echo = FALSE)
 plot(mtcars$disp, mtcars$mpg)
 ```
 
+## Syntax
+
 ## Title & Axis Labels
 
 <hr>
@@ -42,7 +44,7 @@ plot(mtcars$disp, mtcars$mpg,
      xlab = 'Displacement', ylab = 'Miles Per Gallon')
 ```
 
-## Shape
+## Symbol - 1 
 
 ### Introduction
 
@@ -52,7 +54,7 @@ plot(mtcars$disp, mtcars$mpg,
 plot(mtcars$disp, mtcars$mpg, pch = 6)
 ```
 
-### Shape 
+## Symbol - 2
 
 <hr>
 
@@ -66,7 +68,7 @@ for (i in values) {
 }
 ```
 
-### Shape
+## Symbol - 3 
 
 <hr>
 
@@ -74,7 +76,7 @@ for (i in values) {
 plot(mtcars$disp, mtcars$mpg, pch = nlevels(factor(mtcars$cyl)))
 ```
 
-### Shape
+## Symbol - 4 
 
 <hr>
 
@@ -82,7 +84,7 @@ plot(mtcars$disp, mtcars$mpg, pch = nlevels(factor(mtcars$cyl)))
 plot(mtcars$disp, mtcars$mpg, pch = unclass(mtcars$cyl))
 ```
 
-## Size
+## Size - 1
 
 ### Introduction
 
@@ -92,7 +94,7 @@ plot(mtcars$disp, mtcars$mpg, pch = unclass(mtcars$cyl))
 plot(mtcars$disp, mtcars$mpg, cex = 1.5)
 ```
 
-### Size
+## Size - 2
 
 <hr>
 
@@ -106,7 +108,7 @@ for (i in values) {
 }
 ```
 
-## Color
+## Color - 1
 
 ### Introduction
 
@@ -116,7 +118,7 @@ for (i in values) {
 plot(mtcars$disp, mtcars$mpg, pch = 5, col = 'blue', bg = 'red')
 ```
 
-### Color
+## Color - 2
 
 <hr>
 
@@ -124,7 +126,7 @@ plot(mtcars$disp, mtcars$mpg, pch = 5, col = 'blue', bg = 'red')
 plot(mtcars$disp, mtcars$mpg, pch = 24, col = 'red', bg = 'blue')
 ```
 
-### Color
+## Color - 3
 
 <hr>
 

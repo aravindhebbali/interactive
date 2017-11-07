@@ -1,0 +1,299 @@
+---
+title: "Bar Charts - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(readr)
+knitr::opts_chunk$set(echo = FALSE)
+mtcars$cyl <- as.factor(mtcars$cyl)
+mtcars$gear <- as.factor(mtcars$gear)
+cyl_freq <- table(mtcars$cyl)
+cyl_gear <- table(mtcars$cyl, mtcars$gear)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv', 
+  col_types = list(col_integer(), 
+  col_factor(levels = c('bing', 'direct', 'google', 'social', 'yahoo')), 
+  col_factor(levels = c('tablet', 'laptop', 'mobile')), 
+  col_factor(levels = c('true', 'false')), 
+  col_integer(), col_double(), col_double(), col_character(), 
+  col_factor(levels = c('true', 'false')), col_double(), col_double())            
+)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- create 
+    - simple bar plot
+    - stacked bar plot
+    - grouped bar plot
+- modify bar
+    - direction
+    - color
+    - line color
+    - width
+    - labels
+- modify axis range
+- remove axes from the plot
+- specify the line type of the X axes
+- offset the Y axes
+- modify legend
+
+
+A bar plot represents data in rectangular bars. The length of the bars are proportional to the values they represent. Bar plots can be either horizontal or vertical. The X axis of the plot represents the levels or the categories and the Y axis represents the frequency/count of the variable. 
+
+A univariate bar plot represents a single categorical variable. The categories in the variable are represented on the X axis and their frequencies on the Y axis. In the below example, the `cyl` variable from the `mtcars` data set is visualized using a bar plot. The categories or levels are `4`, `6` and `8` which represent the number of cylinders in the automobile and are represented on the X axis. The frequency for each type of cylinder is represented by the Y axis.
+
+```{r example, eval=TRUE, echo=FALSE, fig.align='center'}
+barplot(table(mtcars$cyl), names.arg = c('Four', 'Six', 'Eight'), col = 'blue')
+title(main = 'Distribution of Cylinders',
+      xlab = 'Frequency', ylab = 'Number of Cylinders')
+```
+
+In R, bar plots can be created using either the `plot()` or `barplot()` function. The input to both the functions are different. In case of the `plot()` function, we can specify the variable but it must be converted to a factor variable. In case of the `barplot()` function, the input must be the count or frequency of the variable. The `table()` function can be used to generate the counts/frequency for a variable. Let us use both the functions to create the bar plot:
+
+## Plot 
+
+<hr>
+
+To create a bar plot using the `plot` function, the data must be categorical/qualitative or in other words, it must be of type `factor`. If you want to create a bar plot to visualize the distribution of `cyl` (cylinders) from `mtcars`, you would use the `plot` function as shown below:
+
+```{r bar13, eval=FALSE, echo=TRUE}
+plot(mtcars$cyl)
+```
+
+### Instructions
+
+- build a bar plot using `plot()` function to visualize the distribution of referrers from `ecom` data set
+- apply the `plot()` function to `referrer` variable from the `ecom` data set
+
+```{r bar1, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+# bar plot of referrers
+plot(____)
+```
+
+```{r bar1-solution}
+plot(mtcars$cyl)
+```
+
+## Barplot 
+
+<hr>
+
+The `barplot()` function slightly differs from the `plot()` function. In the case of the `plot()` function, we supplied a single categorical variable as the input whereas the `barplot()` function takes a `table` as input. To recreate the plot we created in the previous section, you would do the following:
+
+```{r bar14, eval=FALSE, echo=TRUE}
+# bar plot of cylinders
+barplot(table(mtcars$cyl))
+```
+
+Before we explore `barplot()` further, let us look at the output from the `table()` function.
+
+```{r table1, eval=TRUE, echo=TRUE}
+# count/frequency of cylinders
+table(mtcars$cyl)
+```
+
+### Instructions
+
+- use `table()` to generate counts/frequencies of `referrer` and store it in `ref_freq`
+- apply `barplot()` function to `ref_freq` 
+
+```{r bar2, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ref_freq <- table(____)
+barplot(____)
+```
+
+```{r bar2-solution}
+ref_freq <- table(ecom$referrer)
+barplot(ref_freq)
+```
+
+## Labels
+
+<hr>
+
+The labels for the bars in a bar plot come from the data. But it may not be intuitive for a someone who has no knowledge 
+of the underlying data. In such cases, we can make the graph more informative by adding appropriate labels to the bars in 
+the graph. The `names.arg` argument in `barplot()` function allows us to modify the labels of the bars. Suppose you want to change
+the labels of the previous plot. Here is how you would do that:
+
+```{r bar17, eval=FALSE, echo=TRUE}
+# modify labels of the bars
+barplot(table(mtcars$cyl), names.arg = c('Four', 'Six', 'Eight'))
+```
+
+- create a barplot of `referrer` from `ecom` data using `barplot()`
+- use `names.arg` to set labels for the bars
+- set `label` of first bar to `'bing'`
+- set `label` of second bar to `'direct'`
+- set `label` of third bar to `'google'`
+- set `label` of fourth bar to `'social'`
+- set `label` of fifth bar to `'yahoo'`
+ 
+
+```{r bar8, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Labels'}
+# modify the label of the bars
+
+```
+
+```{r bar8-solution}
+barplot(table(ecom$referrer), names.arg = c('bing', 'direct', 'google', 'social', 'yahoo'))
+```
+
+
+## Color 
+
+<hr>
+
+The color of the bars in a bar plot is gray by default. It is not a very inspiring color and we will almost certainly want to change it 
+to something more pleasing to the eyes. For example, take the case of the bar plot of cylinders from 	`mtcars` data. We may want to modify the color of the bars to `blue` or `red`. To do this, we will use the `col` argument. Below is an example:
+
+```{r bar18, eval=FALSE, echo=TRUE}
+# change the color to blue, red and green
+barplot(table(mtcars$cyl), col = 'blue')
+barplot(table(mtcars$cyl), col = 'red')
+barplot(table(mtcars$cyl), col = '#008000')
+```
+
+You can specify the color using hex code as well.
+
+### Instructions
+
+<hr>
+
+- create a barplot of `referrer` from `ecom` data using `barplot()`
+- use `col` to set the color of the bars to `'blue'`
+- next change the color to `'red'`
+- now specify the color `'#008000'`
+
+```{r bar9, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Color'}
+# modify the color of the bars
+```
+
+```{r bar9-solution}
+barplot(table(ecom$referrer), col = 'blue')
+barplot(table(ecom$referrer), col = 'red')
+barplot(table(ecom$referrer), col = '#008000')
+```
+
+## Stacked Bar Plot
+
+<hr>
+
+Until now, we have been visualizing the distribution of a single categorical variable. Now, let us shift gears and visualize the relationship between two categorical variables. Let us say we want to visualize the relationship between number of cylinders and number of gears from the `mtcars` data. Here is how we would do it:
+
+```{r bar19, eval=FALSE, echo=TRUE}
+# stacked bar plot
+barplot(table(mtcars$cyl, mtcars$gear))
+```
+
+### Instructions
+
+<hr>
+
+- visualize the relationship between `device` and `purchase` from the `ecom` data 
+
+```{r bar20, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Stacked Bar Plot'}
+# stacked bar plot
+
+```
+
+```{r bar20-solution}
+# stacked bar plot
+barplot(table(ecom$device, ecom$purchase))
+```
+
+## Grouped Bar Plot
+
+<hr>
+
+It is time to learn about another type of bar plot, the grouped bar plot. The difference between the stacked bar plot and the grouped bar plot is related to the positioning of the bars. In the stacked bar plot, the bars are stacked and in the grouped bar plots, the bars are placed adjacent to each other. To create a grouped bar plot, we use the `beside` argument in the `barplot()` function. To change the plot from the previous section to a grouped bar plot, we would do this:
+
+```{r bar22, eval=FALSE, echo=TRUE}
+# stacked bar plot
+barplot(table(mtcars$cyl, mtcars$gear), beside = TRUE)
+```
+
+- visualize the relationship between `device` and `purchase` from the `ecom` data 
+- set `beside` to `TRUE` in `barplot()` to create a grouped bar plot
+
+```{r bar24, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Grouped Bar Plot'}
+# grouped bar plot
+
+```
+
+```{r bar24-solution}
+barplot(table(ecom$device, ecom$purchase), beside = TRUE)
+```
+
+## Horizontal Bar Plot
+
+<hr>
+
+Bar plots can be horizontal or vertical. So far we have seen vertical bar plots, which are also the default in R. If you
+want the direction of the bars to horizontal, use the `horiz` argument. For example, to make the previous plot horizontal, 
+you would modify the code in the following way:
+
+```{r bar15, eval=FALSE, echo=TRUE}
+barplot(table(mtcars$cyl), horiz = TRUE)
+```
+
+### Instructions
+
+<hr>
+
+- create a barplot of `referrer` from `ecom` data using `barplot()`
+- set `horiz` to `TRUE` to change the direction of the bars
+
+```{r bar3, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Bar Plot'}
+
+```
+
+```{r bar3-solution}
+barplot(table(ecom$referrer), horiz = TRUE)
+```
+
+
+## Legend
+
+<hr>
+
+When you have a stacked or grouped bar plot, you have two sets of data being plotted. for example, in the below graph, we have plotted the relationship between cylinders and gears from the `mtcars` data. We know that each bar represents a particular gear type and the different colors represent the distribution of cylinders for each type of gear. How do we know which color represents which type of cylinder. Here is where legends come into the play. Legends provide information about the data involved in a plot. If you want to add a legend to the bar plot, use the `legend.text` argument and set its value to `TRUE`. For example, to add a legend to the plot from the previous section, you would do the following:
+
+```{r bar16, eval=FALSE, echo=TRUE}
+barplot(table(mtcars$cyl, mtcars$gear), legend.text = TRUE)
+```
+
+### Instructions
+
+<hr>
+
+- create a barplot of `referrer` from `ecom` data using `barplot()`
+- set `legend.text` to `TRUE` to add a legend to the plot
+
+```{r bar23, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend'}
+# add a legend
+
+```
+
+```{r bar23-solution}
+barplot(table(ecom$referrer), legend.text = TRUE)
+```
+
+## Practice
+
+<hr>
+
+```{r bar25, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title & Axis Labels'}
+barplot(cyl_freq, col = c('blue', 'red', 'green'), horiz = TRUE, axis.lty = 2,
+        width = c(1, 1, 2), names.arg = c('Four', 'Six', 'Eight'), offset = 2)
+title(main = 'Distribution of Cylinders',
+      xlab = 'Frequency', ylab = 'Number of Cylinders')
+```
+

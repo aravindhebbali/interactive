@@ -1,0 +1,95 @@
+---
+title: "Line Chart - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+data <- head(AirPassengers)
+data1 <- c(7.2, 7.6, 6.8, 6.5, 7)
+data2 <- c(6.8, 7.2, 7.8, 7, 6.2)
+```
+
+## Agenda
+
+<hr>
+
+- create line plots
+- add color to lines
+- modify line type/style
+- modify line width
+- add points to the lines
+- modify axis range
+- add additional lines to the plot
+
+
+## Introduction
+
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r airpas, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+head(AirPassengers)
+```
+
+## Line Chart
+
+### Introduction
+
+<hr>
+
+```{r line1, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+data <- head(AirPassengers)
+plot(data, type = 'l')
+```
+
+## Lines & Points
+
+<hr>
+
+```{r line2, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lines & Points'}
+plot(data, type = 'b')
+```
+
+## Overplotted
+
+<hr>
+
+```{r line3, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Overplotted'}
+plot(data, type = 'o')
+```
+
+## Lines with Breaks
+
+<hr>
+
+```{r line4, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lines With Breaks'}
+plot(data, type = 'c')
+```
+
+## Line Color - 1
+
+### Introduction
+
+<hr>
+
+```{r line5, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color'}
+plot(data, type = 'l', col = 'blue')
+```
+
+## Line Color - 2
+
+<hr>
+
+```{r line6, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Color'}
+plot(data, type = 'b', col = 'blue')
+```
+
+
+

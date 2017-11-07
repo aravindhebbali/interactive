@@ -1,0 +1,237 @@
+---
+title: "Box Plot - Part 2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+mpg_split <- split(mtcars$mpg, mtcars$cyl)
+```
+
+## Outliers - 1
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+```{r box9, fig.align='center', fig.width=6, fig.height=5, echo=FALSE, eval=TRUE}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2))
+values <- c(TRUE, FALSE)
+for (i in values) {
+  boxplot(mtcars$mpg, outline = i, range = 1)
+  mtext(paste("outline = ", i), side = 3, col = "blue")
+}
+```
+
+## Outliers - 2
+
+#### Introduction
+
+<hr>
+
+Box plots are extremely useful when it comes to detecting outliers in data. If you want the plot to display the outliers,
+set the `outline` argument to `TRUE`.
+
+<br>
+
+#### Example
+
+<hr>
+
+```{r box18, eval=FALSE, echo=TRUE}
+boxplot(mtcars$mpg, outline = TRUE)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- apply the `boxplot()` function to `disp` variable from the `mtcars` data
+- set the value of `outline` to `TRUE`
+
+<br>
+
+#### Script
+
+<hr>
+
+```{r box8, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outliers'}
+# plot outliers
+```
+
+```{r box8-solution}
+boxplot(mtcars$disp, range = 1, outline = FALSE)
+```
+
+
+## Compare Distributions - 1
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+Another reason box plots are very popular is because they allow us to compare the distribution of continuous data across 
+different categories. Let us say we want to compare the distribution of miles per gallon across different cylinder types.
+
+<br>
+
+#### Example
+
+<hr>
+
+```{r box19, eval=FALSE, echo=TRUE}
+boxplot(mtcars$mpg ~ mtcars$cyl)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- compare distribution of `mpg` across different `gear` types
+
+<br>
+
+#### Script
+
+<hr>
+
+```{r box11, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+# compare distribution of mpg across gear types
+
+```
+
+```{r box11-solution}
+boxplot(mtcars$mpg ~ mtcars$gear)
+```
+
+
+## Compare Distributions - 2
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+In the previous section, we used a continuous variable and a categorical variable to compare distribution of the continuous variable across different categories. What if you had 3 continuous variable instead of a grouping variable? How would you create the box plot in such cases?
+
+<br>
+
+#### Example
+
+<hr>
+
+```{r box20, eval=FALSE, echo=TRUE}
+mpg_split <- split(mtcars$mpg, mtcars$cyl)
+mpg_4 <- mpg_split$`4`
+mpg_6 <- mpg_split$`6`
+mpg_8 <- mpg_split$`8`
+boxplot(mpg_4, mpg_6, mpg_8)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+<br>
+
+#### Script
+
+<hr>
+
+```{r box13, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+mpg_split <- split(mtcars$mpg, mtcars$cyl)
+mpg_split
+mpg_4 <- mpg_split$`4`
+mpg_6 <- mpg_split$`6`
+mpg_8 <- mpg_split$`8`
+boxplot(mpg_4, mpg_6, mpg_8)
+```
+
+```{r box13-solution}
+boxplot(mpg_4, mpg_6, mpg_8)
+```
+
+
+## Color 
+
+<hr>
+
+#### Introduction
+
+<hr>
+
+Use the `col` argument to add color to a boxplot. 
+
+<br>
+
+#### Example
+
+<hr>
+
+```{r box21, eval=FALSE, echo=TRUE}
+boxplot(mtcars$mpg ~ mtcars$cyl, col = 'blue')
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- set `col` to `'blue`' and run the code
+- next specify different colors to the boxes in the plot (red, blue and yellow)
+
+<br>
+
+#### Script
+
+<hr>
+
+```{r box14, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# modify box color to blue
+
+# modify box color to red, blue and yellow
+```
+
+```{r box14-solution}
+boxplot(mtcars$mpg ~ mtcars$cyl, col = 'blue')
+boxplot(mtcars$mpg ~ mtcars$cyl, 
+        col = c('red', 'blue', 'yellow'))
+```
+
+## Compare Medians
+
+<hr>
+
+```{r box16, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Compare Medians'}
+hsb <- read.table('https://stats.idre.ucla.edu/wp-content/uploads/2016/02/hsb2-2.csv', header=T, sep=",")
+boxplot(hsb$read ~ hsb$female, notch = TRUE, 
+        col = c('red', 'blue'))
+```
+
+## Practice
+
+<hr>
+
+```{r box17, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title & Axis Labels'}
+boxplot(mtcars$mpg ~ mtcars$cyl, range = 1, outline = TRUE, 
+        horizontal = TRUE, col = c('red', 'blue', 'yellow'),
+        main = 'Miles Per Gallon by Cylinders', 
+        ylab = 'Number of Cylinders', xlab = 'Miles Per Gallon',
+        names = c('Four', 'Six', 'Eight'))
+```
+

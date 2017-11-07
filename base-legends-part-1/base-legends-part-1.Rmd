@@ -1,0 +1,185 @@
+---
+title: "Legends - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+year <- seq(2010, 2014, 1)
+india <- c(10.3, 6.6, 5.6, 6.6, 7.2)
+china <- c(10.6, 9.5, 7.8, 7.7, 7.3)
+russia <- c(4.5, 4.3, 3.5, 1.3, 0.7)
+brazil <- c(7.5, 3.9, 1.9, 3.0, 0.1)
+s_africa <- c(3.2, 3.2, 2.2, 2.2, 1.5)
+gdp <- data.frame(year, india, china, russia, brazil, s_africa, stringsAsFactors = FALSE)
+```
+
+## Agenda
+
+<hr>
+
+Learn to add legend to a plot using the `legend()` function. Specifically
+
+- position the legend within the plot
+- modify the layout using `ncol` and `horiz` arguments
+- add title using the `title.` set of arguments
+- modify the appearance and position of the legend box
+- modify the appearance of the text in the legend box
+
+
+## Introduction
+
+### Compare
+
+<hr>
+
+```{r compare, fig.align='center', fig.width= 7, fig.height=7, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Compare'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2))
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')
+legend(x = 2012, y = 14, legend = c('india', 'china'), lty = 1, col = c('blue', 'red'))}
+```
+
+
+## Data
+
+<hr>
+
+```{r data, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+gdp
+```
+
+## Plot
+
+<hr>
+
+```{r line1, fig.align='center', fig.width= 7, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Graph'}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')
+lines(gdp$year, gdp$russia, col = 'green')
+lines(gdp$year, gdp$brazil, col = 'yellow')
+lines(gdp$year, gdp$s_africa, col = 'violet')}
+```
+
+## Location - 1
+
+<hr>
+
+- use x and y axis coordinates
+- use keywords
+    - top
+    - bottom
+    - left
+    - right
+    - center
+    - bottomright
+    - bottomleft
+    - topright
+    - topleft
+
+```{r leg2, fig.align='center', fig.width=7, fig.height=7, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Location'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(3, 3))
+values <- c('top', 'bottom', 'left', 'right', 'center',
+            'bottomright', 'bottomleft', 'topright', 'topleft')
+for (i in values) {
+  plot(gdp$year, gdp$india, type = 'l',
+      ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue',
+      main = 'BRICS: Growth Rate')
+  lines(gdp$year, gdp$china, col = 'red')
+  legend(x = i, legend = c('india', 'china'))
+  mtext(paste("x = ", i), side = 3, col = "blue")
+}
+```
+
+## Location - 2
+
+```{r leg1, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Location'}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')
+legend(x = 2013, y = 14, legend = c('india', 'china'))}
+```
+
+## Lines
+
+<hr>
+
+```{r leg3, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lines'}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')
+legend(x = 2012, y = 14, legend = c('india', 'china'), lty = 1, col = c('blue', 'red'))}
+```
+
+## Points
+
+<hr>
+
+```{r leg4, fig.align='center', fig.height=5, fig.width=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Points'}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+points(gdp$year, gdp$india, pch = 2, col = 'blue')
+lines(gdp$year, gdp$china, col = 'red')
+points(gdp$year, gdp$china, pch = 2, col = 'red')
+legend(x = 2012, y = 14, legend = c('india', 'china'), lty = 1, pch = 2, col = c('blue', 'red'))}
+```
+
+## Text Placement - 1
+
+### Introduction
+
+```{r leg7, fig.align='center', fig.width=7, fig.height=10, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Placement'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2))
+values <- c(1, 2, 3, 4)
+for (i in values) {
+  plot(gdp$year, gdp$india, type = 'l',
+      ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue',
+      main = 'BRICS: Growth Rate')
+  lines(gdp$year, gdp$china, col = 'red')
+  lines(gdp$year, gdp$russia, col = 'green')
+  lines(gdp$year, gdp$brazil, col = 'yellow')
+  legend(x = 2010, y = 0, legend = c('india', 'china', 'russia','brazil'),
+       lty = 1, col = c('blue', 'red', 'green', 'yellow'),
+       ncol = i)
+  mtext(paste("ncol = ", i), side = 3, col = "blue")
+}
+```
+
+## Text Placement - 2
+
+<hr>
+
+```{r leg5, fig.align='center', fig.height=4, fig.width=6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Placement'}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 15), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')
+legend(x = 2011, y = 14, legend = c('india', 'china'), 
+      lty = 1, col = c('blue', 'red'), horiz = TRUE)}
+```
+
+## Text Placement - 3
+
+<hr>
+
+```{r leg6, fig.align='center', fig.width= 6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text Placement'}
+{plot(gdp$year, gdp$india, type = 'l', ylim = c(-5, 25), xlab = 'Year',
+      ylab = 'Growth Rate', col = 'blue', main = 'BRICS: Growth Rate')
+lines(gdp$year, gdp$china, col = 'red')
+lines(gdp$year, gdp$russia, col = 'green')
+lines(gdp$year, gdp$brazil, col = 'yellow')
+legend(x = 2012, y = 20, legend = c('india', 'china', 'russia', 'brazil'),
+       lty = 1, col = c('blue', 'red', 'green', 'yellow'), ncol = 2)}
+```
+

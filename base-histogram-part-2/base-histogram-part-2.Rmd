@@ -1,0 +1,118 @@
+---
+title: "Histogram - Part 2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+## Intervals
+
+<hr>
+
+We will learn more about frequency density in a bit. Before we end this section, we need to learn about one more way to specify the intervals of the histogram, algorithms. The `hist()` function allows us to specify the following algorithms:
+
+- Sturges (default)
+- Scott
+- Freedman-Diaconis (FD)
+
+```{r hist10, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Intervals'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 3))
+values <- c("Sturges", "Scott", "FD")
+for (i in values) {
+    hist(mtcars$mpg, breaks = i)
+    mtext(paste("algo = ", i), side = 3, col = "blue")
+}
+```
+
+## Frequency Distribution 
+
+<hr>
+
+```{r hist11, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Frequency Distribution'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2))
+values <- c(TRUE, FALSE)
+for (i in values) {
+    hist(mtcars$mpg, freq = i)
+    mtext(paste("freq = ", i), side = 3, col = "blue")
+}
+```
+
+## Probability
+
+<hr>
+
+```{r hist12, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Probability'}
+hist(mtcars$mpg, probability = TRUE)
+```
+
+## Color
+
+<hr>
+
+```{r hist13, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+hist(mtcars$mpg, col = 'blue')
+```
+
+
+## Border Color
+
+<hr>
+
+```{r hist16, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Border Color'}
+hist(mtcars$mpg, border = c('red', 'blue', 'green', 'yellow', 'brown'))
+```
+
+## Labels - 1
+
+<hr>
+
+```{r hist17, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Labels - 1'}
+hist(mtcars$mpg, labels = TRUE)
+```
+
+## Labels - 2
+
+<hr>
+
+```{r hist18, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Labels - 2'}
+hist(mtcars$mpg, labels = c("6", "12", "8", "2", "4"))
+```
+
+## Normal Distribution
+
+<hr>
+
+```{r hist1, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = TRUE, exercise.cap = 'Normal Distribution'}
+hist(rbeta(10000, 5, 5), ann = FALSE, col = 'blue')
+```
+
+## Skewed Distribution
+
+<hr>
+
+```{r hist2, fig.align='center', fig.width=10, fig.height=6, exercise = TRUE, exercise.eval = TRUE, exercise.cap = 'Skewed Distribution'}
+init <- par(no.readonly = TRUE)
+par(mfrow = c(1, 2))
+hist(rbeta(10000, 2, 5), ann = FALSE, col = 'blue')
+hist(rbeta(10000, 5, 2), ann = FALSE, col = 'blue')
+```
+
+
+## Summary
+
+<hr>
+
+```{r hist19, fig.align='center', fig.width=5, fig.height=5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+hist(mtcars$mpg, labels = TRUE, prob = TRUE,
+     ylim = c(0, 0.1), xlab = 'Miles Per Gallon',
+     main = 'Distribution of Miles Per Gallon',
+     col = rainbow(5))
+```

@@ -13,7 +13,7 @@
 <meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
-<title>Introduction</title>
+<title>Facet - Part 1</title>
 
 
 <!-- highlightjs -->
@@ -46,171 +46,210 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="section-agenda" class="section level2">
 <h2>Agenda</h2>
-<hr>
+<p>In this section, we will learn to combine multiple graphs in a single frame using the following functions:</p>
 <ul>
-<li>what is data visualization</li>
-<li>why visualize data</li>
-<li>understand R graphics system
-<ul>
-<li>graphics</li>
-<li>ggplot2</li>
-<li>lattice</li>
-</ul></li>
-<li>build some simple plots</li>
+<li><code>par()</code></li>
+<li><code>layout()</code></li>
 </ul>
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<div id="section-what-is-data-visualization" class="section level3">
-<h3>What is data visualization?</h3>
-<hr>
-<p>In simple words, data visualization is the representation of data in graphical format.</p>
-<div class="figure">
-<img src="data-viz.png" alt="data-viz" />
-<p class="caption">data-viz</p>
+<p>Often, it is useful to have multiple plots in the same frame as it allows us to get a comprehensive view of a particular variable or compare among different variables. The Graphics package offers two methods to combine multiple plots. <code>par()</code> can be used to set graphical parameters regarding plot layout using the mfcol and mfrow arguments. <code>layout()</code> serves the same purpose but offers more flexibility by allowing us to modify the height and width of rows and columns.</p>
+<p><code>par()</code> allows us to customize the graphical parameters(title, axis, font, color, size) for a particular session. For combining multiple plots, we can use the graphical parameters mfrow and mfcol. These two parameters create a matrix of plots filled by rows and columns respectively. Let us combine plots using both the above parameters.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Option</th>
+<th align="left">Description</th>
+<th align="left">Arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">mfrow</td>
+<td align="left">Fill by rows</td>
+<td align="left">Number of rows and columns</td>
+</tr>
+<tr class="even">
+<td align="left">mfcol</td>
+<td align="left">Fill by columns</td>
+<td align="left">Number of rows and columns</td>
+</tr>
+</tbody>
+</table>
+<p>mfrow combines plots filled by rows i.e it takes two arguments, the number of rows and number of columns and then starts filling the plots by row. Below is the syntax for mfrow.</p>
+<p>Let us begin by combining 4 plots in 2 rows and 2 columns:</p>
+</div>
+<div id="section-case-study-1" class="section level2">
+<h2>Case Study 1</h2>
+<p>Let us begin by combining 4 plots in 2 rows and 2 columns. The plots will be filled by rows as we are using the mfrow function:</p>
+<div class="tutorial-exercise" data-label="facet1" data-caption="Case Study 1" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 4 graphs to be combined and filled by rows
+par(mfrow = c(2, 2))
+ 
+# specify the graphs to be combined
+plot(mtcars$mpg)
+plot(mtcars$disp, mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-why-visualize-data" class="section level3">
-<h3>Why visualize data?</h3>
-<hr>
-<ul>
-<li>Explore: Visualization helps in exploring and explaining patterns and trends</li>
-<li>Detect: Patterns or anomalies in data can be detected by looking at graphs</li>
-<li>Make sense: Possible to make sense of large amount of data efficiently and in time</li>
-<li>Communicate: Easy to communicate and share the insights from data</li>
-</ul>
+<div id="section-case-study-2" class="section level2">
+<h2>Case Study 2</h2>
+<p>Combine 2 plots in 1 row and 2 columns.</p>
+<div class="tutorial-exercise" data-label="facet2" data-caption="Case Study 2" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 2 graphs to be combined and filled by rows
+par(mfrow = c(1, 2))
+ 
+# specify the graphs to be combined
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-r-graphics-system" class="section level2">
-<h2>R Graphics System</h2>
-<hr>
-<ul>
-<li>graphics</li>
-<li>ggplot2</li>
-<li>lattice</li>
-</ul>
-<div id="section-graphics" class="section level3">
-<h3>Graphics</h3>
-<hr>
-<ul>
-<li>It is part of base R and is the fundamental package for visualizing data.</li>
-<li>It has a lot of good features and we can create all the basic plots using it.</li>
-</ul>
-</div>
-<div id="section-ggplot2" class="section level3">
-<h3>ggplot2</h3>
-<hr>
-<p><a href="http://ggplot2.tidyverse.org/index.html">ggplot2</a>, created by Hadley Wickham, is based on the Grammar of Graphics written by Leland Wilkinson. It has a structured approach to data visualization and builds upon the features available in the Graphics and Lattice packages.</p>
-</div>
-<div id="section-lattice" class="section level3">
-<h3>Lattice</h3>
-<hr>
-<p>The <a href="https://CRAN.R-project.org/package=lattice">lattice</a> package is inspired by Trellis Graphics and created by <a href="http://www.isid.ac.in/~deepayan/">Deepayan Sarkar</a>. It is a very powerful data visualization system with an emphasis on multivariate data.</p>
-</div>
-<div id="section-getting-help" class="section level3">
-<h3>Getting Help</h3>
-<hr>
-<p>Use the <code>help()</code> to learn more about <code>plot()</code> function and <code>mtcars</code> data set.</p>
+<div id="section-case-study-3" class="section level2">
+<h2>Case Study 3</h2>
+<p>Combine 2 plots in 2 rows and 1 column.</p>
+<div class="tutorial-exercise" data-label="facet3" data-caption="Case Study 3" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 2 graphs to be combined and filled by rows
+par(mfrow = c(2, 1))
+ 
+# specify the graphs to be combined
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-data" class="section level2">
-<h2>Data</h2>
-<div id="section-mtcars" class="section level3">
-<h3>mtcars</h3>
-<hr>
-<div class="tutorial-exercise" data-label="mtcars" data-caption="Data" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>head(mtcars)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<div id="section-case-study-4" class="section level2">
+<h2>Case Study 4</h2>
+<p>Combine 3 plots in 1 row and 3 columns.</p>
+<div class="tutorial-exercise" data-label="facet4" data-caption="Case Study 4" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 3 graphs to be combined and filled by rows
+par(mfrow = c(1, 3))
+ 
+# specify the graphs to be combined
+plot(mtcars$disp, mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-variable-info" class="section level3">
-<h3>variable info</h3>
-<hr>
-<div class="tutorial-exercise" data-label="data2" data-caption="Variables" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>str(mtcars)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<div id="section-case-study-5" class="section level2">
+<h2>Case Study 5</h2>
+<p>Combine 3 plots in 3 rows and 1 column.</p>
+<div class="tutorial-exercise" data-label="facet5" data-caption="Case Study 5" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 3 graphs to be combined and filled by rows
+par(mfrow = c(3, 1))
+ 
+# specify the graphs to be combined
+plot(mtcars$disp, mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
+<div id="section-mfcol" class="section level2">
+<h2>mfcol</h2>
+<p>mfcol combines plots filled by columns i.e it takes two arguments, the number of rows and number of columns and then starts filling the plots by columns. Below is the syntax for mfrow:</p>
+<p>Let us begin by combining 4 plots in 2 rows and 2 columns:</p>
 </div>
-<div id="section-plot-function" class="section level2">
-<h2>Plot Function</h2>
-<div id="section-introduction-1" class="section level3">
-<h3>Introduction</h3>
-<hr>
-<p>Now that we have some idea about the data set, let us explore the <code>plot()</code> function. We will use the following different data inputs and observe the kind of plots that are generated:</p>
-<ul>
-<li>Case 1: 1 continuous variable</li>
-<li>Case 2: 1 categorical variable</li>
-<li>Case 3: 2 continuous variables</li>
-<li>Case 4: 2 categorical variables</li>
-<li>Case 5: 1 continuous and 1 categorical variable</li>
-<li>Case 6: 1 categorical and 1 continuous variable</li>
-</ul>
-</div>
-</div>
-<div id="section-continuous-data---1" class="section level2">
-<h2>Continuous Data - 1</h2>
-<div id="section-one-continuous-variable" class="section level3">
-<h3>One Continuous Variable</h3>
-<hr>
-<div class="tutorial-exercise" data-label="plot1" data-caption="One Continuous Variable" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$mpg)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
+<div id="section-case-study-6" class="section level2">
+<h2>Case Study 6</h2>
+<p>Combine 3 plots in 3 rows and 1 column.</p>
+<div class="tutorial-exercise" data-label="facet6" data-caption="Case Study 6" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 4 graphs to be combined and filled by columns 
+par(mfcol = c(2, 2))
+ 
+# specify the graphs to be combined
+plot(mtcars$mpg)
+plot(mtcars$disp, mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-continuous-data---2" class="section level2">
-<h2>Continuous Data - 2</h2>
-<div id="section-two-continuous-variables" class="section level3">
-<h3>Two continuous Variables</h3>
-<hr>
-<div class="tutorial-exercise" data-label="plot3" data-caption="Two Continuous Variables" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$disp, mtcars$mpg)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<div id="section-special-cases" class="section level2">
+<h2>Special Cases</h2>
+<p>What happens if we specify lesser or more number of graphs? In the next two examples, we will specify lesser or more number of graphs than we ask the par() function to combine. Let us see what happens in such instances:</p>
+<p>Case 1: Lesser number of graphs specified We will specify that 4 plots need to be combined in 2 rows and 2 columns but provide only 3 graphs.</p>
+<p>Case 2: Extra graph specified We will specify that 4 plots need to be combined in 2 rows and 2 columns but specify 6 graphs instead of 4.</p>
+</div>
+<div id="section-case-study-7" class="section level2">
+<h2>Case Study 7</h2>
+<div class="tutorial-exercise" data-label="facet7" data-caption="Case Study 7" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code> store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 4 graphs to be combined and filled by rows
+par(mfrow = c(2, 2))
+ 
+# specify the graphs to be combined
+plot(mtcars$disp, mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+ 
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-</div>
-<div id="section-categorical-data---1" class="section level2">
-<h2>Categorical Data - 1</h2>
-<div id="section-one-categorical-variable" class="section level3">
-<h3>One Categorical Variable</h3>
-<hr>
-<div class="tutorial-exercise" data-label="plot2" data-caption="One Categorical Variable" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(as.factor(mtcars$cyl))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-</div>
-<div id="section-categorical-data---2" class="section level2">
-<h2>Categorical Data - 2</h2>
-<div id="section-two-categorical-variables" class="section level3">
-<h3>Two Categorical Variables</h3>
-<hr>
-<div class="tutorial-exercise" data-label="plot4" data-caption="Two Categorical Variables" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(as.factor(mtcars$am), as.factor(mtcars$cyl))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-</div>
-<div id="section-combined-data---1" class="section level2">
-<h2>Combined Data - 1</h2>
-<div id="section-continuouscategorical-variables" class="section level3">
-<h3>Continuous/Categorical Variables</h3>
-<hr>
-<div class="tutorial-exercise" data-label="plot5" data-caption="Continuous/Categorical Variables" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(mtcars$mpg, mtcars$cyl)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-</div>
-</div>
-<div id="section-combined-data---2" class="section level2">
-<h2>Combined Data - 2</h2>
-<div id="section-categoricalcontinuous-variables" class="section level3">
-<h3>Categorical/Continuous Variables</h3>
-<hr>
-<div class="tutorial-exercise" data-label="plot6" data-caption="Categorical/Continuous Variables" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>plot(as.factor(mtcars$cyl), mtcars$mpg)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<div id="section-case-study-8" class="section level2">
+<h2>Case Study 8</h2>
+<div class="tutorial-exercise" data-label="facet8" data-caption="Case Study 8" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># store the current parameter settings in init
+init &lt;- par(no.readonly=TRUE)
+ 
+# specify that 4 graphs to be combined and filled by rows
+par(mfrow = c(2, 2))
+ 
+# specify the graphs to be combined
+plot(mtcars$mpg)
+plot(mtcars$disp, mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+plot(mtcars$disp, mtcars$mpg)
+boxplot(mtcars$mpg)
+
+# restore the setting stored in init
+par(init)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":7,"fig.height":7,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":672,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
@@ -223,58 +262,58 @@ learnr:::register_http_handlers(session, metadata = NULL)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-mtcars-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-mtcars-code-editor`)), session)
-output$`tutorial-exercise-mtcars-output` <- renderUI({
-  `tutorial-exercise-mtcars-result`()
+`tutorial-exercise-facet1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet1-code-editor`)), session)
+output$`tutorial-exercise-facet1-output` <- renderUI({
+  `tutorial-exercise-facet1-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-data2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-data2-code-editor`)), session)
-output$`tutorial-exercise-data2-output` <- renderUI({
-  `tutorial-exercise-data2-result`()
+`tutorial-exercise-facet2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet2-code-editor`)), session)
+output$`tutorial-exercise-facet2-output` <- renderUI({
+  `tutorial-exercise-facet2-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-plot1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot1-code-editor`)), session)
-output$`tutorial-exercise-plot1-output` <- renderUI({
-  `tutorial-exercise-plot1-result`()
+`tutorial-exercise-facet3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet3-code-editor`)), session)
+output$`tutorial-exercise-facet3-output` <- renderUI({
+  `tutorial-exercise-facet3-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-plot3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot3-code-editor`)), session)
-output$`tutorial-exercise-plot3-output` <- renderUI({
-  `tutorial-exercise-plot3-result`()
+`tutorial-exercise-facet4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet4-code-editor`)), session)
+output$`tutorial-exercise-facet4-output` <- renderUI({
+  `tutorial-exercise-facet4-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-plot2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot2-code-editor`)), session)
-output$`tutorial-exercise-plot2-output` <- renderUI({
-  `tutorial-exercise-plot2-result`()
+`tutorial-exercise-facet5-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet5-code-editor`)), session)
+output$`tutorial-exercise-facet5-output` <- renderUI({
+  `tutorial-exercise-facet5-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-plot4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot4-code-editor`)), session)
-output$`tutorial-exercise-plot4-output` <- renderUI({
-  `tutorial-exercise-plot4-result`()
+`tutorial-exercise-facet6-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet6-code-editor`)), session)
+output$`tutorial-exercise-facet6-output` <- renderUI({
+  `tutorial-exercise-facet6-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-plot5-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot5-code-editor`)), session)
-output$`tutorial-exercise-plot5-output` <- renderUI({
-  `tutorial-exercise-plot5-result`()
+`tutorial-exercise-facet7-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet7-code-editor`)), session)
+output$`tutorial-exercise-facet7-output` <- renderUI({
+  `tutorial-exercise-facet7-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-plot6-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot6-code-editor`)), session)
-output$`tutorial-exercise-plot6-output` <- renderUI({
-  `tutorial-exercise-plot6-result`()
+`tutorial-exercise-facet8-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-facet8-code-editor`)), session)
+output$`tutorial-exercise-facet8-output` <- renderUI({
+  `tutorial-exercise-facet8-result`()
 })
 </script>
  <!--html_preserve-->
@@ -282,7 +321,6 @@ output$`tutorial-exercise-plot6-output` <- renderUI({
 {"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["4.5.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/font-awesome-4.5.0"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/font-awesome.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["4.4.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]}]}
 </script>
 <!--/html_preserve-->
-</div>
 </div>
 
 </div> <!-- topics -->
@@ -294,7 +332,7 @@ output$`tutorial-exercise-plot6-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Introduction</h2>
+<h2 class="title toc-ignore" style="display:none;">Facet - Part 1</h2>
 </div>
 <!-- end doc-metadata -->
 
