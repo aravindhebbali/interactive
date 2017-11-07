@@ -1,0 +1,77 @@
+---
+title: "Exploring Numerical Data"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(descriptr)
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(Hmisc)
+library(psych)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv', 
+  col_types = list(col_integer(), 
+  col_factor(levels = c('bing', 'direct', 'google', 'social', 'yahoo')), 
+  col_factor(levels = c('tablet', 'laptop', 'mobile')), 
+  col_factor(levels = c('true', 'false')), 
+  col_integer(), col_double(), col_double(), col_character(), 
+  col_factor(levels = c('true', 'false')), col_double(), col_double())            
+)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+## Summary - 1
+
+```{r nda1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+summary(ecom$n_visit)
+```
+
+```{r nda2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+fivenum(ecom$n_visit)
+```
+
+```{r nda3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+Hmisc::describe(ecom$n_visit)
+```
+
+```{r nda4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+print(psych::describe(ecom$n_visit))
+```
+
+## Summary - 2
+
+```{r nda5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+summary_stats(ecom$n_visit)
+```
+
+## Frequency Distribution
+
+```{r nda6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+freq_cont(ecom$n_visit)
+```
+
+## Frequency Distribution - 2
+
+```{r nda7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+k <- freq_cont(ecom$n_visit)
+hist(k)
+```
+
+## Histogram
+
+```{r nda8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+ggplot(data = ecom) +
+  geom_histogram(aes(n_visit))
+```
+
+## Box Plot
+
+```{r nda9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = device, y = n_visit))
+```

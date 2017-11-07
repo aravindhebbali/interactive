@@ -1,0 +1,51 @@
+---
+title: "Exploratory Data Analysis - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(descriptr)
+library(skimr)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv', 
+  col_types = list(col_integer(), 
+  col_factor(levels = c('bing', 'direct', 'google', 'social', 'yahoo')), 
+  col_factor(levels = c('tablet', 'laptop', 'mobile')), 
+  col_factor(levels = c('true', 'false')), 
+  col_integer(), col_double(), col_double(), col_character(), 
+  col_factor(levels = c('true', 'false')), col_double(), col_double())            
+)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Agenda
+
+When your dataset is represented as a table or a database, it's difficult to observe much about it beyond its size and the types of variables it contains. In this course, you'll learn how to use graphical and numerical techniques to begin uncovering the structure of your data. Which variables suggest interesting relationships? Which observations are unusual? By the end of the course, you'll be able to answer these questions and more, while generating graphics that are both insightful and beautiful.
+
+## Introduction
+
+
+## Structure 
+
+```{r eda1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Structure'}
+str(ecom)
+```
+
+## Screen
+
+```{r eda2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Screen'}
+screener(ecom)
+```
+
+## Skim
+
+```{r eda3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Skim'}
+print(skimr::skim(ecom))
+```
+
+## Summary 
+
+```{r eda4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summary'}
+summary(ecom)
+```
