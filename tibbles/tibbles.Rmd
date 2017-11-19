@@ -279,27 +279,6 @@ enframe(browser1)
 enframe(browser2)
 ```
 
-## Membership Testing
-
-We can test if an object is a tibble using `is_tibble()`.
-
-### Instructions
-
-<hr>
-
-- use `is_tibble()` to test if `mtcars` is a tibble
-- coerce `mtcars` to a tibble using `as_tibble()` and then repeat the above step
-
-```{r tibbles15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
-is_tibble()
-is_tibble()
-```
-
-```{r tibbles15-solution}
-is_tibble(mtcars)
-is_tibble(as_tibble(mtcars))
-```
-
 ## tribble
 
 ### Introduction
