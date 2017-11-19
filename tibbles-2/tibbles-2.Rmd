@@ -1,0 +1,256 @@
+---
+title: "Intro to tibbles - Part 2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tibble)
+library(dplyr)
+tutorial_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+## Membership Testing
+
+We can test if an object is a tibble using `is_tibble()`.
+
+### Instructions
+
+<hr>
+
+- use `is_tibble()` to test if `mtcars` is a tibble
+- coerce `mtcars` to a tibble using `as_tibble()` and then repeat the above step
+
+```{r tibbles15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
+is_tibble()
+is_tibble()
+```
+
+```{r tibbles15-solution}
+is_tibble(mtcars)
+is_tibble(as_tibble(mtcars))
+```
+
+## Column Names
+
+Names of columns in tibbles need not be valid R variable names. They may contain unusual characters such as a smiley or a space but must be enclosed in ticks.
+
+### Instructions
+
+<hr>
+
+- create a tibble with 3 columns using `tibble()`
+- the column names must be 
+    - space
+    - 2
+    - :)
+
+```{r tibbles14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
+tibble(
+ 
+
+
+)
+```
+
+```{r tibbles14-solution}
+tibble(
+  ` ` = 'space',
+  `2` = 'integer',
+  `:)` = 'smiley'
+)
+```
+
+## Add Rows
+
+### Introduction
+
+<hr>
+
+Rows and columns can be added to a tibble using 
+
+- `add_row()`
+- `add_column()`
+
+Let us say we have a tibble with data about website traffic driven by different browsers.
+
+```{r browsers, echo=TRUE, collapse=FALSE}
+browsers <- enframe(c(chrome = 40, firefox = 20))
+browsers
+```
+
+Now, if we want to add another row of data for Internet Explorer, we can use `add_row()`
+
+```{r browsers2, eval=TRUE, echo=TRUE}
+add_row(browsers, name = 'IE', value = 30)
+```
+
+### Instructions
+
+<hr>
+
+- add data related to **Safari** browser to the web traffic data 
+- set `name` to `'Safari'`
+- and `value` to `10`
+
+```{r tibbles17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
+browsers <- add_row(browsers, name = , value = )
+browsers
+```
+
+```{r tibbles17-solution}
+add_row(browsers, name = 'safari', value = 10)
+```
+
+In order to add the rows or columns at a specific index, use the following arguments
+
+- `.before`
+- `.after`
+
+If we want to add the data at a particular row, we can specify the row number using the `.before` argument. Let us add the data related to Internet Explorer in the second row instead of the last row.
+
+```{r browsers3, eval=TRUE, echo=TRUE}
+add_row(browsers, name = "IE", value = 30, .before = 2)
+```
+
+If we want to add the data at a particular row, we can specify the row number using the `.after` argument. Let us add the data related to Internet Explorer after the first row.
+
+```{r browsers4, eval=TRUE, echo=TRUE}
+add_row(browsers, name = "IE", value = 30, .after = 1)
+```
+
+### Instructions
+
+<hr>
+
+- add data related to **Safari** browser to the web traffic data 
+- set `name` to `'Safari'`
+- and `value` to `10`
+- add data after the second row
+
+```{r tibbles18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
+add_row(browsers, name = , value = , .after = )
+```
+
+```{r tibbles18-solution}
+add_row(browsers, name = "safari", value = 10, .after = 2)
+```
+
+## Add Columns
+
+### Introduction
+
+<hr>
+
+
+## Rownames
+
+<hr>
+
+The [tibble](tibble.tidyverse.org) package provides a set of functions to deal with rownames. Remember, `tibble` does not have `rownames` unlike `data.frame`. To check whether a data set has rownames, use `has_rownames()`.
+
+```{r tibble25, eval=TRUE, echo=TRUE}
+has_rownames(mtcars)
+```
+
+### Instructions
+
+<hr>
+
+## Remove Rownames
+
+<hr>
+
+```{r tibble26, eval=TRUE, echo=TRUE}
+remove_rownames(mtcars)
+```
+
+### Instructions
+
+<hr>
+
+
+## Rownames to Column
+
+<hr>
+
+```{r tibble27, eval=TRUE, echo=TRUE}
+head(rownames_to_column(mtcars))
+```
+
+### Instructions
+
+<hr>
+
+
+## Column to Rownames
+
+<hr>
+
+To convert the first column in the data set to rownames, use `column_to_rownames()`:
+
+```{r tibble28, eval=TRUE, echo=TRUE}
+mtcars_tbl <- rownames_to_column(mtcars)
+column_to_rownames(mtcars_tbl)
+```
+
+### Instructions
+
+<hr>
+
+
+## Glimpse
+
+<hr>
+
+Use `glimpse()` to get an overview of the data.
+
+```{r tibble 29, eval=TRUE, echo=TRUE}
+glimpse(mtcars)
+```
+
+### Instructions
+
+<hr>
+
+
+## Check Column 
+
+<hr>
+
+`has_name()` can be used to check if a tibble has a specific column.
+
+```{r tibble30, eval=TRUE, echo=TRUE}
+has_name(mtcars, 'cyl')
+has_name(mtcars, 'gears')
+```
+
+### Instructions
+
+<hr>
+
+
+## Summary
+
+### Manipulating tibbles
+
+<hr>
+
+- use `add_row()` to add a new row
+- use `add_column()` to add a new column
+- use `remove_rownames()` to remove rownames from data
+- use `rownames_to_colum()` to coerce rowname to first column
+- use `column_to_rownames()` to coerce first column to rownames
+
+### Miscellaneous
+
+<hr>
+
+- use `is_tibble()` to test if an object is a tibble
+- use `has_rownames()` to check whether a data set has rownames
+- use `has_name()` to check if tibble has a specific column 
+- use `glimpse()` to get an overview of data
