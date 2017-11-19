@@ -17,7 +17,7 @@ customer <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/d
 
 <hr>
 
-In a previous module, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this post, we will learn to combine tables using different `*_join` functions provided in dplyr. Let us assume we have 2 tables **x** and **y**. 
+In a previous module, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this module, we will learn to combine tables using different `*_join` functions provided in dplyr. Let us assume we have 2 tables **x** and **y**. 
 
 The following types of `join` functions are provided in dplyr:
 
@@ -34,6 +34,8 @@ The following types of `join` functions are provided in dplyr:
 ### Introduction
 
 <hr>
+
+![alt text](/images/join_case_study.png)
 
 We have two data sets with details of customers and their orders. We will use the above functions to combine the data sets in different ways to glean information about customer orders. 
 
@@ -57,7 +59,11 @@ customer
 
 <hr>
 
+![alt text](/images/canva_join.png)
+
 `inner_join()` returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.
+
+![alt text](/images/canva_inner.png)
 
 ```{r dplyr3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Inner Join'}
 customer %>%
@@ -70,6 +76,8 @@ customer %>%
 
 `left_join()` returns all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
 
+![alt text](/images/canva_left.png)
+
 ```{r dplyr4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Left Join'}
 customer %>%
   left_join(order)
@@ -80,6 +88,8 @@ customer %>%
 <hr>
 
 `right_join()` returns all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+
+![alt text](/images/canva_right.png)
 
 ```{r dplyr5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Right Join'}
 customer %>%
@@ -92,6 +102,8 @@ customer %>%
 
 `semi_join()` returns all rows from x where there are matching values in y, keeping just columns from x. A semi join differs from an inner join because an inner join will return one row of x for each matching row of y, where a semi join will never duplicate rows of x.
 
+![alt text](/images/canva_semi.png)
+
 ```{r dplyr6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Semi Join'}
 customer %>%
   semi_join(order)
@@ -103,6 +115,8 @@ customer %>%
 
 `anti_join()` returns all rows from x where there are not matching values in y, keeping just columns from x.
 
+![alt text](/images/canva_anti.png)
+
 ```{r dplyr7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Anti Join'}
 customer %>%
   anti_join(order)
@@ -113,6 +127,8 @@ customer %>%
 <hr>
 
 `full_join()` returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.
+
+![alt text](/images/canva_full.png)
 
 ```{r dplyr8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Full Join'}
 customer %>%

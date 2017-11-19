@@ -47,7 +47,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
 <hr>
-<p>In a previous module, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this post, we will learn to combine tables using different <code>*_join</code> functions provided in dplyr. Let us assume we have 2 tables <strong>x</strong> and <strong>y</strong>.</p>
+<p>In a previous module, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this module, we will learn to combine tables using different <code>*_join</code> functions provided in dplyr. Let us assume we have 2 tables <strong>x</strong> and <strong>y</strong>.</p>
 <p>The following types of <code>join</code> functions are provided in dplyr:</p>
 <ul>
 <li><code>inner_join()</code></li>
@@ -63,6 +63,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="section-introduction-1" class="section level3">
 <h3>Introduction</h3>
 <hr>
+<div class="figure">
+<img src="/images/join_case_study.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <p>We have two data sets with details of customers and their orders. We will use the above functions to combine the data sets in different ways to glean information about customer orders.</p>
 </div>
 <div id="section-data-orders" class="section level3">
@@ -85,7 +89,15 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="section-inner-join" class="section level2">
 <h2>Inner Join</h2>
 <hr>
+<div class="figure">
+<img src="/images/canva_join.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <p><code>inner_join()</code> returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.</p>
+<div class="figure">
+<img src="/images/canva_inner.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <div class="tutorial-exercise" data-label="dplyr3" data-caption="Inner Join" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>customer %&gt;%
   inner_join(order)</code></pre>
@@ -96,6 +108,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Left Join</h2>
 <hr>
 <p><code>left_join()</code> returns all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.</p>
+<div class="figure">
+<img src="/images/canva_left.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <div class="tutorial-exercise" data-label="dplyr4" data-caption="Left Join" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>customer %&gt;%
   left_join(order)</code></pre>
@@ -106,6 +122,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Right Join</h2>
 <hr>
 <p><code>right_join()</code> returns all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.</p>
+<div class="figure">
+<img src="/images/canva_right.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <div class="tutorial-exercise" data-label="dplyr5" data-caption="Right Join" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>customer %&gt;%
   right_join(order)</code></pre>
@@ -116,6 +136,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Semi Join</h2>
 <hr>
 <p><code>semi_join()</code> returns all rows from x where there are matching values in y, keeping just columns from x. A semi join differs from an inner join because an inner join will return one row of x for each matching row of y, where a semi join will never duplicate rows of x.</p>
+<div class="figure">
+<img src="/images/canva_semi.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <div class="tutorial-exercise" data-label="dplyr6" data-caption="Semi Join" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>customer %&gt;%
   semi_join(order)</code></pre>
@@ -126,6 +150,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Anti Join</h2>
 <hr>
 <p><code>anti_join()</code> returns all rows from x where there are not matching values in y, keeping just columns from x.</p>
+<div class="figure">
+<img src="/images/canva_anti.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <div class="tutorial-exercise" data-label="dplyr7" data-caption="Anti Join" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>customer %&gt;%
   anti_join(order)</code></pre>
@@ -136,6 +164,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Full Join</h2>
 <hr>
 <p><code>full_join()</code> returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.</p>
+<div class="figure">
+<img src="/images/canva_full.png" alt="alt text" />
+<p class="caption">alt text</p>
+</div>
 <div class="tutorial-exercise" data-label="dplyr8" data-caption="Full Join" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>customer %&gt;%
   full_join(order)</code></pre>
