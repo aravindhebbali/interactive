@@ -9,7 +9,7 @@ library(learnr)
 library(tibble)
 library(dplyr)
 tutorial_options(exercise.timelimit = 0, exercise.cap = 'Sandbox')
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
@@ -279,6 +279,27 @@ enframe(browser1)
 enframe(browser2)
 ```
 
+## Membership Testing
+
+We can test if an object is a tibble using `is_tibble()`.
+
+### Instructions
+
+<hr>
+
+- use `is_tibble()` to test if `mtcars` is a tibble
+- coerce `mtcars` to a tibble using `as_tibble()` and then repeat the above step
+
+```{r tibbles15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
+is_tibble()
+is_tibble()
+```
+
+```{r tibbles15-solution}
+is_tibble(mtcars)
+is_tibble(as_tibble(mtcars))
+```
+
 ## tribble
 
 ### Introduction
@@ -318,3 +339,44 @@ tribble(
   2, FALSE, 'b'
 )
 ```
+
+## Column Names
+
+Names of columns in tibbles need not be valid R variable names. They may contain unusual characters such as a smiley or a space but must be enclosed in ticks.
+
+### Instructions
+
+<hr>
+
+- create a tibble with 3 columns using `tibble()`
+- the column names must be 
+    - space
+    - 2
+    - :)
+
+```{r tibbles14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
+tibble(
+ 
+
+
+)
+```
+
+```{r tibbles14-solution}
+tibble(
+  ` ` = 'space',
+  `2` = 'integer',
+  `:)` = 'smiley'
+)
+```
+
+## Summary
+
+### Creating tibbles
+
+<hr>
+
+- use `tibble()` to create tibbles
+- use `as_tibble()` to coerce other objects to tibble
+- use `enframe()` to coerce vector to tibble
+- use `tribble()` to create tibble using data entry
