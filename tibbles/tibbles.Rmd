@@ -319,35 +319,7 @@ tribble(
 )
 ```
 
-## Column Names
 
-Names of columns in tibbles need not be valid R variable names. They may contain unusual characters such as a smiley or a space but must be enclosed in ticks.
-
-### Instructions
-
-<hr>
-
-- create a tibble with 3 columns using `tibble()`
-- the column names must be 
-    - space
-    - 2
-    - :)
-
-```{r tibbles14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tribble'}
-tibble(
- 
-
-
-)
-```
-
-```{r tibbles14-solution}
-tibble(
-  ` ` = 'space',
-  `2` = 'integer',
-  `:)` = 'smiley'
-)
-```
 
 ## Summary
 
