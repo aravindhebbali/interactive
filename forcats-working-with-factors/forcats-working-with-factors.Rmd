@@ -43,7 +43,8 @@ We will use a case study to explore the various features of the forcats package.
 <hr>
 
 ```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
-ecom
+hsb <- readr::read_csv('/www/hsb2.csv')
+hsb
 ```
 
 ### Data Dictionary
