@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Learn to modify legend
 
-- labek
+- label
 
 ## Position
 
