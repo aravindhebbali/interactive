@@ -1,0 +1,128 @@
+---
+title: "dplyr Verbs"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+
+## Introduction
+
+<hr>
+
+According to  a [survey](http://visit.crowdflower.com/rs/416-ZBE-142/images/CrowdFlower_DataScienceReport_2016.pdf) by [CrowdFlower](https://www.crowdflower.com/), data scientists spend most of their time cleaning and manipulating data rather than mining or modeling them for insights. As such, it becomes important to have tools that make data manipulation faster and easier. In today's post, we introduce you to [dplyr](http://dplyr.tidyverse.org/), a grammar of data manipulation.
+
+
+## Filter - Introduction
+
+### Introduction
+
+<hr>
+
+In order to compute the AOV, we must first separate the purchasers from non-purchasers. We will do this by filtering the data related to purchasers using the `filter()` function. It allows us to filter rows that meet a specific criteria/condition. The first argument is the name of the data frame and the rest of the arguments are expressions for filtering the data. Let us look at a few examples:
+
+## Filter - Practice 1
+
+### Select all visits from mobile
+
+<hr>
+
+```{r dplyr2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter - Part 1'}
+filter(ecom, device == "mobile")
+```
+
+## Filter - Practice 2
+
+### Visits from mobile that converted
+
+<hr>
+
+```{r dplyr3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter - Part 2'}
+filter(ecom, device == "mobile", purchase == "true")
+```
+
+## Filter - Practice 3
+
+### From mobile & visited > 5 pages 
+
+<hr>
+
+```{r dplyr4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter - Part 3'}
+filter(ecom, device == "mobile", n_pages > 5)
+```
+
+## Filter - Case Study
+
+### Visits that converted
+
+<hr>
+
+```{r dplyr5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter - Part 4'}
+filter(ecom, purchase == "true")
+```
+
+## Select - Introduction
+
+### Introduction
+
+<hr>
+
+After filtering the data, we need to select relevent variables to compute the AOV. Remember, we do not need all the columns in the data to compute a required metric (in our case, AOV). The `select()` function allows us to select a subset of columns. The first argument is the name of the data frame and the subsequent arguments specify the columns by name or position. Let us look at a few examples:
+
+## Select - Practice 1
+
+### Select device and purchase columns 
+
+<hr>
+
+```{r dplyr6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 1'}
+select(ecom, device, purchase)
+```
+
+## Select - Practice 2
+
+### All columns from device to purchase
+
+<hr> 
+
+```{r dplyr7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 2'}
+select(ecom, device:purchase)
+```
+
+## Select - Practice 3
+
+### All columns excluding id and country
+
+<hr>
+
+```{r dplyr8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 3'}
+select(ecom, -id, -country)
+```
+
+## Select - Case Study
+
+### Introduction
+
+<hr>
+
+For our case study, we need to select the columns order value and order items to calculate the AOV. We also need to select the device column as we are computing the AOV for different devices.
+
+```{r dplyr9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 4'}
+select(ecom, device, order_value, order_items)
+```
+
+But we want the above data only for purchasers. We will combine `filter()` and `select()` functions 
+to extract data related to purchasers.
+
+```{r dplyr10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select - Part 5'}
+ecom1 <- filter(ecom, purchase == "true")
+ecom2 <- select(ecom1, device, order_value, order_items)
+ecom2
+```
+

@@ -1,0 +1,112 @@
+---
+title: "dplyr Verbs"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+
+## Introduction
+
+<hr>
+
+According to  a [survey](http://visit.crowdflower.com/rs/416-ZBE-142/images/CrowdFlower_DataScienceReport_2016.pdf) by [CrowdFlower](https://www.crowdflower.com/), data scientists spend most of their time cleaning and manipulating data rather than mining or modeling them for insights. As such, it becomes important to have tools that make data manipulation faster and easier. In today's post, we introduce you to [dplyr](http://dplyr.tidyverse.org/), a grammar of data manipulation.
+
+## Group Data - Introduction
+
+### Introduction
+
+<hr>
+
+Since we want to compute the AOV for each device, we need to compute the total order value and total order items for each device. To achieve this, we will group the selected variables by device type. Using the `group_by()` function, we will group our case study data by device types. The first argument is the name of the data frame and the second argument is the name of the column based on which the data will be split. Let us look at a few examples:
+
+## Group Data - Practice 1
+
+### Instructions
+
+<hr>
+
+```{r dplyr11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Group - Part 1'}
+group_by(ecom, referrer)
+```
+
+## Group Data - Case Study
+
+### Instructions
+
+<hr>
+
+In the second line in the previous output, you can observe `Groups: referrer [5]`. The data is split into 5 groups as the referrer variable has 5 distinct values. For our case study, we need to group the data by device type.
+
+```{r dplyr12, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Group - Part 2'}
+ecom3 <- group_by(ecom2, device)
+ecom3
+```
+
+## Summarize - Introduction
+
+### Introduction
+
+<hr>
+
+The next step is to compute the total order value and total order items for each device. We will use them to then compute the average order value. Now we need to reduce the order value and order items data to a single summary. We can achieve this using the `summarise()` function. The first argument is the name of a data frame and the subsequent arguments are functions that can generate a summary. For example, we can use `min`, `max`, `sum`, `mean` etc.
+
+## Summarise - Practice 1
+
+### Instructions
+
+<hr>
+
+For our case study, we need the totals of order value and order items. What function can we use to obtain them? The `sum()` function will generate the sum of the values and hence we will use it inside the `summarise()` function. Remember, we need to provide a name to the summary being generated. 
+
+```{r dplyr13, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summarize - Part 1'}
+ecom4 <- summarise(ecom3, total_value = sum(order_value),
+          total_items = sum(order_items))
+ecom4
+```
+
+There you go, we have the total order value and total order items for each device type. Another way to achieve the above result is to use the `summarise_all()` function. How does that work? It generates the specified summary for all the columns in the data set except for the column based on which the data has been grouped. So we need to ensure that the data frame does not have any irrelevant columns.
+
+## Summarize: Case Study
+
+### Instructions
+
+<hr>
+
+In our case study, we have split the data based on the device type and we have 2 other columns which are order value and order items. If we use `summarise_all()` function, it will generate the summary for the two columns based on the function specified. To specify the functions, we need to use another argument `funs` and it can take any number of valid functions.
+
+```{r dplyr14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Summarize - Part 2'}
+ecom4 <- summarise_all(ecom3, funs(sum))
+ecom4
+```
+
+## Mutate - Introduction
+
+### Introduction
+
+<hr>
+
+Now that we have the total order value and total order items for each device category, we can compute the AOV. We will create a new column to store the result. To create a new column, we will use the `mutate()` function. The first argument is the name of the data frame and the subsequent arguments are expressions for creating new columns based out of existing columns.
+
+## Mutate - Practice 1
+
+### Instructions
+
+<hr>
+
+## Mutate - Case Study
+
+### Instructions
+
+<hr>
+
+```{r dplyr15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Mutate'}
+ecom5 <- mutate(ecom4, aov = order_value / order_items)
+ecom5
+```
