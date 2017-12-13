@@ -1,0 +1,129 @@
+---
+title: "Readable Code with Pipes"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+<hr>
+
+When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The [magrittr](https://CRAN.R-project.org/package=magrittr) package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+
+- especially useful when you have nested functions
+- similar in spirit to javascript's method chaining
+- functions taking multiple arguments can be confusing and messy to read
+- with magrittr, you program from left to right
+
+
+## Arithmetic Operations
+
+### Introduction
+
+<hr>
+
+- `add()`
+- `subtract()`
+- `multiply_by()`
+- `multiply_by_matrix()`
+- `divide_by()`
+- `divide_by_int()`
+- `mod()`
+- `raise_to_power()`
+
+
+## Addition
+
+<hr>
+
+```{r mag15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Addition'}
+1:10 %>%
+  `+`(1)
+
+1:10 %>%
+  add(1)
+```
+
+## Multiplication
+
+<hr>
+
+```{r mag16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Multiplication'}
+1:10 %>%
+  `*`(3)
+
+1:10 %>%
+  multiply_by(3)
+```
+
+## Division
+
+<hr>
+
+```{r mag17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Division'}
+1:10 %>%
+  `/`(2)
+
+1:10 %>%
+  divide_by(2)
+```
+
+## Power
+
+<hr>
+
+```{r mag18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Power'}
+1:10 %>%
+  `^`(2)
+
+1:10 %>%
+  raise_to_power(2)
+```
+
+## Logical Operators
+
+### Introduction
+
+<hr>
+
+- `and()`
+- `or()`
+- `equals()`
+- `not()`
+- `is_greater_than()`
+- `is_weakly_greater_than()`
+- `is_less_than()`
+- `is_weakly_less_than()`
+
+## Greater Than
+
+<hr>
+
+```{r mag19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Greater Than'}
+1:10 %>%
+  `>`(5)
+
+1:10 %>%
+  is_greater_than(5)
+```
+
+## Weakly Greater Than
+
+<hr>
+
+```{r mag20, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Weakly Greater Than'}
+1:10 %>%
+  `>=`(5)
+
+1:10 %>%
+  is_weakly_greater_than(5)
+```
+

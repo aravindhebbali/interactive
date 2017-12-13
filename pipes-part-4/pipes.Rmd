@@ -1,0 +1,110 @@
+---
+title: "Readable Code with Pipes"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+<hr>
+
+When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The [magrittr](https://CRAN.R-project.org/package=magrittr) package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+
+- especially useful when you have nested functions
+- similar in spirit to javascript's method chaining
+- functions taking multiple arguments can be confusing and messy to read
+- with magrittr, you program from left to right
+
+## Data Extraction
+
+### Introduction
+
+<hr>
+
+- `extract()`
+- `extract2()`
+- `use_series()`
+
+## Extract Column By Name
+
+<hr>
+
+```{r mag10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column'}
+head(ecom['n_pages'], 3)
+
+ecom %>%
+  extract('n_pages') %>%
+  head(3)
+```
+
+## Extract Column By Position
+
+<hr>
+
+```{r mag23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column'}
+head(ecom[6], 3)
+
+ecom %>%
+  extract(6) %>%
+  head(3)
+```
+
+## Extract Column (as vector)
+
+<hr>
+
+```{r mag11, , exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column'}
+head(ecom$n_pages)
+
+ecom %>%
+  use_series('n_pages') %>%
+  head()
+```
+
+## Extract List Element By Name
+
+<hr>
+
+```{r mag12, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract List Element'}
+mt <- as.list(mtcars)
+
+mt[['mpg']]
+
+mt %>%
+  extract2('mpg')
+```
+
+## Extract List Element By Position
+
+<hr>
+
+```{r mag13, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract List Element'}
+mt <- as.list(mtcars)
+
+mt[[1]]
+
+mt %>%
+  extract2(1)
+```
+
+## Extract List Element (as vector)
+
+<hr>
+
+```{r mag14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract List Element'}
+mt <- as.list(mtcars)
+
+mt$mpg
+
+mt %>%
+  use_series(mpg)
+```
+

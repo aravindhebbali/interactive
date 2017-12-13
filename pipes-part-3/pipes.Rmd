@@ -1,0 +1,157 @@
+---
+title: "Readable Code with Pipes"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+<hr>
+
+When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The [magrittr](https://CRAN.R-project.org/package=magrittr) package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+
+- especially useful when you have nested functions
+- similar in spirit to javascript's method chaining
+- functions taking multiple arguments can be confusing and messy to read
+- with magrittr, you program from left to right
+
+## Visualization
+
+### Introduction
+
+<hr>
+
+Let us look at a visualization example. From the ecommerce data set, we have the distribution of referrers (for those who have purchased/converted). We can decompose the code into the following steps:
+
+- `subset` data for those who have purchased/converted
+- extract the referrer column using `$`
+- compute the frequency using `table()`
+- pass the data to `barplot()`
+
+```{r mag21, fig.align='center', fig.height=4, fig.width=6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Visualize'}
+barplot(table(subset(ecom, purchase == 'true')$referrer))
+```
+
+## Visualization - Using Pipe
+
+<hr>
+
+Let us build a barplot from `mtcars` data.
+
+```{r mag30, eval=FALSE, echo=TRUE}
+# without pipe
+barplot(table(subset(mtcars, cyl == 8)$am))
+
+# with pipe
+mtcars %>%`
+  subset(cyl == 8) %$%
+  am %>%
+  table() %>%
+  barplot()
+```
+## Visualization - Practice
+
+### Instructions
+
+<hr>
+
+Let us now use pipes to build the same plot. We have written the partial code for you:
+
+- pass on the referrer data to `table()` using `%>%`
+- pass on the result from the previous step to `barplot()` using `%>%`
+
+```{r mag7, fig.align='center', fig.height=4, fig.width=6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Visualize - Using Pipe'}
+ecom %>%
+  subset(purchase == 'true') %$%
+  referrer
+
+
+```
+
+```{r mag7-solution}
+ecom %>%
+  subset(purchase == 'true') %$%
+  referrer %>%
+  table() %>%
+  barplot()
+```
+
+## Regression
+
+### Introduction
+
+<hr>
+
+```{r mag8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression'}
+summary(lm(duration ~ n_pages, data = ecom))
+```
+
+## Regression - Using Pipe
+
+<hr>
+
+```{r mag31, eval=FALSE, echo=TRUE}
+# without pipe
+summary(lm(disp ~ mpg, data = mtcars))
+
+# with pipe
+mtcars %$%`
+  lm(disp ~ mpg) %>%
+  summary()
+```
+
+## Regression - Practice
+
+### Instructions
+
+<hr>
+
+- expose `duration` and `n_pages` from `ecom` using `%$%` 
+- pass them onto `lm()` 
+- pass the result from `lm()` to `summary()` using `%>%`
+
+```{r mag22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression - Using Pipe'}
+ecom %$%
+  
+```
+
+```{r mag22-solution}
+ecom %$%
+  lm(duration ~ n_pages) %>%
+  summary()
+```
+
+## String Manipulation
+
+### Introduction
+
+<hr>
+
+```{r mag9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'String Manipulation'}
+email <- 'jovialcann@anymail.com'
+
+# without pipe
+toupper(strtrim(strsplit(email, '@')[[1]][1], 6))
+```
+
+## String Manipulation - With Pipe
+
+### Instructions
+
+```{r mag99, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'String Manipulation'}
+email %>%
+  strsplit(split = '@') %>%
+  extract2(1) %>%
+  extract(1) %>%
+  strtrim(width = 6) %>%
+  toupper()
+```
+

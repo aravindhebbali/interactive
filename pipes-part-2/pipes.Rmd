@@ -1,0 +1,197 @@
+---
+title: "Readable Code with Pipes"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+<hr>
+
+When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The [magrittr](https://CRAN.R-project.org/package=magrittr) package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+
+- especially useful when you have nested functions
+- similar in spirit to javascript's method chaining
+- functions taking multiple arguments can be confusing and messy to read
+- with magrittr, you program from left to right
+
+
+## Get Started
+
+### Introduction
+
+<hr>
+
+
+### Instructions
+
+<hr>
+
+- use `%>%` and `tail()` to get the last 10 rows of `mtcars`
+
+```{r mag1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'View Data'}
+head(ecom, 10)
+
+# using pipe
+ecom %>% head(10)
+
+# tail
+
+```
+
+```{r mag1-solution}
+mtcars %>% tail(10)
+```
+
+## Square Root 
+
+### Introduction
+
+<hr>
+
+```{r mag3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Square Root'}
+y <- ecom$n_pages
+y <- sqrt(y)
+y
+```
+
+## Square Root - Using Pipe 1
+
+<hr>
+
+Now let us learn how to compute square root using pipe operators. In the above example, we have done two things:
+
+- assign `n_pages` to `y` using `$`
+- compuate square root of `y` and assign the result to `y` itself
+
+We can assign expose a column from a data set using the `%$%` operator. For example, `y <- mtcars %$% mpg` will assign `mpg` to `y`.
+Similarly, we can assign the result of an operation performed on a variable to itself using `%<>%` operator. Let us assume you want to  assign the absolute value of a variable to itself. This is how you would do it normally:
+
+`y <- abs(y)`
+
+Using `%<>%` operator, this is how you will achieve it:
+
+`y %<>% abs()`
+
+### Instructions
+
+<hr>
+
+- use `%$%` to assing `n_pages` from `ecom` to `y`
+- use `%<>%` to compute square root of `y` and assign it to `y`
+
+```{r mag4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Square Root'}
+# select n_pages variable and assign it to y
+y <- ecom 
+
+# compute square root of y and assign it to y 
+y 
+```
+
+```{r mag4-solution}
+# select n_pages variable and assign it to y
+y <- ecom %$% n_pages
+
+# compute square root of y and assign it to y 
+y %<>% sqrt()
+```
+
+
+## Square Root - Using Pipe 2
+
+<hr>
+
+In the first example, we computed the square root of `y` in two steps while we could have achieved it in a single step like this:
+
+`y <- sqrt(econ$n_pages)`
+
+What we are doing above is:
+
+- select `n_pages` from `econ`
+- pass it on to `sqrt()`
+- assign the result to `y`
+
+### Instructions
+
+<hr>
+
+Let us try to do this using pipes:
+
+- expose `n_pages` from `econ` using `%$%`
+- pass it on to `sqrt()` using `%>%`
+- assign the result to `y`
+
+We have written the first part for you.
+
+```{r mag5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Square Root'}
+y <- ecom %$% 
+  n_pages
+```
+
+```{r mag5-solution}
+y <- ecom %$% 
+  n_pages %>% 
+  sqrt()
+```
+
+## Correlation
+
+### Introduction
+
+<hr>
+
+From the ecommerce data, we want to explore the relationship between number of visits and time spent on the site for those who
+purchase/convert. We can achieve this in the following steps:
+
+- filter data for those who have purchased/converted
+- compute correlation by selecting `n_visit` and `duration`
+
+```{r mag32, eval=FALSE, echo=TRUE}
+ecom1 <- subset(ecom, purchase == 'true')
+cor(ecom1$n_visit, ecom1$duration)
+```
+
+## Correlation - Using pipe
+
+We can chain functions using pipe operators. For example, using `mtcars`, to compute the average miles per gallon for cars with eight cylinders we will write:
+
+```{r mag33, eval=FALSE, echo=TRUE}
+mtcars %>% 
+  subset(cyl == 8) %$% 
+  mean(mpg)
+```
+
+This is how you can read the above code:
+
+- filter data from `mtcars` where `cyl == 8` using `subset()`
+- from the filtered data set expose `mpg` using `%$%` and pass it into `mean()`
+
+### Instructions
+
+Let us use pipe operators to compute the correlation between `n_visit` and `duration`:
+
+- filter data for those who have purchased (`purchase == 'true'`) using `subset()` and `%>%`
+- expose `n_visit` and `duration` using `%$%` and pass them onto `cor()`
+
+
+```{r mag6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Correlation'}
+# with pipe
+ecom %>%
+  subset(purchase == 'true') 
+```
+
+```{r mag6-solution}
+# with pipe
+ecom %>%
+  subset(purchase == 'true') %$% 
+  cor(n_visit, duration)
+```
+
