@@ -1,0 +1,129 @@
+---
+title: "forcats: Working with Categorical Data"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(forcats)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+traffic <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web_traffic.csv')
+```
+
+## Introduction
+
+<hr>
+
+In this module, we will learn to work with categorical/qualitative data in R using [forcats](http://forcats.tidyverse.org). Let us begin by installing and loading forcats and a set of other pacakges we will be using.
+
+## Case Study
+
+### Introduction
+
+<hr>
+
+We will use a case study to explore the various features of the forcats package. You can download the data for the case study from [here](https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv) or directly import the data using the readr package. We will do the following in this case study:
+
+- compute the frequency of different referrers
+- plot average number of pages browsed for different referrers
+- collapse referrers with low sample size into a single group
+- club traffic from social media websites into a new category
+- group referrers with traffic below a threshold into a single category
+
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+hsb <- readr::read_csv('/www/hsb2.csv')
+hsb
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+ 
+## Tabulate Referrers - Part 1
+
+### Introduction
+
+<hr>
+
+```{r cat2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Tabulate Referrers'}
+# using dplyr
+ecom %>%
+  count(referrer)
+
+# using forcats
+ecom %>%
+  use_series(referrer) %>%
+  fct_count()
+```
+
+## Reorder Referrers - Part 1
+
+### Visualize 
+
+<hr>
+
+```{r cat10, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Avg. Page Visits by Referrer Type'}
+ggplot(refer_summary, aes(page, referrer)) + geom_point()
+```
+
+## Reorder Referrers - Part 2
+
+<hr>
+
+```{r cat11, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Reorder Referrers'}
+ggplot(refer_summary, aes(page, fct_reorder(referrer, page))) + geom_point()
+```
+
+## Referrer Frequency - Part 1
+
+### Plot Referrer Frequency (Descending Order)
+
+<hr>
+
+```{r cat4, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Frequency'}
+ecom %>%
+  mutate(ref = referrer %>% fct_infreq()) %>%
+  ggplot(aes(ref)) +
+  geom_bar()
+```
+
+## Referrer Frequency - Part 2
+
+### Plot Referrer Frequency (Ascending Order)
+
+<hr>
+
+```{r cat5, fig.align='center', fig.width=6, fig.height=4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Frequency'}
+ecom %>%
+  mutate(ref = referrer %>% fct_infreq() %>% fct_rev()) %>%
+  ggplot(aes(ref)) +
+  geom_bar()
+```
+

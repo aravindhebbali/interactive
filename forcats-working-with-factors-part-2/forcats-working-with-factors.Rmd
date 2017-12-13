@@ -1,0 +1,150 @@
+---
+title: "forcats: Working with Categorical Data"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(forcats)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+traffic <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web_traffic.csv')
+```
+
+## Introduction
+
+<hr>
+
+In this module, we will learn to work with categorical/qualitative data in R using [forcats](http://forcats.tidyverse.org). Let us begin by installing and loading forcats and a set of other pacakges we will be using.
+
+## Case Study 
+
+### Introduction
+
+<hr>
+
+## Data 
+
+### Introduction
+
+<hr>
+
+```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+traffic
+```
+
+## Collapse Categories
+
+### Collapse Referrer Categories
+
+<hr>
+
+```{r cat7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Collapse Referrer Categories'}
+traffic2 <- fct_collapse(traffic$traffics,
+  social = c("facebook", "twitter", "instagram"),
+  search = c("google", "bing", "yahoo")
+)
+
+traffic2 %>% fct_count() 
+```
+
+## Lump Categories - Introduction
+
+### Lump Infrequent Referrer Types
+
+<hr>
+
+```{r cat8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lump Infrequent Referrer Types'}
+traffic$traffics %>% fct_count()
+
+traffic$traffics %>% fct_lump() %>% table()
+```
+
+## Lump Categories - Part 1
+
+### Introduction
+
+<hr>
+
+```{r cat9, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrers'}
+traffic$traffics %>% fct_count() %>% arrange(desc(n))
+```
+
+```{r cat17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Retain Top 3 Referrers'}
+traffic$traffics %>% fct_lump(n = 3) %>% table()
+```
+
+## Lump Categories - Part 2
+
+### Lump Referrer Types with less than 10% traffic
+
+<hr>
+
+```{r cat12, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Percentages'}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+```{r cat16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lump Referrer Types'}
+traffic$traffics %>% fct_lump(prop = 0.1) %>% table()
+```
+
+## Lump Categories - Part 3
+
+### Lump Referrer Types with less than 15% traffic
+
+<hr>
+
+```{r cat13, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Percentage'}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+```{r cat18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Lump Referrer Types'}
+traffic$traffics %>% fct_lump(prop = 0.15) %>% table()
+```
+
+## Lump Categories - Part 4
+
+### Retain 3 Referrer Types with lowest traffic
+
+<hr>
+
+```{r cat14, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Traffic Sources'}
+traffic$traffics %>% fct_count() %>% arrange(n)
+```
+
+```{r cat19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Retain Top 3 Referrers'}
+traffic$traffics %>% fct_lump(n = -3) %>% table()
+```
+
+## Lump Categories - Part 5
+
+### Retain 3 Referrer Types with less than 10% traffic
+
+<hr>
+
+```{r cat15, echo=FALSE, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Referrer Percentage'}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+```{r cat20, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Retain Top 3 Referrers'}
+traffic$traffics %>% fct_lump(prop = -0.1) %>% table()
+```
+
