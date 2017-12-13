@@ -1,0 +1,139 @@
+---
+title: "How to work with dates in R?"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(lubridate)
+library(dplyr)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+transact <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/transact.csv')
+```
+
+## Introduction
+
+<hr>
+
+ In this module, we will learn to work with date/time data in R using [lubridate]( https://CRAN.R-project.org/package=lubridate), an R package that makes it easy to work with dates and time. Let us begin by installing and loading the lubridate pacakge.
+
+## Quick Tour
+
+### Origin, Current Date/Time
+
+<hr>
+
+```{r origin, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Orign'}
+# origin
+lubridate::origin
+
+# current time
+now()
+
+# current date and time
+today()
+
+# AM or PM
+am(now())  
+pm(now())
+```
+
+## Data
+
+### Data
+
+<hr>
+
+```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data Overview'}
+transact
+```
+
+### Data Dictionary
+
+<hr>
+
+The data set has 3 columns. All the dates are in the format (yyyy-mm-dd).
+
+- Invoice: invoice date 
+- Due: due date
+- Payment: payment date
+
+## Case Study
+
+<hr>
+
+We will use the functions in the lubridate package to answer a few 
+questions we have about the transact data.
+
+- extract date, month and year from Due
+- compute the number of days to settle invoice
+- compute days over due
+- check if due year is a leap year
+- check when due day in february is 29, whether it is a leap year
+- how many invoices were settled within due date
+- how many invoices are due in each quarter
+- what is the average duration between invoice date and payment date
+
+
+## Day, Month & Year
+
+### Introduction
+
+<hr>
+
+```{r lubb1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract - Part 1'}
+this_day <- as_date('2017-03-23')
+
+# extract day
+day(this_day)
+
+# extract month
+month(this_day)
+
+# extract year
+year(this_day)
+```
+
+## Day, Month & Year - Practice 1
+
+<hr>
+
+```{r lub2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract - Part 1'}
+transact %>%
+  mutate(
+    due_day = day(Due),
+    due_month = month(Due),
+    due_year = year(Due)
+  )
+```
+
+## Date Difference
+
+```{r lubb3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Compute - Part 1'}
+course_start <- as_date('2017-04-12')
+course_end <- as_date('2017-04-21')
+course_duration <- course_end - course_start
+course_duration
+```
+
+
+## Date Difference - Practice 1
+
+```{r lub3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Compute - Part 1'}
+transact %>%
+  mutate(
+    days_to_pay = Payment - Invoice
+  )
+```
+
+## Date Difference - Practice 2
+
+```{r lub4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Compute - Part 2'}
+transact %>%
+  mutate(
+    delay = Payment - Due
+  )
+```
+

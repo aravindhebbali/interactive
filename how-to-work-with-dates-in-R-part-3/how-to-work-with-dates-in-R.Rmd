@@ -1,0 +1,163 @@
+---
+title: "How to work with dates in R?"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(lubridate)
+library(dplyr)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+transact <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/transact.csv')
+```
+
+## Introduction
+
+<hr>
+
+ In this module, we will learn to work with date/time data in R using [lubridate]( https://CRAN.R-project.org/package=lubridate), an R package that makes it easy to work with dates and time. Let us begin by installing and loading the lubridate pacakge.
+
+## Quarter
+
+### Introduction
+
+<hr>
+
+```{r lubb8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Quarter'}
+# course start date
+course_start
+
+# quarter
+course_start %>%
+  quarter
+
+# quarter with year
+course_start %>%
+  quarter(with_year = TRUE)
+```
+
+
+## Practice - I
+
+### Introduction
+
+<hr>
+
+```{r lub8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Quarter'}
+transact %>%
+  mutate(
+    Quarter = quarter(Due)
+  )
+```
+
+```{r lub14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Quarter'}
+transact %>%
+  mutate(
+    Quarter = quarter(Due, with_year = TRUE)
+  )
+```
+
+## Duration
+
+### Introduction
+
+<hr>
+
+```{r lub9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Duration'}
+course_duration %>%
+  as.numeric() %>%
+  duration(units = 'days')
+```
+
+## Practice - II
+
+### Introduction
+
+<hr>
+
+```{r lub15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Duration'}
+interval(course_start, course_end) / dseconds()
+
+interval(course_start, course_end) / dminutes()
+
+interval(course_start, course_end) / dhours()
+
+interval(course_start, course_end) / dweeks()
+
+interval(course_start, course_end) / dyears()
+```
+
+## Interval: Time Length
+
+### Introduction
+
+<hr>
+
+```{r lub10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Interval'}
+interval(course_start, course_end) %>%
+  time_length(unit = "seconds")
+
+interval(course_start, course_end) %>%
+  time_length(unit = "minutes")
+
+interval(course_start, course_end) %>%
+  time_length(unit = "hours")
+```
+
+## Interval: Period
+
+### Introduction
+
+<hr>
+
+```{r lubb10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Period'}
+interval(course_start, course_end) %>%
+  as.period(unit = "seconds")
+
+interval(course_start, course_end) %>%
+  as.period(unit = "minutes")
+
+interval(course_start, course_end) %>%
+  as.period(unit = "hours")
+```
+
+## Practice III
+
+### Introduction
+
+<hr>
+
+```{r lub11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Days'}
+transact %>%
+  mutate(
+    inv_pay_days = inv_pay_int / ddays()
+  )
+```
+
+## Practice IV
+
+### Introduction
+
+<hr>
+
+```{r lub16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Time Length'}
+transact %>%
+  mutate(
+    inv_pay_days = time_length(inv_pay_int, unit = "days")
+  )
+```
+
+## Practice - V
+
+### Introduction
+
+<hr>
+
+```{r lub17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Period'}
+transact %>%
+  mutate(
+    inv_pay_days = as.period(inv_pay_int)
+  )
+```
