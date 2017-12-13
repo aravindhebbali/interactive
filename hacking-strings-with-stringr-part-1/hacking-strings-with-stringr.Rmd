@@ -1,0 +1,134 @@
+---
+title: "Hacking strings with stringr"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(stringr)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+mockstring <- readr::read_csv("https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv")
+```
+
+## Introduction
+
+<hr>
+
+In this module, we will learn to work with string data in R using [stringr](http://stringr.tidyverse.org). As we did in the earlier modules, we will use a case study to explore the various features of the stringr package. You can
+download the data for the case study from [here](https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv) or directly import the data using the readr package.  Let us begin by installing and loading stringr and a set of other pacakges we will be using.
+
+
+## Case Study
+
+### Introduction
+
+<hr>
+
+- extract domain name from random email ids
+- extract image type from url
+- extract image dimension from url
+- extract extension from domain name
+- extract http protocol from url
+- extract domain name from url
+- extract extension from url
+- extract file type from url
+
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+mockstring
+```
+
+### Data Dictionary
+
+<hr>
+
+## Splitting Strings
+
+### Introduction
+
+<hr>
+
+## Extract Domain Name - Part 1
+
+### Let us look at the email column
+
+<hr>
+
+```{r str_case1_1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Domain Name'}
+emails <- mockstring %>%
+  pull(email) %>%
+  head 
+emails
+```
+
+## Extract Domain Name - Part 2
+
+### Split user name and domain name
+
+```{r str_case1_2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Domain Name'}
+emails %>%
+  str_split(pattern = '@')
+```
+
+## Extract Domain Name - Part 3
+
+### Extract domain name
+
+```{r str_case1_3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Domain Name'}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2)
+```
+
+## Extract Domain Name - Part 4
+
+### Split domain name and extension 
+
+```{r str_case1_4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Domain Name'}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.')
+```
+
+## Extract Domain Name - Part 5
+
+### Extract domain name
+
+```{r str_case1_5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Domain Name'}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1))
+```
+
+## Your Turn
+
+### Extract Domain Extension
+
+<hr>
+
+### Instructions 
+
+<hr>
+
+```{r str8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Domain Extension'}
+mockstring$url[1:5] %>%
+  str_sub(end = n) %>%
+  str_split(pattern = "\\.") %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = "/") %>%
+  map_chr(extract(1))
+```

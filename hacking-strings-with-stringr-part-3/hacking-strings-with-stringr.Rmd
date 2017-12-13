@@ -1,0 +1,132 @@
+---
+title: "Hacking strings with stringr"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(stringr)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+mockstring <- readr::read_csv("https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv")
+```
+
+## Introduction
+
+<hr>
+
+In this module, we will learn to work with string data in R using [stringr](http://stringr.tidyverse.org). As we did in the earlier modules, we will use a case study to explore the various features of the stringr package. You can
+download the data for the case study from [here](https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv) or directly import the data using the readr package.  Let us begin by installing and loading stringr and a set of other pacakges we will be using.
+
+
+## Extract Image Dimension - Introduction
+
+### Introduction
+
+<hr>
+
+## Extract Image Dimension - Step 1
+
+### Locate numbers in string
+
+<hr>
+
+```{r str_case4_1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Image Dimension'}
+img %>%
+  str_locate(pattern = "[0-9]") 
+```
+
+## Extract Image Dimension - Step 2
+
+### View Image Dimension
+
+<hr>
+
+```{r str_case4_2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Image Dimension'}
+img %>%
+  str_sub(start = 23) 
+```
+
+## Extract Image Dimension - Step 3
+
+### Split image dimension and image type
+
+<hr>
+
+```{r str_case4_3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Image Dimension'}
+img %>%
+  str_sub(start = 23) %>%
+  str_split(pattern = '\\.') 
+```
+
+## Extract Image Dimension - Step 4
+
+### Extract image dimension
+
+<hr>
+
+```{r str_case4_4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Image Dimension'}
+img %>%
+  str_sub(start = 23) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1))
+```
+
+## Extract HTTP Protocol - Introduction
+  
+### Introduction
+
+<hr>
+
+## Extract HTTP Protocol - Step 1
+
+### View URL
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r str_case5_1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'HTTP Protocol'}
+url1 <- mockstring %>%
+  pull(url) %>%
+  first
+url1
+```
+
+## Extract HTTP Protocol - Step 2
+
+### Split protocol from rest of the URL
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r str_case5_2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'HTTP Protocol'}
+url1 %>%
+  str_split(pattern = '://') 
+```
+
+## Extract HTTP Protocol - Step 3
+
+### Extract protocol
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r str_case5_3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'HTTP Protocol'}
+url1 %>%
+  str_split(pattern = '://') %>%
+  map_chr(extract(1))
+```
+
