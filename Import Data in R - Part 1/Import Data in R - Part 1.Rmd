@@ -1,0 +1,126 @@
+---
+title: "Import Data in R - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(readr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Introduction
+
+<hr>
+
+Importing data is the first step in any data analysis workflow. If you cannot import data from differernt sources or file formats, you cannot proceed with data analysis. R allows you to import data from several sources and a variety of file formats. In this module, we will focus on 
+
+  - csv
+  - tsv
+  - txt
+
+## CSV 
+
+### Introduction
+
+<hr>
+
+- `read_csv()`
+- `read_delim()`
+- `read.csv()`
+
+### Options
+
+<hr>
+
+- `col_names`
+- `skip`
+- `n_max`
+- `col_types`
+
+## readr
+
+### Introduction
+
+<hr>
+
+```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Introduction'}
+read_csv('C:/hsb2.csv')
+```
+
+### Delimiter 
+
+<hr>
+
+```{r import3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Delimiter'}
+read_delim('C:/hsb2.csv', delim = ',')
+```
+
+## Column Names 
+
+### Introduction
+
+<hr>
+
+```{r import4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Names'}
+read_csv('C:/hsb2.csv', col_names = FALSE)
+```
+
+## Skip Lines 
+
+### Introduction
+
+<hr>
+
+```{r import6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Skip Lines'}
+read_csv('C:/hsb2.csv', skip = 5)
+```
+
+## Maximum Lines 
+
+<hr>
+
+```{r import8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Maximum Lines'}
+read_csv('C:/hsb2.csv', n_max = 50)
+```
+
+## Column Types
+
+<hr>
+
+```{r import55, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Types'}
+spec_csv('C:/hsb2.csv')
+```
+
+## Specify Column Types 
+
+<hr>
+
+```{r import10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Column Types'}
+read_csv('C:/hsb2.csv', col_types = list(col_integer(), col_factor(levels = c(0, 1)), 
+  col_factor(levels = c(1, 2, 3, 4)), col_factor(levels = c(1, 2, 3)), 
+  col_factor(levels = c(1, 2)), col_factor(levels = c(1, 2, 3)),
+  col_integer(), col_integer(), col_integer(), col_integer(), col_integer())            
+)
+```
+
+## Read Specific Columns 
+
+<hr>
+
+```{r import11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Columns'}
+read_csv('C:/hsb2.csv', col_types = cols_only(id = col_integer(),
+  prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
+)
+```
+
+## Base R
+
+<hr>
+
+```{r import1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Base R'}
+read.csv('C:/hsb2.csv', header = TRUE)
+```

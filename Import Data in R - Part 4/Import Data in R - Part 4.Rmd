@@ -1,0 +1,126 @@
+---
+title: "Import Data in R - Part 4"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(jsonlite)
+library(xml2)
+library(XML)
+library(tibble)
+library(purrr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+<hr>
+
+Importing data is the first step in any data analysis workflow. If you cannot import data from differernt sources or file formats, you cannot proceed with data analysis. R allows you to import data from several sources and a variety of file formats. In this module, we will focus on 
+
+- XML
+- JSON
+- HTML
+
+
+## XML - Introduction
+
+## XML - Read Data
+
+<hr>
+
+```{r imp15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read XML'}
+books <- read_xml('books.xml')
+```
+
+## XML - Node Names
+
+<hr>
+
+```{r imp16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Node Names'}
+xml_name(books)
+```
+
+## XML - Child Nodes
+
+<hr>
+
+```{r imp17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Child Nodes'}
+xml_children(books)
+```
+
+### Child Node
+
+<hr>
+
+```{r imp18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Child Nodes'}
+xml_child(books)
+```
+
+## XML - Contents
+
+<hr>
+
+```{r imp19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Contents'}
+xml2::xml_contents(books)
+```
+
+## XML - Structure
+
+<hr>
+
+```{r imp21, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Structure'}
+xml2::xml_structure(books)
+```
+
+## XML - Length
+
+<hr>
+
+```{r imp22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Length'}
+xml2::xml_length(books)
+```
+
+## XML - Root Node
+
+<hr>
+
+```{r imp23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Root Node'}
+xml2::xml_root(books)
+```
+
+## XML - Attributes
+
+<hr>
+
+```{r imp24, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Attributes'}
+xml_find_all(books, './/book') %>% 
+  map_chr(xml_attrs)
+```
+
+## XML (Web)
+
+<hr>
+
+```{r xmlread, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'XML (Web)'}
+xml2::read_xml("http://www.xmlfiles.com/examples/cd_catalog.xml")
+```
+
+## JSON
+
+<hr>
+
+```{r imp1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'JSON'}
+jsonlite::fromJSON('mtcars.json')
+```
+
+
+## HTML
+
+<hr>
+
+```{r imp14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'HTML'}
+xml2::read_html("http://r-project.org/")
+```

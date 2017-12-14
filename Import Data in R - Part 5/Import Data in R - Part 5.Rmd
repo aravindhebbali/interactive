@@ -1,0 +1,114 @@
+---
+title: "Import Data in R - Part 5"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(jsonlite)
+library(xml2)
+library(XML)
+library(tibble)
+library(purrr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+<hr>
+
+Importing data is the first step in any data analysis workflow. If you cannot import data from differernt sources or file formats, you cannot proceed with data analysis. R allows you to import data from several sources and a variety of file formats. In this module, we will focus on 
+
+- XML
+- JSON
+- HTML
+
+## XML - Book Author
+
+<hr>
+
+```{r imp25, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Book Author'}
+xml_find_all(books, './/author') %>%
+  xml_text()
+```
+
+## XML - Book Title
+
+<hr>
+
+```{r imp26, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Book Title'}
+xml_find_all(books, './/title') %>%
+  xml_text()
+```
+
+## XML - Book Genre
+
+<hr>
+
+```{r imp27, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Book Genre'}
+xml_find_all(books, './/genre') %>%
+  xml_text()
+```
+
+## XML - Book Price
+
+<hr>
+
+```{r imp28, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Book Price'}
+xml_find_all(books, './/price') %>%
+  xml_double()
+```
+
+## XML - Publishing Date
+
+<hr>
+
+```{r imp29, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Publishing Date'}
+xml_find_all(books, './/publish_date') %>%
+  xml_text()
+```
+
+## XML - Description
+
+<hr>
+
+```{r imp30, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Description'}
+xml_find_all(books, './/description') %>%
+  xml_text() %>%
+  stringr::str_replace_all("[\n]", "") %>%
+  stringr::str_replace_all(pattern = "      ", " ") %>%
+  stringr::str_replace_all(pattern = "  ", " ")
+```
+
+## XML - tibble
+
+<hr>
+
+```{r imp31, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'tibble'}
+book <- tibble::tibble(
+  author = xml_find_all(books, './/author') %>%
+    xml_text(),
+  title = xml_find_all(books, './/title') %>%
+    xml_text(),
+  genre = xml_find_all(books, './/genre') %>%
+    xml_text(),
+  price = xml_find_all(books, './/price') %>%
+    xml_double(),
+  published = xml_find_all(books, './/publish_date') %>%
+    xml_text(),
+  description = xml_find_all(books, './/description') %>%
+    xml_text() %>%
+    stringr::str_replace_all("[\r\n]", "") %>%
+    stringr::str_replace_all(pattern = "      ", " ") %>%
+    stringr::str_replace_all(pattern = "  ", " ")
+)
+```
+
+## XML - tibble
+
+<hr>
+
+```{r imp32, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Book'}
+book
+```

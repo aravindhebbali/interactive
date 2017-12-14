@@ -1,0 +1,138 @@
+---
+title: "Import Data in R - Part 2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(readxl)
+library(haven)
+library(foreign)
+library(sas7bdat)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+<hr>
+
+Importing data is the first step in any data analysis workflow. If you cannot import data from differernt sources or file formats, you cannot proceed with data analysis. R allows you to import data from several sources and a variety of file formats. In this module, we will focus on 
+
+- xls
+- xlsx
+- SAS
+- SPSS
+- STATA
+
+## Overview
+
+### Introduction
+
+<hr>
+
+- list sheets in an excel file
+- read data from an excel sheet
+- read specific cells from an excel sheet
+- read a single row
+- read a single column
+- read several rows
+- read several columns
+
+## List Sheets
+
+<hr>
+
+```{r import55, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'List Sheets'}
+excel_sheets('sample.xls')
+```
+
+## Read Sheet
+
+<hr>
+
+```{r import56, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Sheets'}
+readxl::read_excel('sample.xls', sheet = 1)
+```
+
+## Read Specific Cells - Part 1
+
+### Introduction
+
+<hr>
+
+```{r import58, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Cells'}
+readxl::read_excel('sample.xls', sheet = 1, range = "B1:C4")
+```
+
+### Instructions
+
+<hr>
+
+```{r import59, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Cells'}
+readxl::read_excel('sample.xls', sheet = 1, range = "A1:C5")
+```
+
+## Read Specific Cells - Part 2
+
+<hr>
+
+```{r import61, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Cells'}
+readxl::read_excel('sample.xls', sheet = 1, col_names = FALSE,
+  range = anchored("A4", dim = c(3, 2)))
+```
+
+## Read Specific Cells - Part 3
+
+<hr>
+
+```{r import65, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Cells'}
+readxl::read_excel('sample.xls', sheet = 1,
+  range = cell_limits(c(1, 2), c(NA, NA)))
+```
+
+## Read Specific Cells - Part 4
+
+### Introduction
+
+<hr>
+
+Use cell_limits to specify one end of the rectangle such as top left or top right.
+
+```{r import66, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Cells'}
+readxl::read_excel('sample.xls', sheet = 1,
+  range = cell_limits(c(1, NA), c(NA, 2)))
+```
+
+## Read Single Row
+
+<hr>
+
+```{r import60, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Single Row'}
+readxl::read_excel('sample.xls', sheet = 1, range = "A1:C4")
+```
+
+## Read Single Column
+
+<hr>
+
+```{r import64, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Single Column'}
+readxl::read_excel('sample.xls', sheet = 1, range = cell_cols(2))
+```
+
+
+## Specify Rows
+
+<hr>
+
+```{r import62, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Rows'}
+readxl::read_excel('sample.xls', sheet = 1, range = cell_rows(1:4))
+```
+
+## Specify Columns
+
+<hr>
+
+```{r import63, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Columns'}
+readxl::read_excel('sample.xls', sheet = 1, range = cell_cols(2:3))
+```
