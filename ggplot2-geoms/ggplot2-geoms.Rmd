@@ -69,15 +69,32 @@ A scatter plot displays the relationship between two continuous variables. In gg
 - the direction of the relationship between the variables 
 - and whether outliers exist
 
+### Example
+
+<hr>
+
+```{r geoms2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point()
+```
+
 ### Instructions
 
 <hr>
 
+- set `x` to `wt`
+- set `y` to `mpg`
+- create a scatter plot by representing the data using points
+
 ```{r geoms2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point'}
-ggplot(ecom, aes(x = n_pages, y = duration)) + 
-  geom_point()
+ggplot(mtcars, aes(x = , y = )) + 
+  
 ```
 
+```{r geoms2-solution}
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
 
 ## Bar 
 
@@ -93,16 +110,31 @@ Bar plots present grouped data with rectangular bars. The bars may represent the
 - stacked 
 - proportional
 
+### Example
+
+<hr>
+
+```{r geoms8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = cyl)) +
+  geom_bar()
+```
 
 ### Instructions
 
 <hr>
 
+- set `x` to `device`
+- represent the data using bars
+
 ```{r geoms8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Frequency'}
+ggplot(ecom, aes(x = factor())) +
+  
+```
+
+```{r geoms8-solution}
 ggplot(ecom, aes(x = factor(device))) +
   geom_bar()
 ```
-
 
 ## Boxplot
 
@@ -113,16 +145,34 @@ ggplot(ecom, aes(x = factor(device))) +
 - examine the distribution of a variable  
 - detect outliers, boxplots are very handy
 
+### Example
+
+<hr>
+
+```{r geoms13eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot()
+```
+
 ### Instructions
 
 <hr>
 
+- set `x` to `device`
+- set `y` to `n_pages`
+- represent the data using a `boxplot`
+
 ```{r geoms13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+ggplot(ecom, aes(x = factor(), y = )) +
+  
+```
+
+```{r geoms13-solution}
 ggplot(ecom, aes(x = factor(device), y = n_pages)) +
   geom_boxplot()
 ```
 
-## Histogram
+## Histogram - Part 1
 
 ### Introduction
 
@@ -133,23 +183,66 @@ Histograms are used to examine:
 - distribution of a continuous variable
 - skewness and kurtosis
 
+### Example
+
+<hr>
+
+```{r geoms15eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram()
+```
+
 ### Instructions
 
+<hr>
+
+- set `x` to `duration`
+- represent the data using a histogram
+
 ```{r geoms15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+ggplot(ecom, aes(x = )) +
+  
+```
+
+```{r geoms15-solution}
 ggplot(ecom, aes(x = duration)) +
   geom_histogram()
 ```
+
+## Histogram - Part 2
 
 ### Bins
 
 <hr>
 
+### Example
+
+<hr>
+
+```{r geoms16eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(bins = 5)
+```
+
+### Instructions
+
+<hr>
+
+- set `x` to `duration`
+- represent the data using a histogram
+- set the number of bins to 5
+
 ```{r geoms16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram Bins'}
+ggplot(ecom, aes(x = )) +
+  
+```
+
+```{r geoms16-solution}
 ggplot(ecom, aes(x = duration)) +
   geom_histogram(bins = 5)
 ```
 
-## Line
+## Line - Part 1
 
 ### Introduction
 
@@ -166,31 +259,34 @@ Line charts are used to examine trends over time.
 gdp
 ```
 
-### Instructions
+### Example
 
 <hr>
 
-```{r geomline1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
-ggplot(gdp, aes(year, india)) +
+```{r geomslineeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(gdp, aes(year, china)) +
   geom_line()
 ```
 
-## Jitter
-
-### Introduction
-
-<hr>
+## Line - Part 2
 
 ### Instructions
 
 <hr>
 
+- set `x` to `year`
+- set `y` to `india`
+- represent the data using a line 
 
-```{r geoms17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Jitter'}
-ggplot(ecom, aes(x = factor(device), y = duration)) +
-  geom_jitter()
+```{r geomline1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+ggplot(gdp, aes(x = ___, y = ___ )) +
+ 
 ```
 
+```{r geomline1-solution}
+ggplot(gdp, aes(year, india)) +
+  geom_line()
+```
 
 ## Label
 
@@ -218,6 +314,6 @@ ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
 
 ```{r geoms19, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text'}
 ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
-  geom_text(check_overlap = TRUE, size = 2)
+  geom_text()
 ```
 
