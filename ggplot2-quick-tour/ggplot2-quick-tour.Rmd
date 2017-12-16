@@ -38,11 +38,19 @@ types of plots. Below are the key arguments:
 - `shape`: shape of the geom
 - `size` : size of the symbol
 
-## Scatter Plot
+## Scatter Plot - Part 1
 
 ### Introduction
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = hp, y = mpg, data = mtcars)
+```
 
 ### Instructions
 
@@ -57,9 +65,23 @@ types of plots. Below are the key arguments:
 qplot(x = ___, y = ___, data = ___)
 ```
 
+```{r gg2-solution}
+qplot(x = disp, y = mpg, data = mtcars)
+```
+
+## Scatter Plot - Part 2
+
 ### Point & Line
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(hp, mpg, data = mtcars, geom = c('point', 'line'))
+```
 
 ### Instructions
 
@@ -71,9 +93,24 @@ qplot(x = ___, y = ___, data = ___)
 qplot(disp, mpg, data = mtcars, geom = c('____', '____'))
 ```
 
+```{r gg3-solution}
+qplot(x = disp, y = mpg, data = mtcars, geom = c('point', 'line'))
+```
+
+
+## Scatter Plot - Part 3
+
 ### Color
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(hp, mpg, data = mtcars, color = gear)
+```
 
 ### Instructions
 
@@ -85,12 +122,23 @@ qplot(disp, mpg, data = mtcars, geom = c('____', '____'))
 qplot(disp, mpg, data = mtcars, color = ____)
 ```
 
+```{r gg4-solution}
+qplot(x = disp, y = mpg, data = mtcars, color = 'cyl')
+```
 
-## Bar Plot
+## Bar Plot - Part 1
 
 ### Introduction
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = gear, data = mtcars, geom = c('bar'))
+```
 
 ### Instructions
 
@@ -103,9 +151,24 @@ qplot(disp, mpg, data = mtcars, color = ____)
 qplot(x = ____, data = mtcars, geom = c('____'))
 ```
 
+```{r gg7-solution}
+qplot(x = cyl, data = mtcars, geom = 'bar')
+```
+
+
+## Bar Plot - Part 2
+
 ### Color
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = gear, data = mtcars, geom = c('bar'), fill = vs)
+```
 
 ### Instructions
 
@@ -118,11 +181,24 @@ qplot(x = ____, data = mtcars, geom = c('____'))
 qplot(x = ____, data = mtcars, geom = c('bar'), fill = ____)
 ```
 
+```{r gg8-solution}
+qplot(x = cyl, data = mtcars, geom = c('bar'), fill = am)
+```
+
+
 ## Box Plot
 
 ### Introduction
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg9eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = cyl, y = disp, data = mtcars, geom = c('boxplot'))
+```
 
 ### Instructions
 
@@ -137,12 +213,23 @@ qplot(x = ____, data = mtcars, geom = c('bar'), fill = ____)
 qplot(x = ____, y = ____, data = mtcars, geom = c('______'))
 ```
 
+```{r gg9-solution}
+qplot(x = gear, y = mpg, data = mtcars, geom = 'boxplot')
+```
 
 ## Line Chart
 
 ### Introduction
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg12eg, echo=TRUE, eval=FALSE, collapse=FALSE, fig.align='center'}
+qplot(x = ____, y = ____, data = economics, geom = c('____'))
+```
 
 ### Instructions
 
@@ -156,11 +243,23 @@ qplot(x = ____, y = ____, data = mtcars, geom = c('______'))
 qplot(x = ____, y = ____, data = economics, geom = c('____'))
 ```
 
+```{r gg12-solution}
+qplot(x = date, y = unemploy, data = economics, geom = c('line'))
+```
+
 ## Histogram
 
 ### Introduction
 
 <hr>
+
+### Example
+
+<hr>
+
+```{r gg14eg, echo=TRUE, eval=FALSE, collapse=FALSE, fig.align='center'}
+qplot(x = disp, data = mtcars, bins = 6)
+```
 
 ### Instructions
 
@@ -173,3 +272,6 @@ qplot(x = ____, y = ____, data = economics, geom = c('____'))
 qplot(x = ____, data = mtcars, bins = ____)
 ```
 
+```{r gg14-solution}
+qplot(x = mpg, data = mtcars, bins = 5)
+```
