@@ -30,18 +30,67 @@ Modify legend when `fill` is mapped to variables. Specifically
 - labels
 - values
 
-
-
 ## Plot
+
+### Introduction
 
 <hr>
 
-```{r leg22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+```{r leg22, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22)
 ```
 
+## Values
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg24eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"))
+```
+
+### Instructions
+
+<hr>
+
+```{r leg24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"))
+```
+
+```{r leg24-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"))
+```
+
 ## Title
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg23eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
+```
+
+### Instructions
 
 <hr>
 
@@ -52,17 +101,31 @@ ggplot(mtcars) +
     values = c("red", "blue", "green"))
 ```
 
-## Values
-
-<hr>
-
-```{r leg24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+```{r leg23-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
-  scale_fill_manual(values = c("red", "blue", "green"))
+  scale_fill_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
 ```
 
 ## Labels
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg25eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
+### Instructions
 
 <hr>
 
@@ -73,7 +136,31 @@ ggplot(mtcars) +
     labels = c('Four', 'Six', 'Eight'))
 ```
 
+```{r leg25-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
 ## Limits
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg26eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    limits = c(4, 6, 8))
+```
+
+### Instructions
 
 <hr>
 
@@ -84,11 +171,42 @@ ggplot(mtcars) +
     limits = c(4, 6, 8))
 ```
 
+```{r leg26-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    limits = c(4, 6, 8))
+```
+
 ## Breaks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg27eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 6, 8))
+```
+
+### Instructions
 
 <hr>
 
 ```{r leg27, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Breaks'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
+  scale_fill_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 6, 8))
+```
+
+```{r leg27-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +
   scale_fill_manual(values = c("red", "blue", "green"),
