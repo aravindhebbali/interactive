@@ -10,7 +10,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 ```
 
 ## Introduction
@@ -58,9 +58,22 @@ ecom
 - purchase: whether visitor purchased
 - order_value: order value of visitor (in dollars)
 
-## Plot
+## Plot - Part 1
 
 ### Univariate Box Plot
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(1), y = n_visit))
+```
+
+### Instructions
 
 <hr>
 
@@ -69,7 +82,27 @@ ggplot(ecom) +
   geom_boxplot(aes(x = factor(1), y = n_visit))
 ```
 
-### 2 Factor Box Plot
+```{r box2-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(1), y = n_visit))
+```
+
+## Plot - Part 2
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit))
+```
+
+### Instructions
 
 <hr>
 
@@ -78,9 +111,30 @@ ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = n_visit))
 ```
 
+```{r box3-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit))
+```
+
 ## Horizontal Box Plot
 
-<hr>   
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit)) +
+  coord_flip()
+```
+
+### Instructions
+
+<hr>
 
 ```{r box4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Box Plot'}
 ggplot(ecom) +
@@ -88,7 +142,29 @@ ggplot(ecom) +
   coord_flip()
 ```
 
+```{r box4-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit)) +
+  coord_flip()
+```
+
 ## Notch
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit),
+               notch = TRUE) 
+```
+
+### Instructions
 
 <hr>
 
@@ -98,17 +174,13 @@ ggplot(ecom) +
                notch = TRUE) 
 ```
 
-## Jitter
-
-<hr>
-
-```{r box6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Jitter'}
-ggplot(ecom, aes(x = factor(device), y = n_visit)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.2, color = 'blue')
+```{r box5-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit),
+               notch = TRUE) 
 ```
 
-## Outliers
+## Outliers - Introduction
 
 ### Introduction
 
@@ -119,140 +191,80 @@ ggplot(ecom, aes(x = factor(device), y = n_visit)) +
 - size
 - alpha
 
-### Outlier Color
+## Outliers - Practice
+
+### Instructions
 
 <hr>
 
 ```{r box7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outlier Color'}
 ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = duration),
-               outlier.color = 'red')
+               outlier.color = 'red', outlier.shape = 23, outlier.size = 3)
 ```
 
-### Outlier Shape
-
-<hr>
-
-```{r box8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outlier Shape'}
+```{r box7-solution}
 ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = duration),
-               outlier.shape = 23)
+               outlier.color = 'red', outlier.shape = 23, outlier.size = 3)
 ```
 
-### Outlier Shape
+## Fill & Color
+
+### Introduction
 
 <hr>
 
+## Fill & Color - Practice 1
 
-```{r box9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outlier Shape'}
-ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration), outlier.shape = 23) +
-  expand_limits(y = c(0, 1100))
-```
-
-### Outlier Size
-
-<hr>
-
-```{r box10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outlier Size'}
-ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration), outlier.size = 3) +
-  expand_limits(y = c(0, 1100))
-```
-
-### Outlier Alpha
-
-<hr>
-
-```{r box11, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outlier Size'}
-ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration),
-               outlier.color = 'blue', outlier.alpha = 0.3) +
-  expand_limits(y = c(0, 1100))
-```
-
-## Fill
-
-### Specify Values for Fill
+### Instructions
 
 <hr>
 
 ```{r box12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Fill'}
 ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = duration),
-               fill = c('blue', 'red', 'green')) +
-  expand_limits(y = c(0, 1100))
+               fill = c('blue', 'red', 'green')) 
 ```
 
-### Map Fill to Variable
+```{r box12-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration),
+               fill = c('blue', 'red', 'green')) 
+```
+
+## Fill & Color - Practice 2
+
+### Instructions
 
 <hr>
 
 ```{r box13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Fill to Variable'}
 ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = duration,
-               fill = factor(device))) +
-  expand_limits(y = c(0, 1100))
+               fill = factor(device))) 
 ```
 
-## Alpha
-
-### Specify Values for Alpha
-
-```{r box14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Alpha'}
+```{r box13-solution}
 ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration),
-               fill = 'blue', alpha = 0.3) +
-  expand_limits(y = c(0, 1100))
+  geom_boxplot(aes(x = factor(device), y = duration,
+               fill = factor(device))) 
 ```
 
-### Specify Values for Color
+## Fill & Color - Practice 3
 
-<hr>
-
-```{r box15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Color'}
-ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration),
-               color = c('blue', 'red', 'green')) +
-  expand_limits(y = c(0, 1100))
-```
-
-## Color
-
-### Map Color to Variables
+### Instructions
 
 <hr>
 
 ```{r box16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Color to Variables'}
 ggplot(ecom) +
   geom_boxplot(aes(x = factor(device), y = duration,
-               color = factor(device))) +
-  expand_limits(y = c(0, 1100))
+               color = factor(device))) 
 ```
 
-## Line Width
-
-### Specify Values for Line Width
-
-<hr>
-
-```{r box17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Line Width'}
+```{r box16-solution}
 ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration),
-               size = 1.5) +
-  expand_limits(y = c(0, 1100))
+  geom_boxplot(aes(x = factor(device), y = duration,
+               color = factor(device))) 
 ```
-
-## Line Type
-
-### Specify Values for Line Type
-
-<hr>
-
-```{r box18, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Line Type'}
-ggplot(ecom) +
-  geom_boxplot(aes(x = factor(device), y = duration),
-               linetype = 2) +
-  expand_limits(y = c(0, 1100))
-```
-
