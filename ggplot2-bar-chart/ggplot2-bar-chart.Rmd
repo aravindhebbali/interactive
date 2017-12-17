@@ -10,7 +10,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 knitr::opts_chunk$set(echo = FALSE)
-# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
 ```
 
 ## Introduction
@@ -30,8 +30,6 @@ knitr::opts_chunk$set(echo = FALSE)
     - bar line color
     - bar line type
     - bar line size
-
-
 
 ## Data
 
@@ -71,7 +69,22 @@ ecom
 - `size`
 - `position`
 
-### Simple Bar Plot
+## Simple Bar Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)))
+```
+
+### Instructions
 
 <hr>
 
@@ -80,7 +93,28 @@ ggplot(ecom) +
   geom_bar(aes(factor(device)))
 ```
 
+```{r bar2-solution}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)))
+```
+
 ## Bar Color
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)),
+           fill = c('red', 'blue', 'green'))
+```
+
+### Instructions
 
 <hr>
 
@@ -90,8 +124,28 @@ ggplot(ecom) +
            fill = c('red', 'blue', 'green'))
 ```
 
+```{r bar3-solution}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)),
+           fill = c('red', 'blue', 'green'))
+```
 
 ## Stacked Bar Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)))
+```
+
+### Instructions
 
 <hr>
 
@@ -100,7 +154,27 @@ ggplot(ecom) +
   geom_bar(aes(device, fill = factor(referrer)))
 ```
 
+```{r bar7-solution}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)))
+```
+
 ## Grouped Bar Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'dodge')
+```
+
+### Instructions
 
 <hr>
 
@@ -109,7 +183,27 @@ ggplot(ecom) +
   geom_bar(aes(device, fill = factor(referrer)), position = 'dodge')
 ```
 
+```{r bar8-solution}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'dodge')
+```
+
 ## Proportional Bar Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar10eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'fill')
+```
+
+### Instructions
 
 <hr>
 
@@ -118,8 +212,28 @@ ggplot(ecom) +
   geom_bar(aes(device, fill = factor(referrer)), position = 'fill')
 ```
 
+```{r bar10-solution}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'fill')
+```
 
 ## Horizontal Bar Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar9eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device), fill = factor(referrer))) +
+  coord_flip()
+```
+
+### Instructions
 
 <hr>
 
@@ -129,7 +243,28 @@ ggplot(ecom) +
   coord_flip()
 ```
 
+```{r bar9-solution}
+ggplot(ecom) +
+  geom_bar(aes(factor(device), fill = factor(referrer))) +
+  coord_flip()
+```
+
 ## Weight
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar91eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(weight = order_value))
+```
+
+### Instructions
 
 <hr>
 
@@ -138,7 +273,30 @@ ggplot(ecom, aes(x = factor(device))) +
   geom_bar(aes(weight = order_value))
 ```
 
+```{r geoms9-solution}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(weight = order_value))
+```
+
 ## Columns
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r bar12eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+device <- c('laptop', 'mobile', 'tablet')
+visits <- c(30000, 12000, 5000)
+traffic <- tibble::tibble(device, visits)
+ggplot(traffic, aes(x = device, y = visits)) +
+  geom_col(fill = 'blue') 
+```
+
+### Instructions
 
 <hr>
 
@@ -150,17 +308,11 @@ ggplot(traffic, aes(x = device, y = visits)) +
   geom_col(fill = 'blue') 
 ```
 
-## Bar Line
-
-<hr>
-
-### Instructions
-
-```{r bar4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Line Color'}
-ggplot(ecom) +
-  geom_bar(aes(factor(device)), fill = 'white',
-          color = 'black', linetype = 2, size = 2)
+```{r geoms12-solution}
+device <- c('laptop', 'mobile', 'tablet')
+visits <- c(30000, 12000, 5000)
+traffic <- tibble::tibble(device, visits)
+ggplot(traffic, aes(x = device, y = visits)) +
+  geom_col(fill = 'blue') 
 ```
-
-## Practice
 
