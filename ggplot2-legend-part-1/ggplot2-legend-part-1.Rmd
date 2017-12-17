@@ -36,12 +36,61 @@ Modify legend when `color` is mapped to variables. Specifically
 
 <hr>
 
-```{r leg15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+```{r leg15, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, color = factor(cyl)))
 ```
 
+## Values
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg17eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"))
+```
+
+### Instructions
+
+<hr>
+
+```{r leg17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"))
+```
+
+```{r leg17-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"))
+```
+
 ## Title
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg16eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
+```
+
+### Instructions
 
 <hr>
 
@@ -52,17 +101,31 @@ ggplot(mtcars) +
     values = c("red", "blue", "green"))
 ```
 
-## Values
-
-<hr>
-
-```{r leg17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Values'}
+```{r leg16-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, color = factor(cyl))) +
-  scale_color_manual(values = c("red", "blue", "green"))
+  scale_color_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
 ```
 
 ## Labels
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg18eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    limits = c(4, 6, 8))
+```
+
+### Instructions
 
 <hr>
 
@@ -73,7 +136,31 @@ ggplot(mtcars) +
     limits = c(4, 6, 8))
 ```
 
+```{r leg18-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    limits = c(4, 6, 8))
+```
+
 ## Limits
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg19eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
+### Instructions
 
 <hr>
 
@@ -84,7 +171,31 @@ ggplot(mtcars) +
     labels = c('Four', 'Six', 'Eight'))
 ```
 
+```{r leg19-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
 ## Breaks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg20eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 6, 8))
+```
+
+### Instructions
 
 <hr>
 
@@ -95,7 +206,16 @@ ggplot(mtcars) +
     breaks = c(4, 6, 8))
 ```
 
+```{r leg20-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 6, 8))
+```
+
 ## Summary
+
+### Instructions
 
 <hr>
 
@@ -106,5 +226,10 @@ ggplot(mtcars) +
     labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))
 ```
 
-
+```{r leg21-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = "Cylinders", values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))
+```
 
