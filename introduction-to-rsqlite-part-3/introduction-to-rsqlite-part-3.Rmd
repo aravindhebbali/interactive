@@ -1,0 +1,299 @@
+---
+title: "R & SQLite"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+query <- DBI::dbSendQuery(con, 'select * from ecom')
+result <- DBI::dbFetch(query, n = 30)
+```
+
+## Introduction
+
+## Create Table
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Write Table'} 
+x <- 1:10
+y <- letters[1:10]
+trial <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial)
+```
+
+```{r lite18-solution} 
+x <- 1:10
+y <- letters[1:10]
+trial <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial)
+```
+
+### Check if table is created in database
+
+### Instructions
+
+<hr>
+
+```{r lite19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Check if Table Exists'}
+DBI::dbListTables(con)
+DBI::dbExistsTable(con, "trial")
+```
+
+```{r lite19-solution}
+DBI::dbListTables(con)
+DBI::dbExistsTable(con, "trial")
+```
+
+### Query sample data from table
+
+### Instructions
+
+<hr>
+
+```{r lite20, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Sample Data'}
+DBI::dbGetQuery(con, "select * from trial limit 5")
+```
+
+```{r lite20-solution}
+DBI::dbGetQuery(con, "select * from trial limit 5")
+```
+
+## Overwrite Table
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite21, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Overwrite Table'}
+x <- sample(100, 10)
+y <- letters[11:20]
+trial2 <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial2, overwrite = TRUE)
+```
+
+```{r lite21-solution}
+x <- sample(100, 10)
+y <- letters[11:20]
+trial2 <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial2, overwrite = TRUE)
+```
+
+### Query sample data from table to see if it has been overwritten
+
+### Instructions
+
+<hr>
+
+```{r lite22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Sample Data'}
+DBI::dbGetQuery(con, "select * from trial limit 5")
+```
+
+```{r lite22-solution}
+DBI::dbGetQuery(con, "select * from trial limit 5")
+```
+
+## Append Table
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite32, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Append Table'}
+DBI::sqlAppendTable(con, "ecom", head(ecom))
+```
+
+```{r lite32-solution}
+DBI::sqlAppendTable(con, "ecom", head(ecom))
+```
+
+
+## Append Data 
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Append Data'}
+x <- sample(100, 10)
+y <- letters[5:14]
+trial3 <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial3, append = TRUE)
+```
+
+```{r lite23-solution}
+x <- sample(100, 10)
+y <- letters[5:14]
+trial3 <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial3, append = TRUE)
+```
+
+### Query sample data from table to see if new data is appended
+
+### Instructions
+
+<hr>
+
+```{r lite24, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Sample Data'}
+DBI::dbReadTable(con, "trial")
+```
+
+```{r lite24-solution}
+DBI::dbReadTable(con, "trial")
+```
+
+## Insert Rows - Part 1
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite25, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Insert Rows'}
+DBI::dbExecute(con,
+  "INSERT into trial (x, y) VALUES (32, 'c'), (45, 'k'), (61, 'h')"
+)
+```
+
+```{r lite25-solution}
+DBI::dbExecute(con,
+  "INSERT into trial (x, y) VALUES (32, 'c'), (45, 'k'), (61, 'h')"
+)
+```
+
+## Insert Rows - Part 2
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite26, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Insert Rows'}
+DBI::dbSendStatement(con,
+  "INSERT into trial (x, y) VALUES (25, 'm'), (54, 'l'), (16, 'y')"
+)
+```
+
+```{r lite26-solution}
+DBI::dbSendStatement(con,
+  "INSERT into trial (x, y) VALUES (25, 'm'), (54, 'l'), (16, 'y')"
+)
+```
+
+## Data Type
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite27, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data Types'}
+DBI::dbDataType(RSQLite::SQLite(), "a")
+DBI::dbDataType(RSQLite::SQLite(), 1:5)
+DBI::dbDataType(RSQLite::SQLite(), 1.5)
+```
+
+## Remove Table
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite28, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Remove Table'}
+DBI::dbRemoveTable(con, "trial")
+```
+
+```{r lite28-solution}
+DBI::dbRemoveTable(con, "trial")
+```
+
+### Check if table has been removed 
+
+### Instructions
+
+<hr> 
+
+```{r lite29, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'List Tables'}
+DBI::dbListTables(con)
+```
+
+```{r lite29-solution}
+DBI::dbListTables(con)
+```
+
+## Generate Query
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite31, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Generate Query'}
+DBI::sqlCreateTable(con, "new", c(x = "integer", y = "text"))
+```
+
+```{r lite31-solution}
+DBI::sqlCreateTable(con, "new", c(x = "integer", y = "text"))
+```
+
+
+## Close Connection
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r lite30, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Disconnect'}
+DBI::dbDisconnect(con)
+```
+
+```{r lite30-solution}
+DBI::dbDisconnect(con)
+```
