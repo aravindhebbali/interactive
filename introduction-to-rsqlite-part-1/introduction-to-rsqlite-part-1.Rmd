@@ -1,0 +1,155 @@
+---
+title: "R & SQLite"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+query <- DBI::dbSendQuery(con, 'select * from ecom')
+result <- DBI::dbFetch(query, n = 30)
+```
+
+## Introduction
+
+## Connection
+
+### Introduction
+
+<hr>
+
+[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
+[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
+
+<hr>
+
+## Connection Summary
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Connection Summary'}
+summary(con)
+```
+
+```{r lite3-solution}
+summary(con)
+```
+
+## List Tables
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'List Tables'}
+dbListTables(con)
+```
+
+```{r lite6-solution}
+dbListTables(con)
+```
+
+## List Fields
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'List Fields'}
+DBI::dbListFields(con, "ecom")
+```
+
+```{r lite7-solution}
+DBI::dbListFields(con, "ecom")
+```
+
+## Querying Data
+
+### Introduction
+
+<hr>
+
+- `dbReadTable()`: read entire table
+- `dbGetQuery()`: read few rows
+- `dbSendQuery()` & `dbFetch()`: read data in batches
+
+## Query Entire Table
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Entire Table'}
+DBI::dbReadTable(con, 'ecom')
+```
+
+```{r lite8-solution}
+DBI::dbReadTable(con, 'ecom')
+```
+
+## Query Few Rows
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Rows'}
+DBI::dbGetQuery(con, "select * from ecom limit 10")
+```
+
+```{r lite9-solution}
+DBI::dbGetQuery(con, "select * from ecom limit 10")
+```
+
+## Read Data in Batches
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Data in Batches'}
+query <- DBI::dbSendQuery(con, 'select * from ecom')
+result <- DBI::dbFetch(query, n = 30)
+result
+```
+
+```{r lite10-solution}
+query <- DBI::dbSendQuery(con, 'select * from ecom')
+result <- DBI::dbFetch(query, n = 30)
+result
+```
+
