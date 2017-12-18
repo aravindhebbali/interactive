@@ -30,7 +30,7 @@ Use `theme()` to modify the appearance of
 
 <hr>
 
-```{r theme13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Plot Area'}
+```{r theme13, echo=TRUE, collapse=FALSE, fig.align='center'}
 p <- ggplot(mtcars) +
   geom_point(aes(disp, mpg)) + 
   ggtitle('Theme Modification')
@@ -39,6 +39,21 @@ p
 
 ## Background
 
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme14eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(plot.background = element_rect(color = 'blue', 
+          fill = '#4682B4'))
+```
+
+### Instructions
+
 <hr>
 
 ```{r theme14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Plot Background'}
@@ -46,7 +61,26 @@ p + theme(plot.background = element_rect(color = 'blue',
           fill = '#4682B4'))
 ```
 
+```{r theme14-solution}
+p + theme(plot.background = element_rect(color = 'blue', 
+          fill = '#4682B4'))
+```
+
 ## Title
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme27eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(plot.title = element_text(color = 'red'))
+```
+
+### Instructions
 
 <hr>
 
@@ -54,7 +88,25 @@ p + theme(plot.background = element_rect(color = 'blue',
 p + theme(plot.title = element_text(color = 'red'))
 ```
 
+```{r theme27-solution}
+p + theme(plot.title = element_text(color = 'red'))
+```
+
 ## Margin
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme28eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(plot.margin = unit(c(1, 1, 1, 1), "cm"))
+```
+
+### Instructions
 
 <hr>
 
@@ -62,9 +114,28 @@ p + theme(plot.title = element_text(color = 'red'))
 p + theme(plot.margin = unit(c(1, 1, 1, 1), "cm"))
 ```
 
+```{r theme28-solution}
+p + theme(plot.margin = unit(c(1, 1, 1, 1), "cm"))
+```
+
 ## Facets
 
 ### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme15eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + 
+  facet_grid(~cyl)
+p
+```
+
+### Instructions
 
 <hr>
 
@@ -75,7 +146,29 @@ p <- ggplot(mtcars) +
 p
 ```
 
+```{r theme15-solution}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + 
+  facet_grid(~cyl)
+p
+```
+
 ## Strip Background
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme16eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(strip.background = element_rect(color = 'red', 
+          fill = '#4682B4'))
+```
+
+### Instructions
 
 <hr>
 
@@ -84,11 +177,36 @@ p + theme(strip.background = element_rect(color = 'red',
           fill = '#4682B4'))
 ```
 
+```{r theme16-solution}
+p + theme(strip.background = element_rect(color = 'red', 
+          fill = '#4682B4'))
+```
+
 ## Strip Text
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme29eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(strip.text = element_text(face = 'italic', size = 8,
+          color = 'red'))
+```
+
+### Instructions
 
 <hr>
 
 ```{r theme29, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Strip Text'}
+p + theme(strip.text = element_text(face = 'italic', size = 8,
+          color = 'red'))
+```
+
+```{r theme29-solution}
 p + theme(strip.text = element_text(face = 'italic', size = 8,
           color = 'red'))
 ```
