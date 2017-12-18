@@ -20,7 +20,85 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Learn to modify legend
 
+- title
 - label
+
+## Alignment
+
+### Introduction
+
+<hr>
+
+- alignment
+    - 0 (left)
+    - 1 (right)
+
+### Example
+
+<hr>
+
+```{r leg2eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5))
+```
+
+### Instructions
+
+<hr>
+
+```{r leg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Alignment'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5))
+```
+
+```{r leg2-solution}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5))
+```
+
+## Position
+
+### Introduciton
+
+<hr>
+
+- position
+    - top
+    - bottom
+    - left
+    - right
+
+### Example
+
+<hr>
+
+```{r leg3eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top"))
+```
+
+### Instructions
+
+<hr>
+
+```{r leg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Title Position'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top"))
+```
+
+```{r leg3-solution}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top"))
+```
 
 ## Position
 
@@ -34,11 +112,33 @@ Learn to modify legend
     - left 
     - right
 
+### Example
+
+<hr>
+
+```{r leg4eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(label.position = "right"))
+```
+
+### Instructions
+
+<hr>
+
 ```{r leg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label Position'}
 ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
   scale_color_manual(values = c("red", "blue", "green"),
     guide = guide_legend(label.position = "right"))
 ```
+
+```{r leg4-solution}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(label.position = "right"))
+```
+
+## Label
 
 ## Alignment
 
@@ -51,7 +151,27 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
     - 1 (right)
 
 
+### Example
+
+<hr>
+
+```{r leg5eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(label.hjust = 0.5))
+```
+
+### Instructions
+
+<hr>
+
 ```{r leg5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label Alignment'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(label.hjust = 0.5))
+```
+
+```{r leg5-solution}
 ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
   scale_color_manual(values = c("red", "blue", "green"),
     guide = guide_legend(label.hjust = 0.5))
@@ -67,7 +187,27 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
     - horizontal
     - vertical
 
+### Example
+
+<hr>
+
+```{r leg6eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(direction = "horizontal"))
+```
+
+### Instructions
+
+<hr>
+
 ```{r leg6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Direction'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(direction = "horizontal"))
+```
+
+```{r leg6-solution}
 ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
   scale_color_manual(values = c("red", "blue", "green"),
     guide = guide_legend(direction = "horizontal"))
@@ -77,7 +217,27 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
 
 <hr>
 
+### Example
+
+<hr>
+
+```{r leg7eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(nrow = 2))
+```
+
+### Instructions
+
+<hr>
+
 ```{r leg7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(nrow = 2))
+```
+
+```{r leg7-solution}
 ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
   scale_color_manual(values = c("red", "blue", "green"),
     guide = guide_legend(nrow = 2))
@@ -93,13 +253,50 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
     - TRUE
     - FALSE
 
+### Example
+
+<hr>
+
+```{r leg8eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(reverse = TRUE))
+```
+
+### Instructions
+
+<hr>
+
 ```{r leg8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Reverse'}
 ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
   scale_color_manual(values = c("red", "blue", "green"),
     guide = guide_legend(reverse = TRUE))
 ```
 
+```{r leg8-solution}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(reverse = TRUE))
+```
+
 ## Guides
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg20eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top", label.position = "right", 
+      direction = "horizontal", label.hjust = 0.5, nrow = 2, reverse = TRUE)
+  )
+```
+
+### Instructions
 
 <hr>
 
@@ -112,7 +309,30 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
   )
 ```
 
+```{r leg20-solution}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    guide = guide_legend(title = "Cylinders", title.hjust = 0.5, 
+      title.position = "top", label.position = "right", 
+      direction = "horizontal", label.hjust = 0.5, nrow = 2, reverse = TRUE)
+  )
+```
+
 ## Title Alignment 
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg22eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    title = "Horsepower", title.position = "top", title.vjust = 1))
+```
+
+### Instructions
 
 <hr>
 
@@ -122,11 +342,39 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = hp)) +
     title = "Horsepower", title.position = "top", title.vjust = 1))
 ```
 
+```{r leg22-solution}
+ggplot(mtcars) + geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    title = "Horsepower", title.position = "top", title.vjust = 1))
+```
+
 ## Labels Alignment 
 
 <hr>
 
+### Example
+
+<hr>
+
+```{r leg23eg, echo=FALSE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    label.vjust = 0.8))
+```
+
+### Instructions
+
+<hr>
+
 ```{r leg23, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label Alignment'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    label.vjust = 0.8))
+```
+
+```{r leg23-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, color = hp)) +
   scale_color_continuous(guide = guide_colorbar(
