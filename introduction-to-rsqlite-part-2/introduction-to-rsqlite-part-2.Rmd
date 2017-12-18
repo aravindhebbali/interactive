@@ -1,0 +1,147 @@
+---
+title: "R & SQLite"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+query <- DBI::dbSendQuery(con, 'select * from ecom')
+result <- DBI::dbFetch(query, n = 30)
+```
+
+## Introduction
+
+## Query Status
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Status'}
+DBI::dbHasCompleted(query)
+```
+
+```{r lite11-solution}
+DBI::dbHasCompleted(query)
+```
+
+## Query Info
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite12, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Query Info'}
+DBI::dbGetInfo(query)
+```
+
+```{r lite12-solution}
+DBI::dbGetInfo(query)
+```
+
+## Latest Query
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite13, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Latest Query'}
+DBI::dbGetStatement(query)
+```
+
+```{r lite13-solution}
+DBI::dbGetStatement(query)
+```
+
+## Rows Fetched
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows Fetched'}
+DBI::dbGetRowCount(query)
+```
+
+```{r lite14-solution}
+DBI::dbGetRowCount(query)
+```
+
+## Rows Affected
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Rows Affected'}
+DBI::dbGetRowsAffected(query)
+```
+
+```{r lite15-solution}
+DBI::dbGetRowsAffected(query)
+```
+
+## Column Info
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Information'}
+DBI::dbColumnInfo(query)
+```
+
+```{r lite16-solution}
+DBI::dbColumnInfo(query)
+```
+
+## Clear Results
+
+### Introduction
+
+<hr>
+
+### Instruction
+
+<hr>
+
+```{r lite17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Clear Results'}
+DBI::dbClearResult(query)
+```
+
+```{r lite17-solution}
+DBI::dbClearResult(query)
+```
