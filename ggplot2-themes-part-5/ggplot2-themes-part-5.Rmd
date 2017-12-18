@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <hr>
 
-```{r theme17, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Classic Dark on Light'}
+```{r theme17, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_bw()
@@ -28,7 +28,7 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r theme18, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Default Gray'}
+```{r theme18, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_gray()
@@ -38,7 +38,7 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r theme19, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Light'}
+```{r theme19, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_light()
@@ -48,7 +48,7 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r theme20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Minimal'}
+```{r theme20, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_minimal()
@@ -58,7 +58,7 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r theme21, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Dark'}
+```{r theme21, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_dark()
@@ -68,7 +68,7 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r theme22, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Classic'}
+```{r theme22, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_classic()
@@ -78,7 +78,7 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r theme23, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Void'}
+```{r theme23, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_void()
