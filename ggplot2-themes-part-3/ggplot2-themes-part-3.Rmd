@@ -30,7 +30,7 @@ Use `theme()` to modify the appearance of panel
 
 <hr>
 
-```{r theme9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel'}
+```{r theme9, echo=TRUE, collapse=FALSE, fig.align='center'}
 p <- ggplot(mtcars) +
   geom_point(aes(disp, mpg))
 p
@@ -38,13 +38,46 @@ p
 
 ## Background
 
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme10eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(panel.background = element_rect(fill = 'gray'))
+```
+
+### Instructions
+
 <hr>
 
 ```{r theme10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Background'}
 p + theme(panel.background = element_rect(fill = 'gray'))
 ```
 
+```{r theme10-solution}
+p + theme(panel.background = element_rect(fill = 'gray'))
+```
+
 ## Border
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme24eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(panel.border = element_rect(fill = NA, color = 'blue', 
+          linetype = 1, size = 2))
+```
+
+### Instructions
 
 <hr>
 
@@ -53,7 +86,26 @@ p + theme(panel.border = element_rect(fill = NA, color = 'blue',
           linetype = 1, size = 2))
 ```
 
+```{r theme24-solution}
+p + theme(panel.border = element_rect(fill = NA, color = 'blue', 
+          linetype = 1, size = 2))
+```
+
 ## Grid
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme25eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(panel.grid = element_line(color = 'blue', linetype = 2, size = 0.5))
+```
+
+### Instructions
 
 <hr>
 
@@ -61,7 +113,26 @@ p + theme(panel.border = element_rect(fill = NA, color = 'blue',
 p + theme(panel.grid = element_line(color = 'blue', linetype = 2, size = 0.5))
 ```
 
+```{r theme25-solution}
+p + theme(panel.grid = element_line(color = 'blue', linetype = 2, size = 0.5))
+```
+
 ## Grid - Major
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme12eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(panel.grid.major.x = element_line(color = 'blue', 
+          linetype = 2, size = 0.5))
+```
+
+### Instructions
 
 <hr>
 
@@ -70,12 +141,36 @@ p + theme(panel.grid.major.x = element_line(color = 'blue',
           linetype = 2, size = 0.5))
 ```
 
+```{r theme12-solution}
+p + theme(panel.grid.major.x = element_line(color = 'blue', 
+          linetype = 2, size = 0.5))
+```
 
 ## Grid - Minor
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme26eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(panel.grid.minor.y = element_line(color = 'red', 
+          linetype = 3, size = 0.2))
+```
+
+### Instructions
 
 <hr>
 
 ```{r theme26, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Panel Grid (Minor)'}
+p + theme(panel.grid.minor.y = element_line(color = 'red', 
+          linetype = 3, size = 0.2))
+```
+
+```{r theme26-solution}
 p + theme(panel.grid.minor.y = element_line(color = 'red', 
           linetype = 3, size = 0.2))
 ```
