@@ -16,9 +16,17 @@ copy_to(con, mtcars)
 mtcars <- tbl(con, "mtcars")
 ```
 
-## Query Data
+## Introduction
 
-### Select Data
+## Connect 
+
+## Select Data
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -27,7 +35,18 @@ mtcars %>%
   select(mpg, cyl, drat)
 ```
 
-### Filter Data
+```{r dbply4-solution}
+mtcars %>%
+  select(mpg, cyl, drat)
+```
+
+## Filter Data
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -36,7 +55,18 @@ mtcars %>%
   filter(mpg > 25)
 ```
 
-### Summarize Data
+```{r dbply5-solution}
+mtcars %>%
+  filter(mpg > 25)
+```
+
+## Summarize Data
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -46,7 +76,19 @@ mtcars %>%
   summarise(mileage = mean(mpg))
 ```
 
-### Show Query
+```{r dbply6-solution}
+mtcars %>%
+  group_by(cyl) %>%
+  summarise(mileage = mean(mpg))
+```
+
+## Show Query
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -58,11 +100,33 @@ mileages <- mtcars %>%
 mileages %>% show_query()
 ```
 
-### Collect Data
+```{r dbply7-solution}
+mileages <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(mileage = mean(mpg))
+
+mileages %>% show_query()
+```
+
+## Collect Data
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
 ```{r dbply9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Collect Data'}
+mileages <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(mileage = mean(mpg))
+
+mileages %>% collect()
+```
+
+```{r dbply9-solution}
 mileages <- mtcars %>%
   group_by(cyl) %>%
   summarise(mileage = mean(mpg))
