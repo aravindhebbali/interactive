@@ -35,14 +35,32 @@ Modify legend when `size` is mapped to variables. Specifically
 
 ## Plot
 
+### Introduction
+
 <hr>
 
-```{r leg36, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+```{r leg36, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, size = hp))
 ```
 
 ## Title
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg37eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower")
+```
+
+### Instructions
 
 <hr>
 
@@ -52,7 +70,29 @@ ggplot(mtcars) +
   scale_size_continuous(name = "Horsepower")
 ```
 
+```{r leg37-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower")
+```
+
 ## Range
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg38eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(range = c(3, 6))
+```
+
+### Instructions
 
 <hr>
 
@@ -62,7 +102,29 @@ ggplot(mtcars) +
   scale_size_continuous(range = c(3, 6))
 ```
 
+```{r leg38-section}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(range = c(3, 6))
+```
+
 ## Limits
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg39eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(limits = c(0, 400))
+```
+
+### Instructions
 
 <hr>
 
@@ -72,7 +134,29 @@ ggplot(mtcars) +
   scale_size_continuous(limits = c(0, 400))
 ```
 
+```{r leg39-section}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(limits = c(0, 400))
+```
+
 ## Breaks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg40eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400))
+```
+
+### Instructions
 
 <hr>
 
@@ -82,7 +166,30 @@ ggplot(mtcars) +
   scale_size_continuous(breaks = c(100, 200, 300, 400))
 ```
 
+```{r leg40-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400))
+```
+
 ## Labels
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg41eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400),
+    labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
+```
+
+### Instructions
 
 <hr>
 
@@ -93,11 +200,16 @@ ggplot(mtcars) +
     labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
 ```
 
+```{r leg41-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300, 400),
+    labels = c("Hundred", "2 Hundred", "3 Hundred", "4 Hundred"))
+```
+
 ## Summary
 
-<hr>
-
-```{r leg42, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size Continuous'}
+```{r leg42, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, size = hp)) +
   scale_size_continuous(name = "Horsepower", range = c(3, 6), 
