@@ -28,9 +28,11 @@ Use `theme()` to modify the appearance of
 
 ## Plot
 
+### Introduction
+
 <hr>
 
-```{r theme1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis'}
+```{r theme1, echo=TRUE, collapse=FALSE, fig.align='center'}
 p <- ggplot(mtcars) +
   geom_point(aes(disp, mpg))
 p
@@ -38,13 +40,45 @@ p
 
 ## Axis Title
 
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(axis.title.x = element_text(color = "red", size = 10))
+```
+
+### Instructions
+
 <hr>
 
 ```{r theme2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Title'}
 p + theme(axis.title.x = element_text(color = "red", size = 10))
 ```
 
+```{r theme2-solution}
+p + theme(axis.title.x = element_text(color = "red", size = 10))
+```
+
 ## Axis Text
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(axis.text.x = element_text(color = "red", size = 10))
+```
+
+### Instructions
 
 <hr>
 
@@ -52,16 +86,52 @@ p + theme(axis.title.x = element_text(color = "red", size = 10))
 p + theme(axis.text.x = element_text(color = "red", size = 10))
 ```
 
+```{r theme3-solution}
+p + theme(axis.text.x = element_text(color = "red", size = 10))
+```
+
 ## Axis Font
+
+### Introduction
 
 <hr>
 
+### Example
+
+<hr>
+
+```{r theme4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(axis.text = element_text(color = "red", size = 10, face = "italic"))
+```
+
+### Instructions
+
+<hr>
 
 ```{r theme4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Axis Font'}
 p + theme(axis.text = element_text(color = "red", size = 10, face = "italic"))
 ```
 
+```{r theme4-solution}
+p + theme(axis.text = element_text(color = "red", size = 10, face = "italic"))
+```
+
 ## Axis Ticks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2), 
+          axis.ticks.length = unit(1, "cm"))
+```
+
+### Instructions
 
 <hr>
 
@@ -70,7 +140,26 @@ p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2),
           axis.ticks.length = unit(1, "cm"))
 ```
 
+```{r theme5-solution}
+p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2), 
+          axis.ticks.length = unit(1, "cm"))
+```
+
 ## Axis Line
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme6eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(axis.line = element_line(color = 'red', size = 1.5, linetype = 3))
+```
+
+### Instructions
 
 <hr>
 
@@ -78,6 +167,9 @@ p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2),
 p + theme(axis.line = element_line(color = 'red', size = 1.5, linetype = 3))
 ```
 
+```{r theme6-solution}
+p + theme(axis.line = element_line(color = 'red', size = 1.5, linetype = 3))
+```
 
 
 
