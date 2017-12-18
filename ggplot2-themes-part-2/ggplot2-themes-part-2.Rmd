@@ -31,6 +31,22 @@ Use `theme()` to modify the appearance of legend
 
 ## Plot
 
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl), shape = factor(gear)))
+p
+```
+
+### Instructions
+
 <hr>
 
 ```{r theme7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend'}
@@ -39,7 +55,28 @@ p <- ggplot(mtcars) +
 p
 ```
 
+```{r theme7-solution}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl), shape = factor(gear)))
+p
+```
+
 ## Background 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme30eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,  
+          color = "black"))
+```
+
+### Instructions
 
 <hr>
 
@@ -48,7 +85,26 @@ p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,
           color = "black"))
 ```
 
+```{r theme30-solution}
+p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,  
+          color = "black"))
+```
+
 ## Margin 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme31eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.margin = margin(4, 8, 4, 8))
+```
+
+### Instructions
 
 <hr>
 
@@ -56,7 +112,25 @@ p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,
 p + theme(legend.margin = margin(4, 8, 4, 8))
 ```
 
+```{r theme31-solution}
+p + theme(legend.margin = margin(4, 8, 4, 8))
+```
+
 ## Spacing 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme32eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.spacing = unit(1.5, "cm"))
+```
+
+### Instructions
 
 <hr>
 
@@ -64,7 +138,26 @@ p + theme(legend.margin = margin(4, 8, 4, 8))
 p + theme(legend.spacing = unit(1.5, "cm"))
 ```
 
+```{r theme32-solution}
+p + theme(legend.spacing = unit(1.5, "cm"))
+```
+
 ## Key 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme33eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.key = element_rect(fill = 'red'),
+          legend.key.size = unit(0.4, "cm"))
+```
+
+### Instructions
 
 <hr>
 
@@ -73,7 +166,26 @@ p + theme(legend.key = element_rect(fill = 'red'),
           legend.key.size = unit(0.4, "cm"))
 ```
 
+```{r theme33-solution}
+p + theme(legend.key = element_rect(fill = 'red'),
+          legend.key.size = unit(0.4, "cm"))
+```
+
 ## Text 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme34eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.text = element_text(color = 'green', face = 'italic'))
+```
+
+### Instructions
 
 <hr>
 
@@ -81,7 +193,26 @@ p + theme(legend.key = element_rect(fill = 'red'),
 p + theme(legend.text = element_text(color = 'green', face = 'italic'))
 ```
 
+```{r theme34-solution}
+p + theme(legend.text = element_text(color = 'green', face = 'italic'))
+```
+
 ## Title 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme35eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
+          legend.title.align = 0.1)
+```
+
+### Instructions
 
 <hr>
 
@@ -90,7 +221,26 @@ p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
           legend.title.align = 0.1)
 ```
 
+```{r theme35-solution}
+p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
+          legend.title.align = 0.1)
+```
+
 ## Position 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme36eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.position = "top")
+```
+
+### Instructions
 
 <hr>
 
@@ -98,7 +248,25 @@ p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
 p + theme(legend.position = "top")
 ```
 
+```{r theme36-solution}
+p + theme(legend.position = "top")
+```
+
 ## Direction 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme37eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.direction = "horizontal")
+```
+
+### Instructions
 
 <hr>
 
@@ -106,11 +274,39 @@ p + theme(legend.position = "top")
 p + theme(legend.direction = "horizontal")
 ```
 
+```{r theme37-solution}
+p + theme(legend.direction = "horizontal")
+```
+
 ## Box 
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r theme38eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+p + theme(legend.box = "horizontal",
+  legend.box.background = element_rect(fill = "gray"),
+  legend.box.spacing = unit(1, "cm"), legend.box.just = "left",
+  legend.box.margin = margin(4, 8, 4, 8))
+```
+
+### Instructions
 
 <hr>
 
 ```{r theme38, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box'}
+p + theme(legend.box = "horizontal",
+  legend.box.background = element_rect(fill = "gray"),
+  legend.box.spacing = unit(1, "cm"), legend.box.just = "left",
+  legend.box.margin = margin(4, 8, 4, 8))
+```
+
+```{r theme38-solution}
 p + theme(legend.box = "horizontal",
   legend.box.background = element_rect(fill = "gray"),
   legend.box.spacing = unit(1, "cm"), legend.box.just = "left",
