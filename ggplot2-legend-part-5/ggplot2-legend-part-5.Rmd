@@ -39,12 +39,28 @@ Modify legend when `alpha` is mapped to variables. Specifically
 
 <hr>
 
-```{r leg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Color'}
+```{r leg2, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, alpha = hp), color = 'blue')
 ```
 
 ## Title
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous("Horsepower")
+```
+
+### Instructions
 
 <hr>
 
@@ -54,7 +70,29 @@ ggplot(mtcars) +
   scale_alpha_continuous("Horsepower")
 ```
 
+```{r leg3-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous("Horsepower")
+```
+
 ## Breaks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400))
+```
+
+### Instructions
 
 <hr>
 
@@ -64,7 +102,29 @@ ggplot(mtcars) +
   scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400))
 ```
 
+```{r leg4-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400))
+```
+
 ## Limits
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(limits = c(0, 400))
+```
+
+### Instructions
 
 <hr>
 
@@ -74,7 +134,29 @@ ggplot(mtcars) +
   scale_alpha_continuous(limits = c(0, 400))
 ```
 
+```{r leg5-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(limits = c(0, 400))
+```
+
 ## Range
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg6eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(range = c(0.4, 0.8))
+```
+
+### Instructions
 
 <hr>
 
@@ -84,7 +166,31 @@ ggplot(mtcars) +
   scale_alpha_continuous(range = c(0.4, 0.8))
 ```
 
+```{r leg6-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(range = c(0.4, 0.8))
+```
+
 ## Labels
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400),
+    labels = c("Zero", "Hundred", "2 Hundred", 
+      "3 Hundred", "4 Hundred"))
+```
+
+### Instructions
 
 <hr>
 
@@ -96,11 +202,19 @@ ggplot(mtcars) +
       "3 Hundred", "4 Hundred"))
 ```
 
+```{r leg7-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(0, 100, 200, 300, 400),
+    labels = c("Zero", "Hundred", "2 Hundred", 
+      "3 Hundred", "4 Hundred"))
+```
+
 ## Summary
 
 <hr>
 
-```{r leg8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha Continuous'}
+```{r leg8, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
   scale_alpha_continuous("Horsepower", breaks = c(0, 100, 200, 300, 400),
@@ -115,12 +229,28 @@ ggplot(mtcars) +
 
 <hr>
 
-```{r leg9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha Discrete'}
+```{r leg9, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue')
 ```
 
-### Legend Title
+## Legend Title
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg10eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(name = "Cylinders")
+```
+
+### Instructions
 
 <hr>
 
@@ -130,7 +260,29 @@ ggplot(mtcars) +
   scale_alpha_discrete(name = "Cylinders")
 ```
 
-### Legend Breaks
+```{r leg10-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(name = "Cylinders")
+```
+
+## Legend Breaks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg11eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(breaks = c("4", "6", "8"))
+```
+
+### Instructions
 
 <hr>
 
@@ -140,7 +292,29 @@ ggplot(mtcars) +
   scale_alpha_discrete(breaks = c("4", "6", "8"))
 ```
 
-### Legend Range
+```{r leg11-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(breaks = c("4", "6", "8"))
+```
+
+## Legend Range
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg12eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(range = c(0.4, 0.8))
+```
+
+### Instructions
 
 <hr>
 
@@ -150,7 +324,29 @@ ggplot(mtcars) +
   scale_alpha_discrete(range = c(0.4, 0.8))
 ```
 
-### Legend Labels
+```{r leg12-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(range = c(0.4, 0.8))
+```
+
+## Legend Labels
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg13eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(labels = c("Four", "Six", "Eight"))
+```
+
+### Instructions
 
 <hr>
 
@@ -160,11 +356,17 @@ ggplot(mtcars) +
   scale_alpha_discrete(labels = c("Four", "Six", "Eight"))
 ```
 
-### Summary
+```{r leg13-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
+  scale_alpha_discrete(labels = c("Four", "Six", "Eight"))
+```
+
+## Summary
 
 <hr>
 
-```{r leg14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
+```{r leg14, echo=TRUE, collapse=FALSE, fig.align='center'}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, alpha = factor(cyl)), color = 'blue') +
   scale_alpha_discrete(name = "Cylinders", range = c(0.4, 0.8),
