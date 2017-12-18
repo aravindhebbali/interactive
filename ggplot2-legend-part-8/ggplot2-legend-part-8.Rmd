@@ -37,6 +37,23 @@ Learn to modify legend
 
 ## Bar Width
 
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg24eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barwidth = 10))
+```
+
+### Instructions
+
 <hr>
 
 ```{r leg24, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Legend Bar Width'}
@@ -46,7 +63,31 @@ ggplot(mtcars) +
     barwidth = 10))
 ```
 
+```{r leg24-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barwidth = 10))
+```
+
 ## Bar Height
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg25eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barheight = 3))
+```
+
+### Instructions
 
 <hr>
 
@@ -57,7 +98,31 @@ ggplot(mtcars) +
     barheight = 3))
 ```
 
+```{r leg25-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    barheight = 3))
+```
+
 ## Bar Bins
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg26eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    nbin = 4))
+```
+
+### Instructions
 
 <hr>
 
@@ -68,7 +133,31 @@ ggplot(mtcars) +
     nbin = 4))
 ```
 
+```{r leg26-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    nbin = 4))
+```
+
 ## Bar Ticks
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg28eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    ticks = FALSE))
+```
+
+### Instructions
 
 <hr>
 
@@ -79,7 +168,31 @@ ggplot(mtcars) +
     ticks = FALSE))
 ```
 
+```{r leg28-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    ticks = FALSE))
+```
+
 ## Bar Limits
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg29eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    draw.ulim = TRUE, draw.llim = FALSE))
+```
+
+### Instructions
 
 <hr>
 
@@ -90,7 +203,31 @@ ggplot(mtcars) +
     draw.ulim = TRUE, draw.llim = FALSE))
 ```
 
+```{r leg29-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp)) +
+  scale_color_continuous(guide = guide_colorbar(
+    draw.ulim = TRUE, draw.llim = FALSE))
+```
+
 ## Guides
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg34eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp, 
+    size = qsec, shape = factor(gear))) + 
+  guides(color = "colorbar", shape = "legend", size = "legend")
+```
+
+### Instructions
 
 <hr>
 
@@ -101,11 +238,44 @@ ggplot(mtcars) +
   guides(color = "colorbar", shape = "legend", size = "legend")
 ```
 
+```{r leg34-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp, 
+    size = qsec, shape = factor(gear))) + 
+  guides(color = "colorbar", shape = "legend", size = "legend")
+```
+
 ## Guides: Color, Shape & Size
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r leg35eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + 
+  guides(color = guide_colorbar(title = "Horsepower"),
+    shape = guide_legend(title = "Weight"), size = guide_legend(title = "Gear")
+  )
+```
+
+### Instructions
 
 <hr>
 
 ```{r leg35, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Guides: Color, Shape & Size'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + 
+  guides(color = guide_colorbar(title = "Horsepower"),
+    shape = guide_legend(title = "Weight"), size = guide_legend(title = "Gear")
+  )
+```
+
+```{r leg35-solution}
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + 
   guides(color = guide_colorbar(title = "Horsepower"),
