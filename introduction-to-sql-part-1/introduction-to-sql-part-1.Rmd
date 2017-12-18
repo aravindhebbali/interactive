@@ -16,11 +16,15 @@ con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
 copy_to(con, ecom)
 ```
 
-## Agenda
-
 ## Introduction
 
 ## Select Single Column
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -28,7 +32,17 @@ copy_to(con, ecom)
 dbGetQuery(con, "select device from ecom")
 ```
 
+```{r sql1-solution}
+dbGetQuery(con, "select device from ecom")
+```
+
 ## Select Multiple Columns
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -36,7 +50,17 @@ dbGetQuery(con, "select device from ecom")
 dbGetQuery(con, "select referrer, device, purchase  from ecom")
 ```
 
+```{r sql2-solution}
+dbGetQuery(con, "select referrer, device, purchase  from ecom")
+```
+
 ## Select All Columns
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -44,7 +68,17 @@ dbGetQuery(con, "select referrer, device, purchase  from ecom")
 dbGetQuery(con, "select * from ecom")
 ```
 
+```{r sql3-solution}
+dbGetQuery(con, "select * from ecom")
+```
+
 ## Select All Columns (Limit)
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -52,7 +86,17 @@ dbGetQuery(con, "select * from ecom")
 dbGetQuery(con, "select * from ecom limit 10")
 ```
 
+```{r sql4-solution}
+dbGetQuery(con, "select * from ecom limit 10")
+```
+
 ## Select Distinct
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
@@ -60,10 +104,24 @@ dbGetQuery(con, "select * from ecom limit 10")
 dbGetQuery(con, "select distinct referrer from ecom")
 ```
 
+```{r sql5-solution}
+dbGetQuery(con, "select distinct referrer from ecom")
+```
+
 ## Count
+
+### Introduction
+
+<hr>
+
+### Instructions
 
 <hr>
 
 ```{r sql6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Count'}
+dbGetQuery(con, "select count(*) from ecom")
+```
+
+```{r sql6-solution}
 dbGetQuery(con, "select count(*) from ecom")
 ```
