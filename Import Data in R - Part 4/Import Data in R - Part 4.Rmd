@@ -18,109 +18,244 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <hr>
 
-Importing data is the first step in any data analysis workflow. If you cannot import data from differernt sources or file formats, you cannot proceed with data analysis. R allows you to import data from several sources and a variety of file formats. In this module, we will focus on 
-
-- XML
-- JSON
-- HTML
-
-
-## XML - Introduction
-
 ## XML - Read Data
+
+Reading xml data is the first step in converting it to a tibble or any other required format in R. We will use `read_xml()` from the [xml2](https://cran.r-project.org/package=xml2) package to read data from the xml file.
+
+#### Example
 
 <hr>
 
-```{r imp15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read XML'}
+```{r imp15-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_xml('file_name.xml')
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- read data from `books.xml` 
+
+```{r imp15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read XML', exercise.lines = 5}
+books <- read_xml(________)
+```
+
+```{r imp15-solution}
 books <- read_xml('books.xml')
 ```
 
 ## XML - Node Names
 
+Alright! Now that we have read the data from the xml file, let us look at the root node.  Use `xml_name()` to get the root node.
+
+#### Example
+
 <hr>
 
-```{r imp16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Node Names'}
+```{r imp16-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+xml_file <- read_xml('file_name.xml')
+xml_name(xml_file)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+In the previous section, we read data from xml file and stored it in `books`.
+
+- use `xml_name()` to find the root node of `books` 
+
+```{r imp16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Node Names', exercise.lines = 5}
+# find root node of books
+
+
+```
+
+```{r imp16-solution}
 xml_name(books)
 ```
 
 ## XML - Child Nodes
 
+Great! Now that we have identified the root node of the xml data, let us also take a look at the child nodes. Use `xml_child()`
+to get the child nodes.
+
+#### Example
+
 <hr>
 
-```{r imp17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Child Nodes'}
+```{r imp18-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+xml_file <- read_xml('file_name.xml')
+xml_child(xml_file)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- use `xml_children()` to find the child nodes of `books`
+- use `xml_child()` to examine the contents of a child node of `books`
+
+```{r imp18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Child Nodes', exercise.lines = 5}
+# child nodes of books
+
+
+# contents of a child node of books
+
+```
+
+```{r imp18-solution}
+# child nodes of books
 xml_children(books)
-```
 
-### Child Node
-
-<hr>
-
-```{r imp18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Child Nodes'}
+# contents of a child node of books
 xml_child(books)
-```
-
-## XML - Contents
-
-<hr>
-
-```{r imp19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Contents'}
-xml2::xml_contents(books)
 ```
 
 ## XML - Structure
 
+Use `xml_structure()` to view the structure of the xml document. It will not display the values though and is useful to 
+get a high level overview.
+
+#### Example
+
 <hr>
 
-```{r imp21, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Structure'}
-xml2::xml_structure(books)
+```{r imp21-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+xml_file <- read_xml('file_name.xml')
+xml_structure(xml_file)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- use `xml_structure()` to view the structure of `books`
+
+```{r imp21, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Structure', exercise.line = 5}
+# view structure of books
+
+```
+
+```{r imp21-solution}
+xml_structure(books)
 ```
 
 ## XML - Length
 
+Use `xml_length()` to find the number of children nodes in xml document. 
+
+#### Example
+
 <hr>
 
-```{r imp22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Length'}
-xml2::xml_length(books)
+```{r imp22-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+xml_file <- read_xml('file_name.xml')
+xml_length(xml_file)
+```
+
+<br>
+
+#### Instructions
+
+<hr>
+
+- use `xml_length()` to find the number of children nodes in `books`
+
+```{r imp22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Length', exercise.lines = 5}
+# find number of children nodes in books
+
+```
+
+```{r imp22-solution}
+xml_length(books)
 ```
 
 ## XML - Root Node
 
+Use `xml_root()` to find the root node of the xml document.
+
+#### Example
+
 <hr>
 
-```{r imp23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Root Node'}
-xml2::xml_root(books)
+```{r imp23-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+xml_file <- read_xml('file_name.xml')
+xml_root(xml_file)
 ```
 
-## XML - Attributes
+<br>
+
+#### Instructions
 
 <hr>
 
-```{r imp24, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Attributes'}
-xml_find_all(books, './/book') %>% 
-  map_chr(xml_attrs)
+- use `xml_root()` to find the root node of `books`
+
+```{r imp23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Root Node', exercise.lines = 5}
+# find the root node of books
 ```
 
-## XML (Web)
-
-<hr>
-
-```{r xmlread, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'XML (Web)'}
-xml2::read_xml("http://www.xmlfiles.com/examples/cd_catalog.xml")
+```{r imp23-solution}
+xml_root(books)
 ```
 
 ## JSON
 
+We can read json data into R using `fromJSON` from the [jsonlite](package).
+
+#### Example
+
 <hr>
 
-```{r imp1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'JSON'}
-jsonlite::fromJSON('mtcars.json')
+```{r imp1-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+fromJSON('file_name.json')
 ```
 
+#### Instructions
+
+<hr>
+
+- read `mtcars.json` using `fromJSON()` 
+
+```{r imp1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'JSON', exercise.lines =5}
+# read mtcars.json
+```
+
+```{r imp1-solution}
+fromJSON('mtcars.json')
+```
 
 ## HTML
 
+We can read html files using `read_html()`.
+
+#### Example
+
 <hr>
 
-```{r imp14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'HTML'}
+```{r imp14-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_html('url')
+```
+
+#### Instructions
+
+<hr>
+
+- read the html data from [R Project](http://r-project.org/) website
+
+```{r imp14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'HTML', exercise.lines = 5}
+# read html from http://r-project.org/
+```
+
+```{r imp14-solution}
 xml2::read_html("http://r-project.org/")
 ```
